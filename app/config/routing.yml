@@ -1,6 +1,6 @@
 serie:
     resource: "@SerieBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /serie
 
 app:
     resource: "@AppBundle/Controller/"
