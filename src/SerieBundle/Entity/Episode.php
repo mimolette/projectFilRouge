@@ -31,7 +31,7 @@ class Episode
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="releaseDate", type="date")
+     * @ORM\Column(type="date")
      */
     private $releaseDate;
 
