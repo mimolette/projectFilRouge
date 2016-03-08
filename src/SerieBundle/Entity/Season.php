@@ -35,6 +35,14 @@ class Season
      */
     private $name;
 
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="Serie", inversedBy="seasons")
+     * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
+     *
+     */
+    private $serie;
 
     /**
      * Get id
@@ -90,5 +98,28 @@ class Season
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param \SerieBundle\Entity\Serie $serie
+     * @return Season
+     */
+    public function setSerie(\SerieBundle\Entity\Serie $serie = null)
+    {
+        $this->serie = $serie;
+
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return \SerieBundle\Entity\Serie 
+     */
+    public function getSerie()
+    {
+        return $this->serie;
     }
 }

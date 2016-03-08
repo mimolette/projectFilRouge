@@ -2,6 +2,7 @@
 
 namespace SerieBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Serie
 {
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -48,6 +58,14 @@ class Serie
      * @ORM\Column(name="synopsis", type="text")
      */
     private $synopsis;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Season", mappedBy="serie", cascade={"persist", "remove"})
+     *
+     */
+    private $seasons;
 
 
     /**
@@ -150,5 +168,39 @@ class Serie
     public function getSynopsis()
     {
         return $this->synopsis;
+    }
+
+
+    /**
+     * Add seasons
+     *
+     * @param \SerieBundle\Entity\Season $seasons
+     * @return Serie
+     */
+    public function addSeason(\SerieBundle\Entity\Season $seasons)
+    {
+        $this->seasons[] = $seasons;
+
+        return $this;
+    }
+
+    /**
+     * Remove seasons
+     *
+     * @param \SerieBundle\Entity\Season $seasons
+     */
+    public function removeSeason(\SerieBundle\Entity\Season $seasons)
+    {
+        $this->seasons->removeElement($seasons);
+    }
+
+    /**
+     * Get seasons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSeasons()
+    {
+        return $this->seasons;
     }
 }

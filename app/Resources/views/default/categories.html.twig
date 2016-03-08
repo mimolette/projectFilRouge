@@ -1,0 +1,8 @@
+<div class="wf_no-link-content" id="as_kind">
+    <h3 class="wf_no-link" >Les genres</h3>
+    <ul>
+        {% for category in categories %}
+          <li><a class="wf_link" href="">{{ category.name }} </a></li>
+        {% endfor %}
+    </ul>
+</div>
