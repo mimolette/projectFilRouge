@@ -3,6 +3,8 @@
 namespace ToolBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use SerieBundle\Entity\Serie;
+use AppBundle\Entity\User;
 
 /**
  * Comment
@@ -52,15 +54,15 @@ class Comment
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="User",inversedBy="comments")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+ * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User",inversedBy="comments")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetentity="Serie", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="SerieBundle\Entity\Serie", inversedBy="comments")
      * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
      */
     private $serie;
@@ -165,5 +167,51 @@ class Comment
     public function getRate()
     {
         return $this->rate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * @return Comment
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param Serie $serie
+     * @return Comment
+     */
+    public function setSerie(Serie $serie = null)
+    {
+        $this->serie = $serie;
+
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return Serie
+     */
+    public function getSerie()
+    {
+        return $this->serie;
     }
 }

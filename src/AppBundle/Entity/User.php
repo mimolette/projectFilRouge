@@ -3,6 +3,8 @@
 
 namespace AppBundle\Entity;
 
+use ToolBundle\Entity\Comment;
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -51,7 +53,7 @@ class User extends BaseUser
   /**
    * @var ArrayCollection
    *
-   * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+   * @ORM\OneToMany(targetEntity="ToolBundle\Entity\Comment", mappedBy="user")
    */
   private $comments;
 
@@ -151,5 +153,38 @@ class User extends BaseUser
     public function getAvatar()
     {
         return $this->avatar;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param Comment $comments
+     * @return User
+     */
+    public function addComment(Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param Comment $comments
+     */
+    public function removeComment(Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

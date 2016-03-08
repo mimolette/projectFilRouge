@@ -2,7 +2,9 @@
 
 namespace ToolBundle\Entity;
 
+use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use SerieBundle\Entity\Serie;
 
 /**
  * Evaluate
@@ -31,16 +33,16 @@ class Evaluate
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="Serie")
-     * @JoinColumn(name="serie_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="SerieBundle\Entity\Serie")
+     * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
      */
     private $serie;
 
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -76,5 +78,51 @@ class Evaluate
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param Serie $serie
+     * @return Evaluate
+     */
+    public function setSerie(Serie $serie = null)
+    {
+        $this->serie = $serie;
+
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return Serie
+     */
+    public function getSerie()
+    {
+        return $this->serie;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * @return Evaluate
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

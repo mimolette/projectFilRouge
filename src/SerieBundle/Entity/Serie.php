@@ -70,7 +70,7 @@ class Serie
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="serie")
+     * @ORM\OneToMany(targetEntity="ToolBundle\Entity\Comment", mappedBy="serie")
      *
      */
     private $comments;

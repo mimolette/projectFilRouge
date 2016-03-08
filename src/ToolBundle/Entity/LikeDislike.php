@@ -2,6 +2,7 @@
 
 namespace ToolBundle\Entity;
 
+use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,8 +32,8 @@ class LikeDislike
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -40,7 +41,7 @@ class LikeDislike
      * @var
      *
      * @ORM\ManyToOne(targetEntity="Comment")
-     * @JoinColumn(name="comment_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="comment_id", referencedColumnName="id")
      */
     private $comment;
 
@@ -75,5 +76,51 @@ class LikeDislike
     public function getLikeIt()
     {
         return $this->likeIt;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * @return LikeDislike
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param Comment $comment
+     * @return LikeDislike
+     */
+    public function setComment(Comment $comment = null)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return Comment
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }
