@@ -9,7 +9,10 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SerieBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $series = $em->getRepository("SerieBundle:Serie")->findBy(array(), null, 5);
+
+        return $this->render('SerieBundle:Default:index.html.twig',["series" => $series]);
     }
 
     public function top10Action()
@@ -43,10 +46,9 @@ class DefaultController extends Controller
 
         return $this->redirectToRoute('serie_homepage');
     }
-
     public function listAction()
     {
         return $this->render('SerieBundle:Default:list.html.twig');
     }
-}
 
+}
