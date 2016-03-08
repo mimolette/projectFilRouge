@@ -5,3 +5,15 @@ serie_homepage:
 serie_top10:
     path:     /top10
     defaults: { _controller: SerieBundle:Default:top10 }
+
+serie_del:
+    path:     /del/{id}
+    defaults: { _controller: SerieBundle:Default:del }
+    requirements:
+        id:  "\d+"
+
+serie_detail:
+    path:     /detail/{id}
+    defaults: { _controller: ArticleBundle:Default:detail }
+    requirements:
+        id:  "\d+"
