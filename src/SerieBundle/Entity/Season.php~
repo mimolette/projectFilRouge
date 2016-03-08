@@ -5,12 +5,12 @@ namespace SerieBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Episode
+ * Season
  *
- * @ORM\Table(name="episode")
- * @ORM\Entity(repositoryClass="SerieBundle\Repository\EpisodeRepository")
+ * @ORM\Table(name="season")
+ * @ORM\Entity(repositoryClass="SerieBundle\Repository\SeasonRepository")
  */
-class Episode
+class Season
 {
     /**
      * @var int
@@ -29,13 +29,6 @@ class Episode
     private $num;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="date")
-     */
-    private $releaseDate;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -43,11 +36,13 @@ class Episode
     private $name;
 
     /**
-     * @var string
+     * @var
      *
-     * @ORM\Column(name="synopsis", type="text")
+     * @ORM\ManyToOne(targetEntity="Serie", inversedBy="seasons")
+     * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
+     *
      */
-    private $synopsis;
+    private $serie;
 
     /**
      * Get id
@@ -63,7 +58,7 @@ class Episode
      * Set num
      *
      * @param integer $num
-     * @return Episode
+     * @return Season
      */
     public function setNum($num)
     {
@@ -83,33 +78,10 @@ class Episode
     }
 
     /**
-     * Set releaseDate
-     *
-     * @param \DateTime $releaseDate
-     * @return Episode
-     */
-    public function setReleaseDate($releaseDate)
-    {
-        $this->releaseDate = $releaseDate;
-
-        return $this;
-    }
-
-    /**
-     * Get releaseDate
-     *
-     * @return \DateTime 
-     */
-    public function getReleaseDate()
-    {
-        return $this->releaseDate;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
-     * @return Episode
+     * @return Season
      */
     public function setName($name)
     {
@@ -129,25 +101,25 @@ class Episode
     }
 
     /**
-     * Set synopsis
+     * Set serie
      *
-     * @param string $synopsis
-     * @return Episode
+     * @param \SerieBundle\Entity\Serie $serie
+     * @return Season
      */
-    public function setSynopsis($synopsis)
+    public function setSerie(\SerieBundle\Entity\Serie $serie = null)
     {
-        $this->synopsis = $synopsis;
+        $this->serie = $serie;
 
         return $this;
     }
 
     /**
-     * Get synopsis
+     * Get serie
      *
-     * @return string 
+     * @return \SerieBundle\Entity\Serie 
      */
-    public function getSynopsis()
+    public function getSerie()
     {
-        return $this->synopsis;
+        return $this->serie;
     }
 }
