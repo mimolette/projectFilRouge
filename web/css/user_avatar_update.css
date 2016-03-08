@@ -1,0 +1,57 @@
+
+/* ::info:: le filtre en absolu qui donne un effet d'opacité sur le reste 
+de la page */
+#user_avatar_update {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255,255,255,0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+	/* ::info:: le formulaire de connection dans son ensemble */
+	#user_avatar_update form {
+		width: 400px;
+		height: 220px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 0 40px;
+		box-sizing: border-box;
+		background-color: white;
+	}
+
+		/* ::info:: Chaque input du formualire */
+		#user_avatar_update form input {
+			margin-bottom: 10px;
+			width: 100%;
+			box-sizing: border-box;
+			padding-right: 10px;
+		}
+
+		/* ::info:: Chaque label du formualire */
+		#user_avatar_update form label {
+			margin-bottom: 3px;
+			width: 100%;
+			box-sizing: border-box;
+			padding-right: 10px;
+		}
+
+		/* ::info:: le footer du block de connection, qui contient les deux
+								boutons de validation et d'annulation */
+		#user_avatar_update footer {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			margin-top: 15px;
+		}
+
+			/* ::info:: les liens du footer du formulaire */
+			#user_avatar_update footer a {
+				margin: 0;
+				width: 45%;
+			}

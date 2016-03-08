@@ -1,0 +1,35 @@
+/* Fichier CSS qui regroupe les styles associés au footer de la page */
+
+/* ==== Documentation ========================================================
+    ==>todo==> : tout les commentaires précédés de cette mention signifient que
+                 cet aspect conporte encore des zone de flou et qu'il faudra
+                 éventuellement apporter des modification avant la mise en
+                 production.
+    ::info::   : tout les commentaires précédés de cette mention sont simplement
+                 des informations diverse sur le contenu de ce qui va suivre.
+*/
+
+/* :info:: les balise <a> qui représentent les liens cliquable du footer */
+footer a {
+    /* ::info:: marges internes */
+    padding: 2px;
+    /* ::info:: les marges externes */
+    margin-left: 3px;
+}
+
+/* ::info:: la balise <div> qui contient l'élément copyright */
+#footer_copy {
+    display: flex;
+    /* ::info:: capacité de cet éléments à prendre à s'étendre dans
+                    la place disponible */
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+    /* ::info:: la balise <div> dans le block présédent */
+    #footer_copy div {
+        /* ::info:: marges internes */
+        padding: 2px;
+        /* ::info:: les marges externes */
+        margin-right: 3px;
+    }

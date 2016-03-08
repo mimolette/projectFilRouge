@@ -1,0 +1,280 @@
+/* Fichier CSS qui regroupe les styles associés au header des pages */
+
+/* ==== Documentation ========================================================
+    ==>todo==> : tout les commentaires précédés de cette mention signifient que
+                 cet aspect conporte encore des zone de flou et qu'il faudra
+                 éventuellement apporter des modification avant la mise en
+                 production.
+    ::info::   : tout les commentaires précédés de cette mention sont simplement
+                 des informations diverse sur le contenu de ce qui va suivre.
+*/
+
+/* ::info:: le logo du site web */
+#hd_logo {
+    /* ::info:: dimensions du logo */
+    min-width: 100px;
+    min-height: 100%;
+    /* ::info:: marges extérieures */
+    margin-right: 5px;
+}
+
+/* ::info:: balise <section> qui contient : slogan, menu, langue, recherche
+            */
+header section {
+    /* ::info:: positionnement des éléments contenu dans <section> */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    /* ::info:: capacité de cet éléments à prendre à s'étendre dans la place
+                disponible */
+    flex-grow: 1;
+}
+
+    /* ::info:: balise <div> qui regroupe le slogan et les langues */
+    #hd_block_slogan_lang {
+        /* ::info:: positionnement des éléments contenu dans cette balise
+                    <div> */
+        display: flex;
+        flex-direction: row;
+        /* ::info:: dimensions */
+        width : 100%;
+    }
+
+        /* ::info:: balise <div> du slogan */
+        #hd_block_slogan {
+            /* ::info:: dimensions */
+            width : 180px;
+            height: 75px;
+        }
+
+        /* ::info:: balise <div> du choix des langues */
+        #hd_block_lang {
+            /* ::info:: positionnement des éléments contenu dans cette
+                        balise <div> */
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            /* ::info:: capacité de cet éléments à prendre à s'étendre dans
+                        la place disponible */
+            flex-grow: 1;
+        }
+
+            /* ::info:: les balises <figure> dans le choix des langues,
+                        chaque choix de langue est contenu dans une balise
+                        <figure> avec une images et une légende */
+            #hd_block_lang figure {
+                /* ::info:: positionnement des éléments contenu dans cette
+                            balise <div> */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* ::info:: marges internes */
+                padding: 0;
+                /* ::info:: marges exterieures */
+                margin: 0;
+                margin-right: 6px;
+            }
+
+                /* ::info:: les images de drapeau dans le chois des langues */
+                #hd_block_lang img {
+                    /* ::info:: dimensions */
+                    width : 25px;
+                    height: 15px;
+                    /* ::info:: marges exterieures */
+                    margin-bottom: 3px;
+                }
+
+    /* ::info:: balise <div> qui regroupe le menu horizontal et la barre de
+                recherche */
+    #hd_block_nav_search {
+        /* ::info:: positionnement des éléments contenu dans cette balise
+                    <div> */
+        display: flex;
+        flex-direction: row;
+        /* ::info:: dimensions */
+        width : 100%;
+    }
+
+        /* ::info:: élément <nav> */
+        header nav {
+            /* ::info:: positionnement des éléments contenu dans <nav> */
+            display: flex;
+            flex-direction: row;
+            /* ::info:: marges exterieures */
+            margin-top: 5px;
+            margin-left: 15px;
+        }
+
+            /* ::info:: les liens <a> dans le menu horizontal */
+            header nav a {
+                /* ::info:: alignement du texte */
+                text-align: center;
+                /* ::info:: marges internes */
+                padding: 5px 10px 5px 10px;
+                /* ::info:: marges exterieures */
+                margin-right: 3px;
+                /* ::info:: dimensions */
+                min-height: 25px;
+                min-width: 65px;
+                max-width: 65px;
+            }
+
+        /* ::info:: le block <div> qui contient la barre de recherche */
+        #hd_block_search {
+            /* ::info:: positionnement des éléments contenu dans <nav> */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            /* ::info:: capacité de cet éléments à prendre à s'étendre
+                        dans la place disponible */
+            flex-grow: 1;
+        }
+
+            /* ::info:: le champ de formulaire de type text */
+            /* ==>todo==> modifier lors du passage en production */
+            #hd_block_search_input {
+                /* ::info:: marges exterieures */
+                margin-right: 3px;
+                /* ::info:: capacité de cet éléments à prendre à s'étendre
+                            dans la place disponible */
+                flex-grow: 1;
+                /* ::info:: dimensions */
+                height: 25px;
+            }
+
+            /* ::info:: le liens vers la recherche */
+            #hd_block_search a {
+                display: flex;
+                align-items: center;
+            }
+
+            /* ::info:: icone de type <img> qui représente la recherche */
+            #hd_block_search a img {
+                /* ::info:: dimensions */
+                width: 25px;
+                height: 25px;
+            }
+
+
+/* ::info:: balise <aside> qui contient les éléments liés à l'utilisateur */
+header aside {
+    /* ::info:: positionnement des éléments contenu dans cette balise */
+    display: flex;
+    flex-direction: column;
+    /* ::info:: dimensions */
+    min-width: 180px;
+    /* ::info:: marges exterieures */
+    margin-left: 10px;
+}
+
+    /* ::info:: block de type <div> qui regroupe les liens de connection 
+                et de création de compte */
+    #hd_block_connect {
+        /* ::info:: positionnement des éléments contenu dans cette balise */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* ::info:: marges internes */
+        padding: 0 2px 0 2px;
+        /* ::info:: capacité de cet éléments à prendre à s'étendre
+                    dans la place disponible */
+        flex-grow: 1;
+    }
+
+        /* ::info:: les liens dans le block de connection */
+        #hd_block_connect a {
+            margin-bottom: 5px;
+        }
+
+    /* ::info:: block de type <div> qui regroupe les informations de
+                l'utilisateur, l'ensemble du block est un lien pour le
+                moment */
+    #hd_block_user {
+        /* ::info:: positionnement des éléments contenu dans cette balise */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        /* ::info:: marges internes */
+        padding: 0 2px 0 2px;
+        /* ::info:: capacité de cet éléments à prendre à s'étendre
+                    dans la place disponible */
+        flex-grow: 1;
+    }
+
+        /* ::info:: balise <section> qui regroupe : pseudo et autres
+                    informations sur l'utilisateur */
+        #hd_block_user section {
+            /* ::info:: positionnement des éléments contenu dans cette balise */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            /* ::info:: capacité de cet éléments à prendre à s'étendre
+                        dans la place disponible */
+            flex-grow: 1;
+        }
+
+            /*  */
+            #hd_block_user_info {
+                /* ::info:: positionnement des éléments contenu dans cette balise */
+                display: flex;
+                /* ::info:: capacité de cet éléments à prendre à s'étendre
+                            dans la place disponible */
+                flex-grow: 1;
+                /* ::info:: marges exterieures */
+                margin-top: 3px;
+            }
+
+        /* ::info:: l'avatar de l'utilisateur */
+        #hd_block_user img {
+            /* ::info:: dimensions */
+            width: 50px;
+            height: 60px;
+            /* ::info:: marges exterieures */
+            margin-left: 3px;
+        }
+
+        /* ::info:: block de type <div> qui regroupe les accès aux
+                    différents réseaux sociaux */
+    #hd_block_social {
+        /* ::info:: positionnement des éléments contenu dans cette balise */
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        /* ::info:: marges internes */
+        padding: 2px;
+    }
+
+        /* ::info:: chaque groupe de réseau sociaux, composé d'une image et
+                    d'un nom */
+        #hd_block_social figure {
+            /* ::info:: positionnement des éléments contenu dans cette balise */
+            display: flex;
+            flex-direction: row;
+            /* ::info:: marges internes */
+            padding: 0;
+            /* ::info:: marges exterieures */
+            margin: 0;
+            margin-top: 3px;
+        }
+
+            /* ::info:: la balise <img> qui réprésente l'icone du réseau
+                        social */
+            #hd_block_social figure img {
+                /* ::info:: dimensions */
+                width : 20px;
+                height: 20px;
+                /* ::info:: marges exterieures */
+                margin-right: 2px;
+            }
+
+            /* ::info:: la balise <figcaption> qui contient le nom associé
+                        à l'icone du réseau social */
+            #hd_block_social figure figcaption {
+                /* ::info:: positionnement des éléments contenu dans cette balise */
+                display: flex;
+                /* ::info:: capacité de cet éléments à prendre à s'étendre
+                            dans la place disponible */
+                flex-grow: 1;
+            }

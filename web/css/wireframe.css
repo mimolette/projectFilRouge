@@ -1,0 +1,67 @@
+/* Fichier CSS qui regroupe seulement les style très généraux données aux
+   Différents éléments pour représenté la page sous forme de wireframe */
+
+/* ==== Documentation ========================================================
+   ==>todo==> : tout les commentaires précédés de cette mention signifient que
+                cet aspect conporte encore des zone de flou et qu'il faudra
+                éventuellement apporter des modification avant la mise en
+                production.
+   ::info::   : tout les commentaires précédés de cette mention sont simplement
+                des informations diverse sur le contenu de ce qui va suivre.
+*/
+
+/* ::info:: éléments de type images */
+.wf_img {
+    /* ::info:: couleur de police */
+    color: grey;
+    /* ::info:: bordure */
+    border: 2px solid grey;
+}
+
+/* ::info:: éléments de type liens */
+.wf_link {
+    /* ::info:: couleur de police */
+    color: grey;
+    /* ::info:: bordure */
+    border: 2px solid grey;
+    /* ::info:: positionnement du texte au centre du conteneur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    /* ::info::event:: survol des éléments de type liens */
+    /* ==>todo==> style à modifier, pour le moment juste pour le prototype */
+    .wf_link:hover {
+        background-color: #81d927;
+        color: black;
+    }
+
+
+/* ::info:: éléments de type non-liens */
+.wf_no-link {
+    /* ::info:: couleur de police */
+    color: grey;
+    /* ::info:: bordure */
+    border: 2px solid grey;
+    /* ::info:: positionnement du texte au centre du conteneur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ::info:: éléments de type non-liens avec un alignement du contenu différent */
+.wf_no-link-align {
+    /* ::info:: couleur de police */
+    color: grey;
+    /* ::info:: bordure */
+    border: 2px solid grey;
+    /* ::info:: positionnement du texte au centre du conteneur */
+    display: flex;
+}
+
+/* ::info:: éléments de type non-liens mais avec du contenu détaillé */
+.wf_no-link-content {
+    /* ::info:: bordure */
+    border: 2px solid grey;
+}

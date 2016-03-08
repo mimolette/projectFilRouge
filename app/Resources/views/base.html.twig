@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/wireframe.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/aside_kind.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/aside_friends_list.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/accueil.css') }}"/>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  </head>
+  <body>
+    {{ include('default/header.html.twig') }}
+    {% block body %}{% endblock %}
+    {{ include('default/footer.html.twig') }}
+    {% block javascripts %}{% endblock %}
+  </body>
 </html>

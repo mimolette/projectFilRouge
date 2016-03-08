@@ -1,0 +1,115 @@
+/* ::info:: Cette page s'applique également aux résultat de toutes
+les séries et pas seulement d'un genre en particulier */
+
+/* ::info:: le block liste de la section qui contient 
+les filtres des résultats des top */
+#detail_genre ul {
+	display: flex;
+}
+
+	/* ::info:: les éléments de la liste de filtre */
+	#detail_genre ul li {
+		list-style: none;
+		padding: 5px 20px;
+	}
+
+/* ::info:: le block <div> qui contient l'ensemble des résultat du genre */
+.detail_genre_block {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+/* ::info:: chaque résultat du genre */
+	.detail_genre_result {
+		display: flex;
+		flex-direction: row;
+		width: 19%;
+		box-sizing: border-box;
+		height: 180px;
+		margin-bottom: 20px;
+	}
+
+	/* ::info:: marge externe à droite pour tout les résultat qui 
+	ne sont pas en bout de ligne */
+	.detail_genre_result:not(:nth-child(5n)) {
+		margin-right: 1.25%;
+	}
+
+		/* ::info:: chaque <figure> d'un résultat, l'image de la série
+		+ son nom */
+		.detail_genre_result figure {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			margin: 0px;
+			height: 100%;
+			flex-grow: 1;
+			margin-right: 5px;
+		}
+
+			/* ::info:: l'image de la série */
+			.detail_genre_result figure img {
+				flex-grow: 1;
+				width: 100%;
+				box-sizing: border-box;
+			}
+
+			/* ::info:: le nom de la série */
+			.detail_genre_result figcaption {
+				margin-top: 9px;
+				height: 15%;
+			}
+
+				/* ::info:: le liens dans le <figcaption> */
+				.detail_genre_result figcaption a {
+					height: 100%;
+					box-sizing: border-box;
+				}
+
+		/* ::info:: la partie latérale du résultat */
+		.detail_genre_lat {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+			/* ::info:: les 5 niveaux d'évaluation de la série */
+			.detail_genre_lat_evaluation {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				margin-bottom: 5px;
+			}
+
+				/* ::info:: les images d'évaluation */
+				.detail_genre_lat_evaluation img {
+					width: 15px;
+					margin-bottom: 3px;
+				}
+
+			/* ::info:: les nombre de vu de cette série */
+			.detail_genre_lat_nbVu {
+				max-width: 15px;
+				flex-grow: 1;
+			}
+
+/* ::info:: Le pied de page du résultat, il contient les liens vers 
+						les autres page de résultat */
+#detail_genre footer {
+	margin: 15px 0px;
+}
+
+	/* ::info:: la balise <nav> dans le footer */
+	#detail_genre footer nav {
+		display: flex;
+		justify-content: center;
+	}
+
+		/* ::info:: Chaque lien de pagination */
+		#detail_genre footer nav a {
+			padding: 0 4px;
+			min-width: 28px;
+			box-sizing: border-box;
+		}

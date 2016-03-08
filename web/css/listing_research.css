@@ -1,0 +1,48 @@
+/* ::info:: le block liste de la section qui contient 
+les filtres des résultats d'une recherche: serie, acteur, membres; */
+#listing_research ul {
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+	/* ::info:: les éléments de la liste de filtre */
+	#listing_research ul li {
+		list-style: none;
+		width: 30%;
+	}
+
+		/* ::info:: les titre <h2> dans la liste */
+		#listing_research ul h2 {
+			margin: 0;
+			padding: 0;
+		}
+
+			/* ::info:: les <span> dans les titre qui représente le nombre
+									de résultat pour chaque catégorie, série, acteur, membres */
+			#listing_research ul h2 span {
+				margin-left: 10px;
+				font-size: 0.9em;
+				color: #cdcdcd;
+			}
+
+/* ::info:: Le pied de page du résultat, il contient les liens vers 
+						les autres page de résultat */
+#listing_research footer {
+	margin: 15px 0px;
+}
+
+	/* ::info:: la balise <nav> dans le footer */
+	#listing_research footer nav {
+		display: flex;
+		justify-content: center;
+	}
+
+		/* ::info:: Chaque lien de pagination */
+		#listing_research footer nav a {
+			padding: 0 4px;
+			min-width: 28px;
+			box-sizing: border-box;
+		}
