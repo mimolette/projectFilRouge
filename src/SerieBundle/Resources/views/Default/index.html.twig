@@ -1,1 +1,71 @@
-Hello World!
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+        <!-- chaque série est matérialisée dans un block <div>
+        de class top_serie -->
+        <div class="">
+          <!-- le block <DIV> qui contient la vignette de la série -->
+          <div class="">
+            <!-- l'ensemble image de la serie plus nom -->
+            <figure>
+                <img class="" src="{{ serie.poster }}" alt="serie"/>
+                <figcaption>
+                    <a class="" href="">{{ series[0].name }}</a>
+                </figcaption>
+            </figure>
+            <!-- la parie latérale -->
+            <div class="">
+                <!-- l'évaluation de la série -->
+                <div class="">
+                    <img class="" src="" alt="evaluation"/>
+                    <img class="" src="" alt="evaluation"/>
+                    <img class="" src="" alt="evaluation"/>
+                    <img class="" src="" alt="evaluation"/>
+                    <img class="" src="" alt="evaluation"/>
+                </div>
+                <!-- le nombre de vue -->
+                <div class="">{{ series[0].nbVue }}</div>
+            </div>
+            <!-- l'image du classement de la série -->
+            <img class="" src="" alt="classement_serie"/>
+        </div>
+        <!-- le commentaire le plus pertinant laisser par un utilisateur -->
+        <div class="">
+          <!-- l'avatar et le pseudo de l'auteur du commentaire -->
+          <figure>
+            <figcaption>
+              <!-- ::info:: pseudo des amis -->
+              <a class="" href="">{{ User.pseudo }}</a>
+              <!-- ::info:: statut des amis -->
+              <div class="">User.Statut</div>
+            </figcaption>
+            <img class="" src="{{ User.avatar }}" alt="avatar"/>
+          </figure>
+          <!-- la partie qui regroupe information et le message en lui même -->
+          <div class="">
+            <!-- l'entête de ce block, qui regroupe la date et les likes du commentaire -->
+            <header>
+              <div class="">
+                  {{ comment.postedDate }}
+              </div>
+              <div class="">
+                <div>
+                  <img class="" src="" alt="pour"/>
+                  <span class="">{{ comment.nbLike }}</span>
+                </div>
+                <div>
+                  <img class="" src="" alt="contre"/>
+                  <span class="wf_no-link">{{ comment.nbDislike }}</span>
+                </div>
+              </div>
+            </header>
+            <!-- le corps du message -->
+            <div class="">
+              {{ comment.msg }}
+            </div>
+          </div>
+      </div>                        
+    </div>
+
+{% endblock %}
