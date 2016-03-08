@@ -9,7 +9,6 @@
            page courante -->
       <section>
         <h1 class="wf_no-link-align">Séries du moment !</h1>
-
 {% for i in 1..5 %}
         <!-- le block qui contient les meilleures séries suivies
                du moment -->
@@ -23,7 +22,7 @@
               <figure>
                   <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="serie"/>
                   <figcaption>
-                      <a class="wf_link" href="#">serie.name</a>
+                      <a class="wf_link" href="{{ path ("serie_detail",{"id": 0}) }}">serie.name</a>
                   </figcaption>
               </figure>
               <!-- la parie latérale -->
@@ -63,11 +62,11 @@
                 </div>
                 <div class="top_comment_like">
                   <div>
-                    <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="pour"/>
+                    <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
                     <span class="wf_no-link">comment.nbLike</span>
                   </div>
                   <div>
-                    <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="contre"/>
+                    <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
                     <span class="wf_no-link">comment.nbDislike</span>
                   </div>
                 </div>
