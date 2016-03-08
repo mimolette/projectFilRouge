@@ -48,6 +48,13 @@ class User extends BaseUser
    */
   protected $avatar;
 
+  /**
+   * @var ArrayCollection
+   *
+   * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+   */
+  private $comments;
+
   public function __construct()
   {
     parent::__construct();

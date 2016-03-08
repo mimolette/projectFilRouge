@@ -67,6 +67,14 @@ class Serie
      */
     private $seasons;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="serie")
+     *
+     */
+    private $comments;
+
 
     /**
      * Get id
