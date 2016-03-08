@@ -1,0 +1,67 @@
+/* ::info:: le block liste de la section qui contient 
+les filtres des résultats alphabétique des acteurs */
+#listing_actor ul {
+	display: flex;
+}
+
+	/* ::info:: les éléments de la liste de filtre alphabétique */
+	#listing_actor ul li {
+		list-style: none;
+		padding: 5px 20px;
+	}
+
+/* ::info:: le block qui contient l'ensemble des résultats */
+.listing_actor_block {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+	/* ::info:: chacune des figure qui représente un acteur */
+	.listing_actor_block figure {
+		margin: 0;
+		margin-bottom: 15px;
+		padding-right: 7px;
+		width: 12.5%;
+		height: 120px;
+		box-sizing: border-box;
+	}
+
+		/* ::info:: l'image de la figure qui représente l'acteur */
+		.listing_actor_block figure img {
+			width: 100%;
+			height: 80%;
+			box-sizing: border-box;
+		}
+
+		/* ::info:: la légende de l'image, le nom de l'acteur */
+		.listing_actor_block figure figcaption {
+			margin: 0;
+			height: 20%;
+		}
+
+			/* ::info:: le liens vers la page de l'acteur dans la legend */
+			.listing_actor_block figure a {
+				height: 100%;
+				box-sizing: border-box;
+			}
+
+/* ::info:: Le pied de page du résultat, il contient les liens vers 
+						les autres page de résultat */
+#listing_actor footer {
+	margin: 15px 0px;
+}
+
+	/* ::info:: la balise <nav> dans le footer */
+	#listing_actor footer nav {
+		display: flex;
+		justify-content: center;
+	}
+
+		/* ::info:: Chaque lien de pagination */
+		#listing_actor footer nav a {
+			padding: 0 4px;
+			min-width: 28px;
+			box-sizing: border-box;
+		}

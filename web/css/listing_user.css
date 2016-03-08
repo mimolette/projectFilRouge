@@ -1,0 +1,36 @@
+/* ::info:: le block qui contient l'ensemble des résultats */
+.listing_user_block {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+	/* ::info:: chacune des figure qui représente un acteur */
+	.listing_user_block figure {
+		margin: 0;
+		margin-bottom: 15px;
+		padding-right: 7px;
+		width: 20%;
+		height: 200px;
+		box-sizing: border-box;
+	}
+
+		/* ::info:: l'image de la figure qui représente l'acteur */
+		.listing_user_block figure img {
+			width: 100%;
+			height: 80%;
+			box-sizing: border-box;
+		}
+
+		/* ::info:: la légende de l'image, le nom de l'acteur */
+		.listing_user_block figure figcaption {
+			margin: 0;
+			height: 20%;
+		}
+
+			/* ::info:: le liens vers la page de l'acteur dans la legend */
+			.listing_user_block figure a {
+				height: 100%;
+				box-sizing: border-box;
+			}

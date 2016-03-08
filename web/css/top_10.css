@@ -1,0 +1,142 @@
+/* ::info:: le block liste de la section qui contient 
+les filtres des résultats des top */
+#top_10 ul {
+	display: flex;
+}
+
+	/* ::info:: les éléments de la liste de filtre */
+	#top_10 ul li {
+		list-style: none;
+		padding: 5px 20px;
+	}
+
+/* ::info:: le block <div> qui contient l'ensemble des résultat de ce
+classement */
+.top_10_block {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+	/* ::info:: chaque résultat du top */
+	.top_10_result {
+		display: flex;
+		flex-direction: row;
+		width: 24%;
+		box-sizing: border-box;
+		height: 200px;
+		margin-bottom: 25px;
+		/* ::info:: positionnement */
+        position: relative;
+        /* ::info:: marges internes */
+        padding-top: 8px;
+        padding-left: 8px;
+	}
+
+	/* ::info:: correctif du comportement par défault des 4px qui 
+	oblige les block à déborder de la largeur de leurs parent lorsque
+	leurs largeur combiné = 100% */
+	.top_10_result:not(:nth-child(4n+2)) {
+		margin-right: -0.25em;
+	}
+
+		/* ::info:: chaque <figure> d'un résultat, l'image de la série
+		+ son nom */
+		.top_10_result figure {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			margin: 0px;
+			height: 100%;
+			flex-grow: 1;
+			margin-right: 10px;
+		}
+
+			/* ::info:: l'image de la série */
+			.top_10_result figure img {
+				flex-grow: 1;
+				width: 100%;
+				box-sizing: border-box;
+			}
+
+			/* ::info:: le nom de la série */
+			.top_10_result figcaption {
+				margin-top: 10px;
+				height: 15%;
+			}
+
+				/* ::info:: le liens dans le <figcaption> */
+				.top_10_result figcaption a {
+					height: 100%;
+					box-sizing: border-box;
+				}
+
+		/* ::info:: la partie latérale du résultat */
+		.top_10_lat {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+			/* ::info:: les 5 niveaux d'évaluation de la série */
+			.top_10_lat_evaluation {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				margin-bottom: 5px;
+			}
+
+				/* ::info:: les images d'évaluation */
+				.top_10_lat_evaluation img {
+					width: 20px;
+				}
+
+			/* ::info:: les nombre de vu de cette série */
+			.top_10_lat_nbVu {
+				max-width: 20px;
+				flex-grow: 1;
+			}
+
+		/* ::info:: les vignettes de classement des séries */
+		.classement_serie {
+			/* ::info:: positionnement */
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			/* ::info:: dimensions */
+			width: 30px;
+			height: 30px;
+		}
+
+	/* ::info:: les deux premiers du classement */
+	.top_10_result:first-child, .top_10_result:nth-child(2) {
+		width: 48%;
+		height: 300px;
+	}
+
+		/* ::info:: les images d'évaluation des deux premiers
+		résultats */
+		.top_10_result:first-child .top_10_lat_evaluation img, 
+		.top_10_result:nth-child(2) .top_10_lat_evaluation img {
+			width: 40px;
+		}
+
+		/* ::info:: les nombre de vu des deux premiere séries */
+		.top_10_result:first-child .top_10_lat_nbVu, 
+		.top_10_result:nth-child(2) .top_10_lat_nbVu {
+			max-width: 40px;
+		}
+
+		/* ::info:: la vignette de classement des deux meilleures
+		séries */
+		.top_10_result:first-child .classement_serie, 
+		.top_10_result:nth-child(2) .classement_serie {
+			/* ::info:: positionnement */
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			/* ::info:: dimensions */
+			width: 60px;
+			height: 60px;
+		}

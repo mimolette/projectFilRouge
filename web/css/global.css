@@ -1,0 +1,115 @@
+/* Fichier CSS qui regroupe les styles associés aux éléments présent sur
+   l'ensemble des pages */
+
+/* ==== Documentation ========================================================
+    ==>todo==> : tout les commentaires précédés de cette mention signifient que
+                 cet aspect conporte encore des zone de flou et qu'il faudra
+                 éventuellement apporter des modification avant la mise en
+                 production.
+    ::info::   : tout les commentaires précédés de cette mention sont simplement
+                 des informations diverse sur le contenu de ce qui va suivre.
+*/
+
+/* ::info:: élément <div> positioné en absolue pour présenté la page courante*/
+/* ==>todo==> à supprimer au moment de la mise en production */
+.version {
+    color: #cdcdcd;
+    font-style: italic;
+    font-size: 1.1em;
+    border: 3px dashed #e2e2e2;
+    padding: 15px;
+    position: absolute;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    max-width: 100px;
+    text-align: center;
+    z-index: 100;
+}
+
+    /* ::info:: le titre du block, le premier <span> "prototype" */
+    /* ==>todo==> à supprimer au moment de la mise en production */
+    .version span:first-child {
+        font-size: 0.9em;
+        color: #e7e7e7;
+        border-bottom: 1px solid #e7e7e7;
+    }
+
+/* ::info:: élément <header> */
+#hd_js {
+    /* ==>todo==> vérifier la valeur max à attribuer à la largeur de l'élément
+                    header */
+    max-width: 960px;
+    /* ::info:: positionnement sur la page */
+    margin: auto;
+    /* ::info:: positionnement des éléments contenu dans <header> */
+    display: flex;
+    flex-direction: row;
+}
+
+/* ::info:: élément <div>, le corps de la page */
+#main {
+    /* ==>todo==> vérifier la valeur max à attribuer à la largeur de l'élément
+                    header */
+    max-width: 960px;
+    /* ::info:: positionnement sur la page */
+    margin: auto;
+    /* ::info:: marges externes */
+    margin-top: 60px;
+    /* ::info:: positionnement des éléments contenu dans cet élément */
+    display: flex;
+}
+
+    /* ::info:: la balise <section> contenu dans le block main de la page */
+    #main section {
+        /* ::info:: marges externes */
+        margin-right: 10px;
+        /* ::info:: capacité de cet éléments à prendre à s'étendre dans
+                    la place disponible */
+        flex-grow: 1;
+    }
+
+/* ::info:: élément <aside> */
+#as_js {
+    /* ::info:: positionnement des éléments contenu dans cette balise */
+    display: flex;
+    flex-direction: column;
+    /* ::info:: dimensions = aux block aside du header pour conserver le style
+                en colonnes */
+    min-width: 180px;
+    max-width: 180px;
+}
+
+/* ::info:: élément <footer> */
+#ft_js {
+    /* ==>todo==> vérifier la valeur max à attribuer à la largeur de l'élément
+                    header */
+    max-width: 960px;
+    /* ::info:: positionnement sur la page */
+    margin: auto;
+    margin-top: 5px;
+    /* ::info:: marges internes */
+    padding: 3px;
+    /* ::info:: positionnement des éléments contenu dans cette balise */
+    display: flex;
+    flex-direction: row;
+    /* ::info:: capacité de cet éléments à prendre à s'étendre dans
+                    la place disponible */
+        flex-grow: 1;
+}
+
+/* ::info:: les différents titre de type <h1> */
+h1 {
+    /* ::info:: marges externes */
+    margin: 0;
+    margin-bottom: 15px;
+    /* ::info:: marges internes */
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* ::info:: alignement du texte */
+    text-align: left;
+}
