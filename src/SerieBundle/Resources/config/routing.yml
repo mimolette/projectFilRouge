@@ -14,6 +14,10 @@ serie_del:
 
 serie_detail:
     path:     /detail/{id}
-    defaults: { _controller: ArticleBundle:Default:detail }
+    defaults: { _controller: SerieBundle:Default:detail }
     requirements:
         id:  "\d+"
+
+serie_list:
+    path:     /list/
+    defaults: { _controller: SerieBundle:Default:list }

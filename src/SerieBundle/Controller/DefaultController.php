@@ -43,4 +43,10 @@ class DefaultController extends Controller
 
         return $this->redirectToRoute('serie_homepage');
     }
+
+    public function listAction()
+    {
+        return $this->render('SerieBundle:Default:list.html.twig');
+    }
 }
+

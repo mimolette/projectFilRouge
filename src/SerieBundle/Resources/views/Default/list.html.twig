@@ -1,0 +1,41 @@
+{% extends "SerieBundle::layout.html.twig" %}
+
+{% block body %}
+
+
+    <!-- le block <div> qui contient tout le contenu de la page -->
+    <div id="main">
+    <!-- le block <section> qui contient tout les informations de la
+         page courante -->
+    <section>
+    <h1 class="wf_no-link-align">liste des séries</h1>
+
+    {% for i in 1..25 %}
+    <div class="detail_genre_result">
+        <!-- l'ensemble image de la serie plus nom -->
+        <figure>
+            <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="serie"/>
+            <figcaption>
+                <a class="wf_link" href="#">Nom de serie</a>
+            </figcaption>
+        </figure>
+        <!-- la partie larérale du résultat -->
+        <div class="detail_genre_lat">
+            <!-- l'évaluation de la série -->
+            <div class="detail_genre_lat_evaluation">
+                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+            </div>
+            <!-- le nombre de vue -->
+            <div class="detail_genre_lat_nbVu wf_no-link">Nb vu</div>
+        </div>
+    </div>
+        {%  endfor %}
+        </section>
+        </div>
+
+
+{% endblock %}
