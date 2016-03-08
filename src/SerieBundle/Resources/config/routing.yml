@@ -1,3 +1,7 @@
 serie_homepage:
     path:     /
     defaults: { _controller: SerieBundle:Default:index }
+
+serie_top10:
+    path:     /top10
+    defaults: { _controller: SerieBundle:Default:top10 }

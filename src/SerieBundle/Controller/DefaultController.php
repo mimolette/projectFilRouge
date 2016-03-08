@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('SerieBundle:Default:index.html.twig');
     }
+
+    public function top10Action()
+    {
+        return $this->render('SerieBundle:Default:top10.html.twig');
+    }
 }
