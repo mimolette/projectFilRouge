@@ -48,6 +48,15 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
           'poster' => 'wf_img.jpg',
           'valid' => false,
         ],
+        [
+            'name' => 'Grand Papa',
+            'synopsis' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labo reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'poster' => 'wf_img.jpg',
+            'valid' => true,
+        ],
     ];
     // each Series
     foreach($series as $serieData) {
