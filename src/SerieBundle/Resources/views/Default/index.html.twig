@@ -9,7 +9,7 @@
            page courante -->
       <section>
         <h1 class="wf_no-link-align">Séries du moment !</h1>
-{% for i in 1..5 %}
+{% for serie in series %}
         <!-- le block qui contient les meilleures séries suivies
                du moment -->
         <div id="accueil_top_serie">
@@ -22,7 +22,7 @@
               <figure>
                   <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="serie"/>
                   <figcaption>
-                      <a class="wf_link" href="{{ path ("serie_detail",{"id": 0}) }}">serie.name</a>
+                      <a class="wf_link" href="{{ path ("serie_detail",{"id": 0}) }}">{{ serie.name }}</a>
                   </figcaption>
               </figure>
               <!-- la parie latérale -->
