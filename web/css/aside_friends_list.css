@@ -1,0 +1,98 @@
+/* Fichier CSS qui regroupe les styles associés au block de la liste des amis
+   de l'utilisateur connecté */
+
+/* ==== Documentation ========================================================
+    ==>todo==> : tout les commentaires précédés de cette mention signifient que
+                 cet aspect conporte encore des zone de flou et qu'il faudra
+                 éventuellement apporter des modification avant la mise en
+                 production.
+    ::info::   : tout les commentaires précédés de cette mention sont simplement
+                 des informations diverse sur le contenu de ce qui va suivre.
+*/
+
+/* ::info:: la balise <div>, le block de la liste des amis */
+#as_friends_list {
+    /* ::info:: positionnement des éléments contenu dans cette balise */
+    display: flex;
+    flex-direction: column;
+    /* ::info:: dimensions = aux block aside du header pour conserver le style
+                en colonnes */
+    min-width: 180px;
+    max-width: 180px;
+    /* ::info:: marges externes */
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+    /* ::info:: la balise <h3> du block, c'est le titre de cette section */
+    #as_friends_list h3 {
+        /* ::info:: marges extérieures */
+        margin: 0;
+        margin-bottom: 8px;
+    }
+
+    /* ::info:: la balise <ul> du block, c'est la liste de tout les amis */
+    #as_friends_list ul {
+        /* ::info:: marges internes */
+        padding: 0px 3px 0px 3px;
+        /* ::info:: marges externes */
+        margin: 0px 0px 8px 0px;
+    }
+
+        /* ::info:: chaque balise <li> qui représente un ami différent */
+        #as_friends_list li {
+            /* ::info:: les puces de la liste */
+            list-style-type: none;
+            /* ::info:: positionnement des éléments contenu dans cette balise */
+            display: flex;
+            flex-direction: row;
+            /* ::info:: marges externes */
+            margin-top: 3px;
+        }
+
+            /* ::info:: chaque balise <img> qui représente l'avatar d'un ami */
+            #as_friends_list li img {
+                /* ::info:: dimensions */
+                width : 50px;
+                height: 50px;
+                /* ::info:: marges externes */
+                margin-right: 3px;
+            }
+
+            /* ::info:: chaque balise <div> qui représente les info des amis :
+                        pseudo et statu */
+            .as_friends_list_info_user {
+                /* ::info:: positionnement des éléments contenu dans cette
+                            balise */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                /* ::info:: capacité de cet éléments à prendre à s'étendre dans
+                            la place disponible */
+                flex-grow: 1;
+            }
+
+                /* ::info:: chaque balise <div>, c'est le statut des amis */
+                .as_friends_list_info_user div {
+                    /* ::info:: positionnement de cet élément dans son parent */
+                    align-self: flex-end;
+                    /* ::info:: dimensions */
+                    width : 50%;
+                }
+
+    /* ::info:: la balise <div> du bouton en bas de la liste des amis */
+    #as_friends_list_button {
+        /* ::info:: positionnement des éléments contenu dans cette
+                    balise */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        /* ::info:: la balise <img> du bouton, c'est une icone qui caractérise
+                    l'action éffectué lors du clic */
+        #as_friends_list_button img {
+            /* ::info:: dimensions */
+            width : 15px;
+            height: 15px;
+        }

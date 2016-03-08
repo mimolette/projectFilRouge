@@ -1,0 +1,238 @@
+/* Fichier CSS qui regroupe les styles associés au block pricipale de la page
+   d'accueil */
+
+/* ==== Documentation ========================================================
+    ==>todo==> : tout les commentaires précédés de cette mention signifient que
+                 cet aspect conporte encore des zone de flou et qu'il faudra
+                 éventuellement apporter des modification avant la mise en
+                 production.
+    ::info::   : tout les commentaires précédés de cette mention sont simplement
+                 des informations diverse sur le contenu de ce qui va suivre.
+*/
+
+/* ::info:: la premiere section de l'accueil, c'est un block qui contient les
+            différentes séries les plus suivies du moment */
+#accueil_top_serie {
+    /* ::info:: positionnement des éléments contenu dans cette balise */
+    display: flex;
+    flex-direction: column;
+    /* ::info:: marges externes */
+    margin-bottom: 20px;
+}
+
+    /* ::info:: chaque block <div> qui représente une série parmis les plus
+                suivies du moment */
+    .top_serie {
+        /* ::info:: positionnement des éléments contenu dans cette balise */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        /* ::info:: marges externes */
+        margin-bottom: 15px;
+    }
+
+        /* ::info:: le sous block qui contient le descriptif de la série */
+        .top_serie_block {
+            /* ::info:: positionnement des éléments contenu dans cette balise */
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            /* ::info:: marges externes */
+            margin-right: 20px;
+            /* ::info:: positionnement */
+            position: relative;
+            /* ::info:: marges internes */
+            padding-top: 8px;
+            padding-left: 8px;
+        }
+
+        /* ::info:: la balise <figure> qui contient l'image de la série ainsi
+                    que le nom de celle-ci */
+        .top_serie_block figure {
+            /* ::info:: marges externes */
+            margin: 0;
+            margin-right: 5px;
+        }
+
+            /* ::info:: la balise <img> qui est l'image représentative de la
+                        série*/
+            .top_serie figure img {
+                /* ::info:: dimensions */
+                width: 140px;
+                height: 165px;
+                /* ::info:: marges externes */
+                margin-bottom: 5px;
+            }
+
+        /* ::info:: la balise <div> qui est la partie latérale avec les icones
+                    d'évaluation ainsi que le nombre de vu de cette série */
+        .top_serie_lat {
+            /* ::info:: positionnement des éléments contenu dans cette balise */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            /* ::info:: la balise <div> avec les icones d'évaluation de la série
+                        */
+            .top_serie_lat_evaluation {
+                /* ::info:: positionnement des éléments contenu dans cette
+                            balise */
+                display: flex;
+                flex-direction: column;
+            }
+
+                /* ::info:: les différentes icones qui permettent d'évaluer la
+                            série */
+                .top_serie_lat_evaluation img {
+                    /* ::info:: dimensions */
+                    width: 20px;
+                    height: 20px;
+                }
+
+            /* ::info:: un block <div> qui contient le nombre de vus */
+            .top_serie_lat_nbVu {
+                /* ::info:: dimensions */
+                max-width: 20px;
+            }
+
+        .classement_serie {
+            /* ::info:: positionnement */
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            /* ::info:: dimensions */
+            width: 40px;
+            height: 40px;
+        }
+
+    /* ::info:: le sous block qui contient le commentaire le plus pertinent */
+    .top_comment_block {
+        /* ::info:: positionnement des éléments contenu dans cette balise */
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-start;
+        /* ::info:: marges externes */
+        margin-top: 8px;
+    }
+
+        /* ::info:: la balise <figure> qui contient l'avatar de l'utilisateur
+        ainsi que son status */
+        .top_comment_block figure {
+            /* ::info:: positionnement des éléments contenu dans cette balise */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            /* ::info:: marges externes */
+            margin: 0;
+            margin-right: 5px;
+            /* ::info:: dimensions */
+            max-width: 100px;
+        }
+
+            /* ::info:: la balise <img> qui est l'avatar de l'utilisateur */
+            .top_comment_block figure img {
+                /* ::info:: dimensions */
+                box-sizing: border-box;
+                width: 100px;
+                height: 110px;
+                /* ::info:: marges externes */
+                margin: 0;
+                margin-top: 10px;
+            }
+
+            /* ::info:: la balise <figcaption>, le pseudo et le status de l'utilisateur */
+            .top_comment_block figure figcaption {
+                /* ::info:: positionnement des éléments contenu dans cette
+                            balise */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                /* ::info:: capacité de cet éléments à prendre à s'étendre dans
+                            la place disponible */
+                flex-grow: 1;
+            }
+
+                /* ::info:: pseudo de l'utilisateur */
+                .top_comment_block figure a {
+                    /* ::info:: dimensions */
+                    min-height: 30px;
+                }
+
+                /* ::info:: status de l'utilisateur */
+                .top_comment_block figure div {
+                    /* ::info:: positionnement de cet élément dans son parent */
+                    align-self: flex-end;
+                    /* ::info:: dimensions */
+                    width : 50%;
+                }
+
+        /* ::info:: le block qui contient les information et le message du commentaire */
+        .top_comment_message {
+            /* ::info:: positionnement des éléments contenu dans cette balise */
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            /*display: flex;
+            justify-content: flex-start;*/
+        }
+
+            /* ::info:: l'entête du message */
+            .top_comment_message header {
+                /* ::info:: positionnement des éléments contenu dans cette balise */
+                display: flex;
+                flex-direction: row;
+                /* ::info:: marges externes */
+                margin-bottom: 10px;
+            }
+
+                /* ::info:: la date du message */
+                .top_comment_date {
+                    flex-grow: 1;
+                    /* ::info:: dimensions */
+                    min-height: 30px;
+                    /* ::info:: marges externes */
+                    margin-right: 10px;
+                }
+
+                /* ::info:: l'évaluation du message */
+                .top_comment_like {
+                    /* ::info:: positionnement des éléments contenu dans cette balise */
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                }
+
+                    /* ::info:: les ensembles image + legend associé */
+                    .top_comment_like div {
+                        /* ::info:: positionnement des éléments contenu 
+                        dans cette balise */
+                        display: flex;
+                        flex-direction: row;
+                    }
+
+                    /* ::info:: les images de like et dislike */
+                    .top_comment_like img {
+                        /* ::info:: dimensions */
+                        width: 30px;
+                        height: 30px;
+                        /* ::info:: marges externes */
+                        margin-left: 4px;
+                    }
+
+                    /* ::info:: legend associé */
+                    .top_comment_like span {
+                        /* ::info:: capacité de l'élément à grandir dans 
+                        l'espace disponible */
+                        flex-grow: 1;
+                    }
+
+
+            /* ::info:: le corps du message */
+            .top_comment_message .top_comment_corps{
+                /* ::info:: positionnement des éléments contenu dans cette balise */
+                flex-grow: 1;
+            }
+
+        

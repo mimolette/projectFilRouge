@@ -1,0 +1,44 @@
+/* Fichier CSS qui regroupe les styles associés au block du choix des différents
+   genre de séries */
+
+/* ==== Documentation ========================================================
+    ==>todo==> : tout les commentaires précédés de cette mention signifient que
+                 cet aspect conporte encore des zone de flou et qu'il faudra
+                 éventuellement apporter des modification avant la mise en
+                 production.
+    ::info::   : tout les commentaires précédés de cette mention sont simplement
+                 des informations diverse sur le contenu de ce qui va suivre.
+*/
+
+/* ::info:: la balise <div>, le block de choix des genres */
+#as_kind {
+    /* ::info:: positionnement des éléments contenu dans cette balise */
+    display: flex;
+    flex-direction: column;
+    /* ::info:: dimensions = aux block aside du header pour conserver le style
+                en colonnes */
+    min-width: 180px;
+    max-width: 180px;
+    box-sizing: border-box;
+}
+
+    /* ::info:: la balise <h3> du block, c'est le titre de cette section */
+    #as_kind h3 {
+        /* ::info:: marges extérieures */
+        margin: 0;
+        margin-bottom: 8px;
+    }
+
+    /* ::info:: la balise <ul> du block, c'est la liste de tout les genres */
+    #as_kind ul {
+        /* ::info:: marges internes */
+        padding: 0px 25px 0px 0px;
+        /* ::info:: marges externes */
+        margin: 0px 0px 8px 0px;
+    }
+
+        /* ::info:: chaque balise <li> qui représente un genre différent */
+        #as_kind li {
+            /* ::info:: les puces de la liste */
+            list-style-type: none;
+        }
