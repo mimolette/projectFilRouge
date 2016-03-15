@@ -31,6 +31,7 @@ class LoadActorData extends AbstractFixture implements OrderedFixtureInterface
       ['id' => 16,'firstname' => 'Stephen', 'lastname' => 'Amell'],
       ['id' => 17,'firstname' => 'Willa', 'lastname' => 'Holland'],
       ['id' => 18,'firstname' => 'David', 'lastname' => 'Ramsey'],
+      ['id' => 19,'firstname' => 'Brad', 'lastname' => 'Pitt'],
       ['id' => 20,'firstname' => 'Emily', 'lastname' => 'Bett Rickards'],
     ];
 

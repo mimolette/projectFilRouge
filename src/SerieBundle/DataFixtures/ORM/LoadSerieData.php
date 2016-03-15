@@ -22,35 +22,35 @@ class LoadSerieData extends AbstractFixture implements OrderedFixtureInterface
             'poster' => 'wf_img.jpg',
             'valid' => true,
             'actors' => [1,5,8,9],
-            'categories' => []
+            'categories' => [1,2,3]
         ],
         [
           'name' => 'Fan fan la tulipe',
           'poster' => 'wf_img.jpg',
           'valid' => true,
-          'actors' => [1,5,8,9],
-          'categories' => []
+          'actors' => [11,12,15,18,19],
+          'categories' => [4]
         ],
         [
           'name' => 'Breaking Bad',
           'poster' => 'wf_img.jpg',
           'valid' => true,
-          'actors' => [1,5,8,9],
-          'categories' => []
+          'actors' => [14,15,18,7,6],
+          'categories' => [4,6]
         ],
         [
           'name' => 'Green',
           'poster' => 'wf_img.jpg',
           'valid' => false,
-          'actors' => [1,5,8,9],
-          'categories' => []
+          'actors' => [2,5,6,8,10],
+          'categories' => [7]
         ],
         [
           'name' => 'Grand Papa',
           'poster' => 'wf_img.jpg',
           'valid' => true,
-          'actors' => [1,5,8,9],
-          'categories' => []
+          'actors' => [10,11,12,13,14,15],
+          'categories' => [7]
         ],
     ];
     // each Series
@@ -60,8 +60,15 @@ class LoadSerieData extends AbstractFixture implements OrderedFixtureInterface
       $serie->setSynopsis($lorem);
       $serie->setPoster($serieData['poster']);
       $serie->setValidation($serieData['valid']);
-      // TODO: ajouter un tableau de référence d'acteur dans les data
-//      $serie->addActor($this->getReference($seasonData['serie'].'-serie'));
+      // each actors
+      foreach($serieData['actors'] as $actor) {
+        $serie->addActor($this->getReference($actor.'-actor'));
+      }
+
+      // each category
+      foreach($serieData['categories'] as $cat) {
+        $serie->addCategory($this->getReference($cat.'-cat'));
+      }
 
       $manager->persist($serie);
       $this->addReference($serieData['name'].'-serie', $serie);
