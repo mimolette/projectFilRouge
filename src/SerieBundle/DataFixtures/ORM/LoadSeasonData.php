@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM;
+namespace SerieBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -80,6 +80,6 @@ class LoadSeasonData extends AbstractFixture implements OrderedFixtureInterface
    */
   public function getOrder()
   {
-    return 3;
+    return 5;
   }
 }

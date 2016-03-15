@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM;
+namespace SerieBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -85,13 +85,13 @@ class LoadEpisodeData extends AbstractFixture implements OrderedFixtureInterface
         $episode->setSynopsis($synopsis);
         $episode->setNum($ii+1);
         $episode->setReleaseDate(new \DateTime($curentDate->format('Y-m-d')));
+        $episode->setSeason($this->getReference($seasonData['season'].'-season'));
 
         // increase the current date
         $curentDate->modify('+'.$seasonData['nextEpisode'].' day');
 
         $manager->persist($episode);
       }
-//      $episode->setSeason($this->getReference($episodeData['season'].'-season'));
 
     }
     $manager->flush();
@@ -104,6 +104,6 @@ class LoadEpisodeData extends AbstractFixture implements OrderedFixtureInterface
    */
   public function getOrder()
   {
-    return 4;
+    return 6;
   }
 }
