@@ -10,7 +10,7 @@
       <section>
         <h1 class="wf_no-link-align">Top 10</h1>
 
-{% for i in 1..10 %}
+{% for serie in series %}
         <!-- le block qui contient les meilleures séries suivies
                du moment -->
         <div id="accueil_top_serie">
@@ -30,11 +30,11 @@
               <div class="top_serie_lat">
                   <!-- l'évaluation de la série -->
                   <div class="top_serie_lat_evaluation">
-                      <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
+                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
+                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
+                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
+                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
                   </div>
                   <!-- le nombre de vue -->
                   <div class="top_serie_lat_nbVu wf_no-link">serie.nbVue</div>
@@ -63,11 +63,11 @@
                 </div>
                 <div class="top_comment_like">
                   <div>
-                    <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="pour"/>
+                    <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
                     <span class="wf_no-link">comment.nbLike</span>
                   </div>
                   <div>
-                    <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="contre"/>
+                    <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
                     <span class="wf_no-link">comment.nbDislike</span>
                   </div>
                 </div>

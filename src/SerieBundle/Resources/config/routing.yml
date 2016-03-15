@@ -21,3 +21,7 @@ serie_detail:
 serie_list:
     path:     /list/
     defaults: { _controller: SerieBundle:Default:list }
+
+serie_add:
+    path:     /add
+    defaults: { _controller: SerieBundle:Default:add }

@@ -43,7 +43,7 @@ class Serie
      *
      * @ORM\Column(name="validation", type="boolean")
      */
-    private $validation;
+    private $validation = false;
 
     /**
      * @var string
@@ -210,5 +210,38 @@ class Serie
     public function getSeasons()
     {
         return $this->seasons;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ToolBundle\Entity\Comment $comments
+     * @return Serie
+     */
+    public function addComment(\ToolBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ToolBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ToolBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

@@ -1,0 +1,48 @@
+{% extends "SerieBundle::layout.html.twig" %}
+
+{% block body %}
+
+
+  <!-- le block <div> qui contient tout le contenu de la page -->
+    <div id="main">
+      <!-- le block <section> qui contient tout les informations de la
+           page courante -->
+      <section>
+        <h1 class="wf_no-link-align">Ajouter une serie</h1>
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_errors(form) }}
+  
+    <div class="form-group">
+      {# Génération du label. #}
+      {{ form_label(form.poster, "Poster :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      {# Affichage des erreurs pour ce champ précis. #}
+      {{ form_errors(form.poster) }}
+      <div class="col-sm-4">
+        {# Génération de l'input. #}
+        {{ form_widget(form.poster, {'attr': {'class': 'form-control','placeholder': 'url:'}}) }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.name, "Nom de la série :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      {{ form_errors(form.name) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.synopsis, "Synopsis :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      {{ form_errors(form.synopsis) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.synopsis, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+
+      <div class="col-sm-4">
+      {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-primary',style:"margin-left:450px"}}) }}
+      </div>
+  {{ form_end(form) }}
+    	</section>
+    </div>
+{% endblock %}

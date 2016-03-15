@@ -20,7 +20,7 @@
             <div class="top_serie_block">
               <!-- l'ensemble image de la serie plus nom -->
               <figure>
-                  <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="serie"/>
+                  <img class="wf_img" src="{{ serie.poster }}" alt="serie"/>
                   <figcaption>
                       <a class="wf_link" href="{{ path ("serie_detail",{"id": 0}) }}">{{ serie.name }}</a>
                   </figcaption>
