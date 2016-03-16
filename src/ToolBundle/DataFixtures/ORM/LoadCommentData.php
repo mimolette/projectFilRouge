@@ -23,6 +23,8 @@ class LoadCommentData extends AbstractFixture implements OrderedFixtureInterface
       'guiGuiLeBof-user'
     ];
 
+    $id = 0;
+
     $series = [
       [
         'ref' => 'Louis la Brocante-serie',
@@ -50,6 +52,7 @@ class LoadCommentData extends AbstractFixture implements OrderedFixtureInterface
         'date' => '2016-02-27'
       ],
     ];
+    // nb commentaire = 56
 
     // each series
     foreach($series as $serieData) {
@@ -65,6 +68,7 @@ class LoadCommentData extends AbstractFixture implements OrderedFixtureInterface
         $com->setSerie($this->getReference($serieData['ref']));
 
         $manager->persist($com);
+        $this->setReference($id++ . '-com', $com);
       }
     }
 

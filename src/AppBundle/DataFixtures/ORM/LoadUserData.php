@@ -20,7 +20,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         'dayOfBirth' => new \DateTime('1990-02-14'),
         'avatar' => 'wf_img.jpg',
         'email' => 'superMan@test.fr',
-        'roles' => ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN']
+        'roles' => ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'],
+        'follow' => ['Louis la Brocante', 'Breaking Bad'],
+        'see' => ['Fan fan la tulipe', 'Green'],
       ],
       [
         'username' => 'darkLegolas666',
@@ -30,7 +32,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         'dayOfBirth' => new \DateTime('1996-10-25'),
         'avatar' => 'wf_img.jpg',
         'email' => 'darkLegolas666@test.fr',
-        'roles' => ['ROLE_USER', 'ROLE_MODERATOR']
+        'roles' => ['ROLE_USER', 'ROLE_MODERATOR'],
+        'follow' => ['Breaking Bad'],
+        'see' => ['Fan fan la tulipe', 'Green', 'Breaking Bad'],
       ],
       [
         'username' => 'guiGuiLeBof',
@@ -40,7 +44,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         'dayOfBirth' => new \DateTime('1986-06-27'),
         'avatar' => 'wf_img.jpg',
         'email' => 'guiGuiLeBof@test.fr',
-        'roles' => ['ROLE_USER']
+        'roles' => ['ROLE_USER'],
+        'follow' => ['Louis la Brocante', 'Breaking Bad'],
+        'see' => ['Grand Papa'],
       ]
     ];
     // each Users
@@ -56,6 +62,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
       $user->setEmail($userData['email']);
       $user->setRoles($userData['roles']);
 
+      // each Follow
+      foreach($userData['follow'] as $serieFollowed) {
+        $user->addSeriesFollowed($this->getReference($serieFollowed . '-serie'));
+      }
+
+      // each see
+      foreach($userData['see'] as $serieSeen) {
+        $user->addSeriesSeen($this->getReference($serieSeen . '-serie'));
+      }
+
       $manager->persist($user);
       $this->addReference($userData['username'].'-user', $user);
     }
@@ -70,6 +86,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
    */
   public function getOrder()
   {
-    return 1;
+    return 6;
   }
 }

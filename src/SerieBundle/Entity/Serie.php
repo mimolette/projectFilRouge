@@ -22,6 +22,7 @@ class Serie
         $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->actors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->viewers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -98,6 +99,11 @@ class Serie
      *
      */
     private $comments;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="seriesSeen")
+     */
+    private $viewers;
 
     /**
      * Get id
@@ -332,5 +338,38 @@ class Serie
     public function getActors()
     {
         return $this->actors;
+    }
+
+    /**
+     * Add viewers
+     *
+     * @param \AppBundle\Entity\User $viewers
+     * @return Serie
+     */
+    public function addViewer(\AppBundle\Entity\User $viewers)
+    {
+        $this->viewers[] = $viewers;
+
+        return $this;
+    }
+
+    /**
+     * Remove viewers
+     *
+     * @param \AppBundle\Entity\User $viewers
+     */
+    public function removeViewer(\AppBundle\Entity\User $viewers)
+    {
+        $this->viewers->removeElement($viewers);
+    }
+
+    /**
+     * Get viewers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getViewers()
+    {
+        return $this->viewers;
     }
 }
