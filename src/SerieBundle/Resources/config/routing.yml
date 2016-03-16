@@ -6,9 +6,19 @@ serie_top10:
     path:     /top10
     defaults: { _controller: SerieBundle:Default:top10 }
 
+serie_add:
+    path:     /add
+    defaults: { _controller: SerieBundle:Default:add }
+
 serie_del:
     path:     /del/{id}
     defaults: { _controller: SerieBundle:Default:del }
+    requirements:
+        id:  "\d+"
+
+serie_mod:
+    path:     /mod/{id}
+    defaults: { _controller: SerieBundle:Default:mod }
     requirements:
         id:  "\d+"
 
@@ -22,6 +32,3 @@ serie_list:
     path:     /list/
     defaults: { _controller: SerieBundle:Default:list }
 
-serie_add:
-    path:     /add
-    defaults: { _controller: SerieBundle:Default:add }

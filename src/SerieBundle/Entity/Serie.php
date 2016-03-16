@@ -36,7 +36,7 @@ class Serie
      *
      * @ORM\Column(name="poster", type="string", length=255, nullable=true)
      */
-    private $poster;
+    private $poster = 'http://www.pilote-virtuel.com/img/facebook/0.jpg';
 
     /**
      * @var bool

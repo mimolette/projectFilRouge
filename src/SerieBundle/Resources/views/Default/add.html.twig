@@ -8,7 +8,7 @@
       <!-- le block <section> qui contient tout les informations de la
            page courante -->
       <section>
-        <h1 class="wf_no-link-align">Ajouter une serie</h1>
+        <h1 class="wf_no-link-align">{{ action }} une serie</h1>
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
     {{ form_errors(form) }}
   
@@ -40,7 +40,7 @@
     </div>
 
       <div class="col-sm-4">
-      {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-primary',style:"margin-left:450px"}}) }}
+      {{ form_widget(form.valider, {'attr': {'class': 'btn btn-primary','style':"margin-left:450px"},'label': action }) }}
       </div>
   {{ form_end(form) }}
     	</section>

@@ -45,30 +45,51 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
             $em->flush();
-            return $this->redirectToRoute('serie_list');
+            return $this->redirectToRoute('serie_homepage');
         }
 
         return $this->render('SerieBundle:Default:add.html.twig', array(
             'form' => $form->createView(),
+            'action' => 'ajouter',
         ));
     }
 
-    public function delAction($id)
+    public function delAction(Serie $serie)
     {
-        $serie = $this
-            ->getDoctrine()
-            ->getRepository("SerieBundle:Serie")
-            ->find($id);
-
-        $em = $this->getDoctrine()->getManager();
         if(null === $serie){
             throw $this->createNotFoundException();
         }
 
+        $em = $this->getDoctrine()->getManager();
         $em->remove($serie);
         $em->flush();
 
         return $this->redirectToRoute('serie_homepage');
+    }
+
+        public function modAction(Request $request,$id)
+    {
+
+        $serie = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Serie")
+            ->find($id);
+        if ($serie == null) return $this->redirectToRoute('serie_homepage');
+        $form = $this->createForm(new SerieType() ,$serie);
+
+        $form->handleRequest($request);
+        if ( $form->isSubmitted() && $form->isValid() )
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($serie);
+            $em->flush();
+            return $this->redirectToRoute('serie_homepage');
+        }
+
+        return $this->render('SerieBundle:Default:add.html.twig', array(
+            'form' => $form->createView(),
+            'action' => 'modifier',
+        ));
     }
 
     public function listAction()
