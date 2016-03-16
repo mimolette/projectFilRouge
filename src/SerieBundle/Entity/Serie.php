@@ -20,6 +20,9 @@ class Serie
     public function __construct()
     {
         $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->viewers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -213,6 +216,39 @@ class Serie
     }
 
     /**
+     * Add categories
+     *
+     * @param \SerieBundle\Entity\Category $categories
+     * @return Serie
+     */
+    public function addCategory(\SerieBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \SerieBundle\Entity\Category $categories
+     */
+    public function removeCategory(\SerieBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
      * Add comments
      *
      * @param \ToolBundle\Entity\Comment $comments
@@ -238,10 +274,76 @@ class Serie
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add actors
+     *
+     * @param \SerieBundle\Entity\Actor $actors
+     * @return Serie
+     */
+    public function addActor(\SerieBundle\Entity\Actor $actors)
+    {
+        $this->actors[] = $actors;
+
+        return $this;
+    }
+
+    /**
+     * Remove actors
+     *
+     * @param \SerieBundle\Entity\Actor $actors
+     */
+    public function removeActor(\SerieBundle\Entity\Actor $actors)
+    {
+        $this->actors->removeElement($actors);
+    }
+
+    /**
+     * Get actors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    /**
+     * Add viewers
+     *
+     * @param \AppBundle\Entity\User $viewers
+     * @return Serie
+     */
+    public function addViewer(\AppBundle\Entity\User $viewers)
+    {
+        $this->viewers[] = $viewers;
+
+        return $this;
+    }
+
+    /**
+     * Remove viewers
+     *
+     * @param \AppBundle\Entity\User $viewers
+     */
+    public function removeViewer(\AppBundle\Entity\User $viewers)
+    {
+        $this->viewers->removeElement($viewers);
+    }
+
+    /**
+     * Get viewers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getViewers()
+    {
+        return $this->viewers;
     }
 }

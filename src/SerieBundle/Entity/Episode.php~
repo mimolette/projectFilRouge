@@ -50,6 +50,15 @@ class Episode
     private $synopsis;
 
     /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="Season", inversedBy="episodes")
+     * @ORM\JoinColumn(name="season_id", referencedColumnName="id")
+     *
+     */
+    private $season;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -150,4 +159,30 @@ class Episode
     {
         return $this->synopsis;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Set season
+     *
+     * @param \SerieBundle\Entity\Season $season
+     * @return Episode
+     */
+    public function setSeason(\SerieBundle\Entity\Season $season = null)
+    {
+        $this->season = $season;
+
+        return $this;
+    }
+
+    /**
+     * Get season
+     *
+     * @return \SerieBundle\Entity\Season 
+     */
+    public function getSeason()
+    {
+        return $this->season;
+    }
+>>>>>>> mapping_and_fixtures
 }

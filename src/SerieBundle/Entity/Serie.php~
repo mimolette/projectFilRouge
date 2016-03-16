@@ -20,6 +20,9 @@ class Serie
     public function __construct()
     {
         $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->viewers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -70,11 +73,43 @@ class Serie
     /**
      * @var ArrayCollection
      *
+<<<<<<< HEAD
+=======
+     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\JoinTable(name="category_serie",
+     *      joinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     */
+    private $categories;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Actor")
+     * @ORM\JoinTable(name="casting",
+     *      joinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="actor_id", referencedColumnName="id")}
+     *      )
+     */
+    private $actors;
+
+    /**
+     * @var ArrayCollection
+     *
+>>>>>>> mapping_and_fixtures
      * @ORM\OneToMany(targetEntity="ToolBundle\Entity\Comment", mappedBy="serie")
      *
      */
     private $comments;
 
+<<<<<<< HEAD
+=======
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="seriesSeen")
+     */
+    private $viewers;
+>>>>>>> mapping_and_fixtures
 
     /**
      * Get id
@@ -210,5 +245,104 @@ class Serie
     public function getSeasons()
     {
         return $this->seasons;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \SerieBundle\Entity\Category $categories
+     * @return Serie
+     */
+    public function addCategory(\SerieBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \SerieBundle\Entity\Category $categories
+     */
+    public function removeCategory(\SerieBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ToolBundle\Entity\Comment $comments
+     * @return Serie
+     */
+    public function addComment(\ToolBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ToolBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ToolBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add actors
+     *
+     * @param \SerieBundle\Entity\Actor $actors
+     * @return Serie
+     */
+    public function addActor(\SerieBundle\Entity\Actor $actors)
+    {
+        $this->actors[] = $actors;
+
+        return $this;
+    }
+
+    /**
+     * Remove actors
+     *
+     * @param \SerieBundle\Entity\Actor $actors
+     */
+    public function removeActor(\SerieBundle\Entity\Actor $actors)
+    {
+        $this->actors->removeElement($actors);
+    }
+
+    /**
+     * Get actors
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActors()
+    {
+        return $this->actors;
     }
 }

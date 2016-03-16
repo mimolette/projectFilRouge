@@ -57,10 +57,31 @@ class User extends BaseUser
    */
   private $comments;
 
+  /**
+   * @var ArrayCollection
+   *
+   * @ORM\ManyToMany(targetEntity="SerieBundle\Entity\Serie")
+   * @ORM\JoinTable(name="follow",
+   *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+   *      inverseJoinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")}
+   *      )
+   */
+  private $seriesFollowed;
+
+  /**
+   * @var ArrayCollection
+   *
+   * @ORM\ManyToMany(targetEntity="SerieBundle\Entity\Serie", inversedBy="viewers")
+   * @ORM\JoinTable(name="see")
+   */
+  private $seriesSeen;
+
   public function __construct()
   {
     parent::__construct();
-    // your own logic
+    $this->comments = new ArrayCollection();
+    $this->seriesFollowed = new ArrayCollection();
+    $this->seriesSeen = new ArrayCollection();
   }
 
     /**
@@ -186,5 +207,71 @@ class User extends BaseUser
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add seriesFollowed
+     *
+     * @param \SerieBundle\Entity\Serie $seriesFollowed
+     * @return User
+     */
+    public function addSeriesFollowed(\SerieBundle\Entity\Serie $seriesFollowed)
+    {
+        $this->seriesFollowed[] = $seriesFollowed;
+
+        return $this;
+    }
+
+    /**
+     * Remove seriesFollowed
+     *
+     * @param \SerieBundle\Entity\Serie $seriesFollowed
+     */
+    public function removeSeriesFollowed(\SerieBundle\Entity\Serie $seriesFollowed)
+    {
+        $this->seriesFollowed->removeElement($seriesFollowed);
+    }
+
+    /**
+     * Get seriesFollowed
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSeriesFollowed()
+    {
+        return $this->seriesFollowed;
+    }
+
+    /**
+     * Add seriesSeen
+     *
+     * @param \SerieBundle\Entity\Serie $seriesSeen
+     * @return User
+     */
+    public function addSeriesSeen(\SerieBundle\Entity\Serie $seriesSeen)
+    {
+        $this->seriesSeen[] = $seriesSeen;
+
+        return $this;
+    }
+
+    /**
+     * Remove seriesSeen
+     *
+     * @param \SerieBundle\Entity\Serie $seriesSeen
+     */
+    public function removeSeriesSeen(\SerieBundle\Entity\Serie $seriesSeen)
+    {
+        $this->seriesSeen->removeElement($seriesSeen);
+    }
+
+    /**
+     * Get seriesSeen
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSeriesSeen()
+    {
+        return $this->seriesSeen;
     }
 }
