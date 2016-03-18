@@ -67,7 +67,7 @@ class DefaultController extends Controller
         return $this->redirectToRoute('serie_homepage');
     }
 
-        public function modAction(Request $request,$id)
+    public function modAction(Request $request,$id)
     {
 
         $serie = $this

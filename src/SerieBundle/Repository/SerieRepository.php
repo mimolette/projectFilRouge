@@ -12,4 +12,57 @@ use Doctrine\ORM\EntityRepository;
  */
 class SerieRepository extends EntityRepository
 {
+//  #lister tout les commentaire par série avec leur nombre de like
+//  SELECT c.id, c.serie_id, COUNT(dl.id) as nb_like
+//  FROM comment c
+//  INNER JOIN like_dislike dl
+//  ON c.id = dl.comment_id
+//  WHERE dl.likeIt = TRUE
+//  GROUP BY dl.comment_id
+//
+//  #lister tout les commentaire avec le plus de like par série
+//  SELECT s.id as serie_id, r.id as comment_id, MAX(r.nb_like) as nlike
+//  FROM serie s
+//  INNER JOIN
+//  (SELECT c.id, c.serie_id, COUNT(dl.id) as nb_like
+//  FROM comment c
+//  INNER JOIN like_dislike dl
+//  ON c.id = dl.comment_id
+//  WHERE dl.likeIt = TRUE
+//  GROUP BY dl.comment_id) as r
+//  ON r.serie_id = s.id
+//  GROUP BY r.serie_id
+//
+//  #lister les 5 series avec la meilleur note moyenne + le commentaire de chaque série qui
+//  # possède le plus de like
+//  SELECT s.name, AVG(e.score) as moy, rr.comment_id, rr.nlike
+//  FROM evaluate e
+//  INNER JOIN serie s
+//  ON s.id = e.serie_id
+//  INNER JOIN
+  //  (SELECT s.id as s_id, r.id as comment_id, MAX(r.nb_like) as nlike
+  //  FROM serie s
+  //  INNER JOIN
+    //  (SELECT c.id, c.serie_id, COUNT(dl.id) as nb_like
+    //  FROM comment c
+    //  INNER JOIN like_dislike dl
+    //  ON c.id = dl.comment_id
+    //  WHERE dl.likeIt = TRUE
+    //  GROUP BY dl.comment_id) as r
+  //  ON r.serie_id = s.id
+  //  GROUP BY r.serie_id) as rr
+//  ON rr.s_id = s.id
+//  GROUP BY serie_id
+//  ORDER BY moy DESC
+//  LIMIT 5;
+
+  public function findTest() {
+      return $this
+          ->createQueryBuilder("s")
+          ->where("art.description LIKE ?1")
+          ->setParameter(1, "%$description%")
+          ->orderBy('art.createdAt', 'DESC')
+          ->getQuery()
+          ->getResult();
+  }
 }
