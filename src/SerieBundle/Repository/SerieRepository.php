@@ -57,12 +57,29 @@ class SerieRepository extends EntityRepository
 //  LIMIT 5;
 
   public function findTest() {
-      return $this
-          ->createQueryBuilder("s")
-          ->where("art.description LIKE ?1")
-          ->setParameter(1, "%$description%")
-          ->orderBy('art.createdAt', 'DESC')
-          ->getQuery()
-          ->getResult();
+    $qb = $this->createQueryBuilder('s');
+
+    // chaque série avec leur note moyenne
+    $qb
+      ->select('s.name')
+      ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
+      ->from('ToolBundle\Entity\Evaluate', 'e')
+        // TODO: ajouter la jointure
+      ->groupBy('e.serie')
+      ->orderBy('moyenne' ,'DESC');
+    $query = $qb->getQuery();
+
+//    $qb
+//        ->select('c.id')
+//        ->addSelect($qb->expr()->count('ld.id').' AS nbLike')
+//        ->from('ToolBundle\Entity\LikeDislike', 'ld')
+//        ->innerJoin('ld.comment', 'c')
+//        ->where('ld.likeIt = true')
+//        ->groupBy('c.id')
+//        ->orderBy('nbLike' ,'DESC');
+//    $query = $qb->getQuery();
+
+      return $query->getResult();
+
   }
 }

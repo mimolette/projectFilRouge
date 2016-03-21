@@ -96,4 +96,13 @@ class DefaultController extends Controller
     {
         return $this->render('SerieBundle:Default:list.html.twig');
     }
+
+    public function testAction() {
+        $series = $this
+            ->getDoctrine()
+            ->getRepository("ToolBundle:LikeDislike")
+            ->findTest();
+        var_dump($series);
+        die();
+    }
 }

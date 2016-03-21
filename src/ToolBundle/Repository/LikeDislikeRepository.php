@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class LikeDislikeRepository extends EntityRepository
 {
+  public function findTest() {
+    // http://stackoverflow.com/questions/6637506/doing-a-where-in-subquery-in-doctrine-2
+    $qb = $this->createQueryBuilder('ld');
+
+    // chaque série avec leur note moyenne
+//    $qb
+//        ->select('s.name')
+//        ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
+//        ->from('ToolBundle\Entity\Evaluate', 'e')
+//        // TODO: ajouter la jointure
+//        ->groupBy('e.serie')
+//        ->orderBy('moyenne' ,'DESC');
+//    $query = $qb->getQuery();
+
+    $qb
+        ->select('c.id')
+        ->addSelect($qb->expr()->count('ld.id').' AS nbLike')
+        ->innerJoin('ld.comment', 'c')
+        ->where('ld.likeIt = true')
+        ->groupBy('c.id')
+        ->orderBy('nbLike' ,'DESC');
+    $query = $qb->getQuery();
+
+    return $query->getResult();
+  }
 }

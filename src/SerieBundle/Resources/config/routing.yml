@@ -32,3 +32,7 @@ serie_list:
     path:     /list/
     defaults: { _controller: SerieBundle:Default:list }
 
+serie_test:
+    path:     /test
+    defaults: { _controller: SerieBundle:Default:test }
+
