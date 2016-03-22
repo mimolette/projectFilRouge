@@ -19,10 +19,11 @@ class Serie
      */
     public function __construct()
     {
-        $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->actors = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->viewers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->seasons = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->actors = new ArrayCollection();
+        $this->viewers = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
     /**
@@ -77,6 +78,20 @@ class Serie
      *
      */
     private $comments;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ToolBundle\Entity\Evaluate", mappedBy="serie")
+     */
+    private $scores;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="seriesSeen")
+     */
+    private $viewers;
 
 
     /**
@@ -345,5 +360,38 @@ class Serie
     public function getViewers()
     {
         return $this->viewers;
+    }
+
+    /**
+     * Add scores
+     *
+     * @param \ToolBundle\Entity\Evaluate $scores
+     * @return Serie
+     */
+    public function addScore(\ToolBundle\Entity\Evaluate $scores)
+    {
+        $this->scores[] = $scores;
+
+        return $this;
+    }
+
+    /**
+     * Remove scores
+     *
+     * @param \ToolBundle\Entity\Evaluate $scores
+     */
+    public function removeScore(\ToolBundle\Entity\Evaluate $scores)
+    {
+        $this->scores->removeElement($scores);
+    }
+
+    /**
+     * Get scores
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getScores()
+    {
+        return $this->scores;
     }
 }

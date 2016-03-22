@@ -56,30 +56,27 @@ class SerieRepository extends EntityRepository
 //  ORDER BY moy DESC
 //  LIMIT 5;
 
-  public function findTest() {
+  /**
+   * @param integer $nbResult = the number of results wanted
+   * @param integer $nbPage = the page's number, 0 by default
+   * @return array
+   */
+  public function getXSeriesByAvgScore($nbResult = 5, $nbPage = 0) {
     $qb = $this->createQueryBuilder('s');
 
-    // chaque série avec leur note moyenne
     $qb
-      ->select('s.name')
       ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
-      ->from('ToolBundle\Entity\Evaluate', 'e')
-        // TODO: ajouter la jointure
-      ->groupBy('e.serie')
-      ->orderBy('moyenne' ,'DESC');
+      ->join('s.scores', 'e')
+      ->leftJoin('s.viewers', 'u')
+      ->groupBy('s.id')
+      ->where('s.validation = true')
+      ->orderBy('moyenne' ,'DESC')
+      ->setFirstResult($nbPage)
+      ->setMaxResults($nbResult);
     $query = $qb->getQuery();
 
-//    $qb
-//        ->select('c.id')
-//        ->addSelect($qb->expr()->count('ld.id').' AS nbLike')
-//        ->from('ToolBundle\Entity\LikeDislike', 'ld')
-//        ->innerJoin('ld.comment', 'c')
-//        ->where('ld.likeIt = true')
-//        ->groupBy('c.id')
-//        ->orderBy('nbLike' ,'DESC');
-//    $query = $qb->getQuery();
 
-      return $query->getResult();
+    return $query->getResult();
 
   }
 }

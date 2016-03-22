@@ -12,30 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentRepository extends EntityRepository
 {
-  public function findTest() {
+  public function getBestCommentBySerieId($id) {
     $qb = $this->createQueryBuilder('c');
 
-    // chaque série avec leur note moyenne
-//    $qb
-//        ->select('s.name')
-//        ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
-//        ->from('ToolBundle\Entity\Evaluate', 'e')
-//        // TODO: ajouter la jointure
-//        ->groupBy('e.serie')
-//        ->orderBy('moyenne' ,'DESC');
-//    $query = $qb->getQuery();
-
     $qb
-        ->select('c.id')
+        // TODO: ajouter le nombre de dislike
         ->addSelect($qb->expr()->count('ld.id').' AS nbLike')
-        ->from('ToolBundle\Entity\LikeDislike', 'ld')
-        ->innerJoin('ld.comment', 'c')
+        ->innerJoin('c.likes', 'ld')
         ->where('ld.likeIt = true')
+        ->andWhere('c.serie = ?1')
         ->groupBy('c.id')
-        ->orderBy('nbLike' ,'DESC');
+        ->orderBy('nbLike' ,'DESC')
+        ->setMaxResults(1)
+        ->setParameter(1, $id);
     $query = $qb->getQuery();
 
-    return $query->getResult();
+    return $query->getOneOrNullResult();
 
   }
 }

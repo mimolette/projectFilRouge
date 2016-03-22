@@ -19,10 +19,11 @@ class Serie
      */
     public function __construct()
     {
-        $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->actors = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->viewers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->seasons = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->actors = new ArrayCollection();
+        $this->viewers = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
     /**
@@ -39,14 +40,14 @@ class Serie
      *
      * @ORM\Column(name="poster", type="string", length=255, nullable=true)
      */
-    private $poster;
+    private $poster = 'http://www.pilote-virtuel.com/img/facebook/0.jpg';
 
     /**
      * @var bool
      *
      * @ORM\Column(name="validation", type="boolean")
      */
-    private $validation;
+    private $validation = false;
 
     /**
      * @var string
@@ -73,43 +74,25 @@ class Serie
     /**
      * @var ArrayCollection
      *
-<<<<<<< HEAD
-=======
-     * @ORM\ManyToMany(targetEntity="Category")
-     * @ORM\JoinTable(name="category_serie",
-     *      joinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-     *      )
-     */
-    private $categories;
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Actor")
-     * @ORM\JoinTable(name="casting",
-     *      joinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="actor_id", referencedColumnName="id")}
-     *      )
-     */
-    private $actors;
-
-    /**
-     * @var ArrayCollection
-     *
->>>>>>> mapping_and_fixtures
      * @ORM\OneToMany(targetEntity="ToolBundle\Entity\Comment", mappedBy="serie")
      *
      */
     private $comments;
 
-<<<<<<< HEAD
-=======
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ToolBundle\Entity\Evaluate", mappedBy="serie")
+     */
+    private $scores;
+
+    /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="seriesSeen")
      */
     private $viewers;
->>>>>>> mapping_and_fixtures
+
 
     /**
      * Get id
@@ -273,7 +256,7 @@ class Serie
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -306,7 +289,7 @@ class Serie
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
@@ -339,10 +322,76 @@ class Serie
     /**
      * Get actors
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getActors()
     {
         return $this->actors;
+    }
+
+    /**
+     * Add viewers
+     *
+     * @param \AppBundle\Entity\User $viewers
+     * @return Serie
+     */
+    public function addViewer(\AppBundle\Entity\User $viewers)
+    {
+        $this->viewers[] = $viewers;
+
+        return $this;
+    }
+
+    /**
+     * Remove viewers
+     *
+     * @param \AppBundle\Entity\User $viewers
+     */
+    public function removeViewer(\AppBundle\Entity\User $viewers)
+    {
+        $this->viewers->removeElement($viewers);
+    }
+
+    /**
+     * Get viewers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getViewers()
+    {
+        return $this->viewers;
+    }
+
+    /**
+     * Add scores
+     *
+     * @param \ToolBundle\Entity\Evaluate $scores
+     * @return Serie
+     */
+    public function addScore(\ToolBundle\Entity\Evaluate $scores)
+    {
+        $this->scores[] = $scores;
+
+        return $this;
+    }
+
+    /**
+     * Remove scores
+     *
+     * @param \ToolBundle\Entity\Evaluate $scores
+     */
+    public function removeScore(\ToolBundle\Entity\Evaluate $scores)
+    {
+        $this->scores->removeElement($scores);
+    }
+
+    /**
+     * Get scores
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getScores()
+    {
+        return $this->scores;
     }
 }
