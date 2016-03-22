@@ -12,9 +12,32 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $series = $em->getRepository("SerieBundle:Serie")->findBy(array(), null, 5);
-        return $this->render('SerieBundle:Default:index.html.twig',["series" => $series]);
+
+        $finalResult = [];
+        // first : find the five best series by average score
+        $series = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Serie")
+            ->getXSeriesByAvgScore();
+
+        // then : loop all the five series find to looking for the best comment of each serie
+        foreach($series as $serie) {
+            $bestComment = $this
+                ->getDoctrine()
+                ->getRepository("ToolBundle:Comment")
+                ->getBestCommentBySerieId($serie[0]->getId());
+            // end : make a single result for each serie including the comment and his number of
+            // like en dislike
+            $serie['comment'] = $bestComment[0];
+            $serie['nbViewers'] = $serie[0]->getViewers()->count();
+            $serie['nbLike'] = $bestComment['nbLike'];
+            $serie['nbDislike'] = $bestComment[0]->getNbDislikes($serie['nbLike']);
+            // push the result in the final array
+            $finalResult[] = $serie;
+        }
+        return $this->render('SerieBundle:Default:index.html.twig', array(
+            'series' => $finalResult
+        ));
     }
 
     public function top10Action()
@@ -67,7 +90,7 @@ class DefaultController extends Controller
         return $this->redirectToRoute('serie_homepage');
     }
 
-        public function modAction(Request $request,$id)
+    public function modAction(Request $request,$id)
     {
 
         $serie = $this
@@ -96,4 +119,5 @@ class DefaultController extends Controller
     {
         return $this->render('SerieBundle:Default:list.html.twig');
     }
+
 }

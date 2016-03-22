@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentRepository extends EntityRepository
 {
+  public function getBestCommentBySerieId($id) {
+    $qb = $this->createQueryBuilder('c');
+
+    $qb
+        // TODO: ajouter le nombre de dislike
+        ->addSelect($qb->expr()->count('ld.id').' AS nbLike')
+        ->innerJoin('c.likes', 'ld')
+        ->where('ld.likeIt = true')
+        ->andWhere('c.serie = ?1')
+        ->groupBy('c.id')
+        ->orderBy('nbLike' ,'DESC')
+        ->setMaxResults(1)
+        ->setParameter(1, $id);
+    $query = $qb->getQuery();
+
+    return $query->getOneOrNullResult();
+
+  }
 }

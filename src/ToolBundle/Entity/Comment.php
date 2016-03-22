@@ -2,6 +2,7 @@
 
 namespace ToolBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use SerieBundle\Entity\Serie;
 use AppBundle\Entity\User;
@@ -66,6 +67,13 @@ class Comment
      * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
      */
     private $serie;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="LikeDislike", mappedBy="comment")
+     */
+    private $likes;
 
     /**
      * Get id
@@ -213,5 +221,53 @@ class Comment
     public function getSerie()
     {
         return $this->serie;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->likes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add likes
+     *
+     * @param \ToolBundle\Entity\LikeDislike $likes
+     * @return Comment
+     */
+    public function addLike(\ToolBundle\Entity\LikeDislike $likes)
+    {
+        $this->likes[] = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Remove likes
+     *
+     * @param \ToolBundle\Entity\LikeDislike $likes
+     */
+    public function removeLike(\ToolBundle\Entity\LikeDislike $likes)
+    {
+        $this->likes->removeElement($likes);
+    }
+
+    /**
+     * Get likes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * @param $nbLike
+     * @return int
+     */
+    public function getNbDislikes($nbLike) {
+        return $this->likes->count() - $nbLike;
     }
 }

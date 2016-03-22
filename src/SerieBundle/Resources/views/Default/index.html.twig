@@ -20,9 +20,9 @@
             <div class="top_serie_block">
               <!-- l'ensemble image de la serie plus nom -->
               <figure>
-                  <img class="wf_img" src="{{ serie.poster }}" alt="serie"/>
+                  <img class="wf_img" src="{{ serie[0].poster }}" alt="serie"/>
                   <figcaption>
-                      <a class="wf_link" href="{{ path ("serie_detail",{"id": serie.id }) }}">{{ serie.name }}</a>
+                      <a class="wf_link" href="{{ path ("serie_detail",{"id": serie[0].id }) }}">{{ serie[0].name }}</a>
                   </figcaption>
               </figure>
               <!-- la parie latérale -->
@@ -36,7 +36,7 @@
                       <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
                   </div>
                   <!-- le nombre de vue -->
-                  <div class="top_serie_lat_nbVu wf_no-link">serie.nbVue</div>
+                  <div class="top_serie_lat_nbVu wf_no-link">{{ serie.nbViewers }}</div>
               </div>
               <!-- l'image du classement de la série -->
               <img class="wf_img classement_serie" src="{{ asset('images/wf_img.jpg') }}" alt="classement_serie"/>
@@ -47,7 +47,7 @@
             <figure>
               <figcaption>
                 <!-- ::info:: pseudo des amis -->
-                <a class="wf_link" href="#">user.pseudo</a>
+                <a class="wf_link" href="#">{{ serie.comment.user.username }}</a>
                 <!-- ::info:: statut des amis -->
                 <div class="wf_no-link">user.statut</div>
               </figcaption>
@@ -58,22 +58,22 @@
               <!-- l'entête de ce block, qui regroupe la date et les likes du commentaire -->
               <header>
                 <div class="wf_no-link top_comment_date">
-                    comment.postedDate
+                  {{ serie.comment.postDate|date() }}
                 </div>
                 <div class="top_comment_like">
                   <div>
                     <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
-                    <span class="wf_no-link">comment.nbLike</span>
+                    <span class="wf_no-link">{{ serie.nbLike }}</span>
                   </div>
                   <div>
                     <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
-                    <span class="wf_no-link">comment.nbDislike</span>
+                    <span class="wf_no-link">{{ serie.nbDislike }}</span>
                   </div>
                 </div>
               </header>
               <!-- le corps du message -->
               <div class="top_comment_corps wf_no-link">
-                comment.message
+                {{ serie.comment.message }}
               </div>
             </div>
           </div>

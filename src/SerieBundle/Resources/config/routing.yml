@@ -31,4 +31,3 @@ serie_detail:
 serie_list:
     path:     /list/
     defaults: { _controller: SerieBundle:Default:list }
-

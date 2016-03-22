@@ -40,7 +40,7 @@ class LikeDislike
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="Comment")
+     * @ORM\ManyToOne(targetEntity="Comment", inversedBy="likes")
      * @ORM\JoinColumn(name="comment_id", referencedColumnName="id")
      */
     private $comment;

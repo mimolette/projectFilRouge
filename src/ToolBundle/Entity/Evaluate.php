@@ -33,7 +33,7 @@ class Evaluate
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="SerieBundle\Entity\Serie")
+     * @ORM\ManyToOne(targetEntity="SerieBundle\Entity\Serie", inversedBy="scores")
      * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
      */
     private $serie;
