@@ -1,7 +1,6 @@
 <?php
-// src/AppBundle/Entity/User.php
 
-namespace AppBundle\Entity;
+namespace UserBundle\Entity;
 
 use ToolBundle\Entity\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
