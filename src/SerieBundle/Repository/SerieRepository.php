@@ -66,6 +66,7 @@ class SerieRepository extends EntityRepository
 
     $qb
       ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
+      ->addSelect('u')
       ->join('s.scores', 'e')
       ->leftJoin('s.viewers', 'u')
       ->groupBy('s.id')

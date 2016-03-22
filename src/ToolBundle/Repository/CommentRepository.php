@@ -14,6 +14,7 @@ class CommentRepository extends EntityRepository
 {
   public function getBestCommentBySerieId($id) {
     $qb = $this->createQueryBuilder('c');
+    $qb2 = $this->createQueryBuilder('c');
 
     $qb
         // TODO: ajouter le nombre de dislike
