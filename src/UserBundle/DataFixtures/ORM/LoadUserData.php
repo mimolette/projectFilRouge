@@ -18,7 +18,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         'firstname' => 'Jean',
         'lastname' => 'Bernard',
         'dayOfBirth' => new \DateTime('1990-02-14'),
-        'avatar' => 'wf_img.jpg',
         'email' => 'superMan@test.fr',
         'roles' => ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'],
         'follow' => ['Louis la Brocante', 'Breaking Bad'],
@@ -30,7 +29,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         'firstname' => 'Henry',
         'lastname' => 'Martin',
         'dayOfBirth' => new \DateTime('1996-10-25'),
-        'avatar' => 'wf_img.jpg',
         'email' => 'darkLegolas666@test.fr',
         'roles' => ['ROLE_USER', 'ROLE_MODERATOR'],
         'follow' => ['Breaking Bad'],
@@ -42,7 +40,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         'firstname' => 'Guillaume',
         'lastname' => 'Orain',
         'dayOfBirth' => new \DateTime('1986-06-27'),
-        'avatar' => 'wf_img.jpg',
         'email' => 'guiGuiLeBof@test.fr',
         'roles' => ['ROLE_USER'],
         'follow' => ['Louis la Brocante', 'Breaking Bad'],
@@ -57,7 +54,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
       $user->setFirstname($userData['firstname']);
       $user->setLastname($userData['lastname']);
       $user->setDayOfBirth($userData['dayOfBirth']);
-      $user->setAvatar($userData['avatar']);
+      $user->setAvatar($this->getReference('serie-image'));
 
       $user->setEmail($userData['email']);
       $user->setRoles($userData['roles']);

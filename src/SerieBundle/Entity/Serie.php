@@ -39,9 +39,10 @@ class Serie
     /**
      * @var string
      *
-     * @ORM\Column(name="poster", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="ToolBundle\Entity\Image")
+     * @ORM\JoinColumn(name="poster", referencedColumnName="id")
      */
-    private $poster = 'http://www.pilote-virtuel.com/img/facebook/0.jpg';
+    private $poster;
 
     /**
      * @var bool

@@ -45,7 +45,8 @@ class User extends BaseUser
   /**
    * @var string
    *
-   * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+   * @ORM\ManyToOne(targetEntity="ToolBundle\Entity\Image")
+   * @ORM\JoinColumn(name="avatar", referencedColumnName="id")
    */
   protected $avatar;
 
