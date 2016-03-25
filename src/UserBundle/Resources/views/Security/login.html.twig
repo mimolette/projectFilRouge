@@ -1,28 +1,28 @@
 {% extends "UserBundle:layout.html.twig" %}
 
 {% block fos_user_content %}
-{% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
+{#{% if error %}#}
+    {#<div>{{ error|trans({}, 'FOSUserBundle') }}</div>#}
+{#{% endif %}#}
 <div id="main">
-	<section>
-		<h1>S'enregistrer</h1>
-		<form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
-		    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-			<div class="form-group">
-			    <label for="username">{{ 'Login'|trans({}, 'FOSUserBundle') }}</label>
-			    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-			</div>
-			<div class="form-group">
-			    <label for="password">{{ 'Password'|trans({}, 'FOSUserBundle') }}</label>
-			    <input type="password" id="password" name="_password" required="required" />
-			</div>
-			<div class="form-group">
-			    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-			    <label for="remember_me">{{ 'Remember me'|trans({}, 'FOSUserBundle') }}</label>
-			</div>
-		    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-		</form>
-	</section>
+	{#<section>#}
+		{#<h1>S'enregistrer</h1>#}
+		{#<form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">#}
+		    {#<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />#}
+			{#<div class="form-group">#}
+			    {#<label for="username">{{ 'Login'|trans({}, 'FOSUserBundle') }}</label>#}
+			    {#<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />#}
+			{#</div>#}
+			{#<div class="form-group">#}
+			    {#<label for="password">{{ 'Password'|trans({}, 'FOSUserBundle') }}</label>#}
+			    {#<input type="password" id="password" name="_password" required="required" />#}
+			{#</div>#}
+			{#<div class="form-group">#}
+			    {#<input type="checkbox" id="remember_me" name="_remember_me" value="on" />#}
+			    {#<label for="remember_me">{{ 'Remember me'|trans({}, 'FOSUserBundle') }}</label>#}
+			{#</div>#}
+		    {#<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />#}
+		{#</form>#}
+	{#</section>#}
 </div>
 {% endblock %}

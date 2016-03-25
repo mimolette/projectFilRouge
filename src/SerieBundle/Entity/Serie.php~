@@ -93,6 +93,18 @@ class Serie
      */
     private $viewers;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="SerieBundle\Entity\Category", mappedBy="seriesSeen")
+     * @ORM\ManyToMany(targetEntity="SerieBundle\Entity\Category")
+     * @ORM\JoinTable(name="category_serie",
+     *      joinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     */
+    private $categories;
+
 
     /**
      * Get id

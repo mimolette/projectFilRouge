@@ -159,8 +159,6 @@ class Episode
     {
         return $this->synopsis;
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Set season
@@ -184,5 +182,4 @@ class Episode
     {
         return $this->season;
     }
->>>>>>> mapping_and_fixtures
 }

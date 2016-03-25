@@ -3,6 +3,8 @@
 namespace SerieBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * SerieRepository
@@ -66,14 +68,62 @@ class SerieRepository extends EntityRepository
 
     $qb
       ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
-      ->addSelect('u')
       ->join('s.scores', 'e')
-      ->leftJoin('s.viewers', 'u')
       ->groupBy('s.id')
       ->where('s.validation = true')
       ->orderBy('moyenne' ,'DESC')
-      ->setFirstResult($nbPage)
+      ->setFirstResult($nbPage * $nbResult)
       ->setMaxResults($nbResult);
+    $query = $qb->getQuery();
+
+
+    return $query->getResult();
+
+  }
+
+  /**
+   * @param integer $category = the category Id
+   * @param integer $nbResult = the number of results wanted
+   * @param integer $nbPage = the page's number, 0 by default
+   * @return array
+   */
+  public function getXSeriesByCategory($category, $nbResult = 30, $nbPage = 0) {
+    $qb = $this->createQueryBuilder('s');
+
+    $qb
+//        ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
+//        ->join('s.scores', 'e')
+        ->innerJoin('s.categories', 'c')
+        ->groupBy('s.id')
+        ->where('s.validation = true')
+        ->andWhere('c.id = ?1')
+//        ->orderBy('moyenne' ,'DESC')
+        ->setFirstResult($nbPage * $nbResult)
+        ->setMaxResults($nbResult)
+        ->setParameter(1, $category);
+    $query = $qb->getQuery();
+
+
+    return $query->getResult();
+
+  }
+
+  /**
+   * @param integer $nbResult = the number of results wanted
+   * @param integer $nbPage = the page's number, 0 by default
+   * @return array
+   */
+  public function getXSeriesByNbViewers($nbResult = 30, $nbPage = 0) {
+    $qb = $this->createQueryBuilder('s');
+
+    $qb
+        ->addSelect($qb->expr()->count('u.id').' AS nbViewers')
+        ->leftJoin('s.viewers', 'u')
+        ->groupBy('s.id')
+        ->where('s.validation = true')
+        ->orderBy('nbViewers' ,'DESC')
+        ->setFirstResult($nbPage * $nbResult)
+        ->setMaxResults($nbResult);
     $query = $qb->getQuery();
 
 

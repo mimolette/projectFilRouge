@@ -4,6 +4,7 @@ namespace SerieBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
 
 /**
  * Serie
@@ -89,9 +90,20 @@ class Serie
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="seriesSeen")
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="seriesSeen")
      */
     private $viewers;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="SerieBundle\Entity\Category")
+     * @ORM\JoinTable(name="category_serie",
+     *      joinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     */
+    private $categories;
 
 
     /**
@@ -332,10 +344,10 @@ class Serie
     /**
      * Add viewers
      *
-     * @param \AppBundle\Entity\User $viewers
+     * @param User $viewers
      * @return Serie
      */
-    public function addViewer(\AppBundle\Entity\User $viewers)
+    public function addViewer(User $viewers)
     {
         $this->viewers[] = $viewers;
 
@@ -345,9 +357,9 @@ class Serie
     /**
      * Remove viewers
      *
-     * @param \AppBundle\Entity\User $viewers
+     * @param User $viewers
      */
-    public function removeViewer(\AppBundle\Entity\User $viewers)
+    public function removeViewer(User $viewers)
     {
         $this->viewers->removeElement($viewers);
     }

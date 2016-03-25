@@ -1,6 +1,6 @@
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 tool:
     resource: "@ToolBundle/Controller/"
@@ -10,10 +10,6 @@ tool:
 serie:
     resource: "@SerieBundle/Resources/config/routing.yml"
     prefix:   /serie
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -12,6 +12,12 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        // find all catagories
+        $categories = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Category")
+            ->findAll();
+
 
         $finalResult = [];
         // first : find the five best series by average score
@@ -36,7 +42,8 @@ class DefaultController extends Controller
             $finalResult[] = $serie;
         }
         return $this->render('SerieBundle:Default:index.html.twig', array(
-            'series' => $finalResult
+            'series' => $finalResult,
+            'categories' => $categories
         ));
     }
 
@@ -117,6 +124,26 @@ class DefaultController extends Controller
 
     public function listAction()
     {
+        $series = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Serie")
+            ->getXSeriesByNbViewers();
+
+        var_dump($series);
+        die();
+
+        return $this->render('SerieBundle:Default:list.html.twig');
+    }
+
+    public function listCategoryAction($id) {
+
+        $series = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Serie")
+            ->getXSeriesByCategory($id);
+        var_dump($series);
+        die();
+
         return $this->render('SerieBundle:Default:list.html.twig');
     }
 

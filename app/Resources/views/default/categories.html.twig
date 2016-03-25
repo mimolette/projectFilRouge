@@ -2,7 +2,7 @@
     <h3 class="wf_no-link" >Les genres</h3>
     <ul>
         {% for category in categories %}
-          <li><a class="wf_link" href="">{{ category.name }} </a></li>
+          <li><a class="wf_link" href="{{ path("serie_list_catagory",{"id": category.id}) }}">{{ category.name }} </a></li>
         {% endfor %}
     </ul>
 </div>
