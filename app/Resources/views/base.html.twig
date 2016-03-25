@@ -18,6 +18,7 @@
   </head>
   <body>
     {{ include('default/header.html.twig') }}
+    {% block aside %}{% endblock %}
     {% block body %}{% endblock %}
     {{ include('default/footer.html.twig') }}
     {% block javascripts %}{% endblock %}

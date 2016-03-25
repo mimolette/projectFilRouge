@@ -5,7 +5,7 @@ namespace ToolBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use SerieBundle\Entity\Serie;
-use AppBundle\Entity\User;
+use UserBundle\Entity\User;
 
 /**
  * Comment
@@ -55,7 +55,7 @@ class Comment
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User",inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User",inversedBy="comments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

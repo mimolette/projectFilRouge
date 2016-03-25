@@ -99,7 +99,7 @@ class User extends BaseUser
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -122,7 +122,7 @@ class User extends BaseUser
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -145,7 +145,7 @@ class User extends BaseUser
     /**
      * Get dayOfBirth
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDayOfBirth()
     {
@@ -168,7 +168,7 @@ class User extends BaseUser
     /**
      * Get avatar
      *
-     * @return string 
+     * @return string
      */
     public function getAvatar()
     {
@@ -201,7 +201,7 @@ class User extends BaseUser
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
@@ -234,7 +234,7 @@ class User extends BaseUser
     /**
      * Get seriesFollowed
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSeriesFollowed()
     {
@@ -267,7 +267,7 @@ class User extends BaseUser
     /**
      * Get seriesSeen
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSeriesSeen()
     {

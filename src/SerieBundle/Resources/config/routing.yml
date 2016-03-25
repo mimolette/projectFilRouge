@@ -32,8 +32,12 @@ serie_list:
     path:     /list/
     defaults: { _controller: SerieBundle:Default:list }
 
-
 serie_search:
     path:     /list/
     defaults: { _controller: SerieBundle:Default:search }
 
+serie_list_catagory:
+    path:     /list/{id}
+    defaults: { _controller: SerieBundle:Default:listCategory }
+    requirements:
+            id:  "\d+"

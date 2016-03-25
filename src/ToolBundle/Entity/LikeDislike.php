@@ -2,7 +2,7 @@
 
 namespace ToolBundle\Entity;
 
-use AppBundle\Entity\User;
+use UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,7 +32,7 @@ class LikeDislike
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
