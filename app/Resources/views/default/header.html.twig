@@ -27,8 +27,8 @@
       </nav>
 
       <div id="hd_block_search">
-        <form action="{{path("serie_search") }}">
-            <input type="text" placeholder="recherche">
+        <form action="{{path("serie_search", {'lkMethod': 'series'}) }}" method="POST">
+            <input type="text" placeholder="recherche" name="search">
             <input type="submit">
         </form>
       </div>

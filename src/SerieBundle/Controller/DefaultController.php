@@ -166,12 +166,82 @@ class DefaultController extends Controller
         return $this->render('SerieBundle:Default:list.html.twig');
     }
 
-    public function searchAction(Request $req)
+    public function searchAction(Request $req, $lkMethod, $lkValue)
     {
-        var_dump($req);
-        die();
-        return $this->render('SerieBundle:Default:list.html.twig');
+        $searchValue = $lkValue ? $lkValue : $req->request->get('search');
+        // cheack if searchValue isn't empty
+        if(!$searchValue) {
+            $this->redirectToRoute('serie_homepage');
+        }
+
+        // find all serie which match searchValue
+        $series = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Serie")
+            ->getBySearchValue($searchValue);
+        // find all actors which match searchValue
+        $actors = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Actor")
+            ->getBySearchValue($searchValue);
+        // find all user which match searchValue
+        $users = $this
+            ->getDoctrine()
+            ->getRepository("UserBundle:User")
+            ->getBySearchValue($searchValue);
+
+        if ($lkMethod === 'series' && ($series)) {
+            $methodName = 'renderSerieSearch';
+        } elseif ($lkMethod === 'actors' && count($actors)) {
+            $methodName = 'renderActorSearch';
+        } elseif ($lkMethod === 'users') {
+            $methodName = 'renderUserSearch';
+        } else {
+            $methodName = 'renderSerieSearch';
+        }
+
+        return $this->forward('SerieBundle:Default:'. $methodName,
+            array(
+                'value' => $searchValue,
+                'series' => $series,
+                'actors' => $actors,
+                'users' => $users,
+            ));
     }
+
+    public function renderSerieSearchAction($value, $series, $actors, $users) {
+
+        return $this->render('SerieBundle:Default:searchResultSerie.html.twig',
+            array(
+                'value' => $value,
+                'series' => $series,
+                'nbActors' => count($actors),
+                'nbUsers' => count($users),
+            ));
+    }
+
+    public function renderActorSearchAction($value, $series, $actors, $users) {
+
+        return $this->render('SerieBundle:Default:searchResultActor.html.twig',
+            array(
+                'value' => $value,
+                'nbSeries' => count($series),
+                'actors' => $actors,
+                'nbUsers' => count($users),
+            ));
+    }
+
+    public function renderUserSearchAction($value, $series, $actors, $users) {
+
+        return $this->render('SerieBundle:Default:searchResultUser.html.twig',
+            array(
+                'value' => $value,
+                'nbSeries' => count($series),
+                'nbActors' => count($actors),
+                'users' => $users,
+            ));
+    }
+
     public function detailEpisodeAction($idEpisode, $idSerie) {
 
         $episode = $this

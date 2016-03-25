@@ -1,0 +1,55 @@
+{% extends "SerieBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <div id="main">
+    <!-- le block <section> qui contient tout les informations de la
+         page courante -->
+    <section id="listing_research">
+
+      <!-- le titre de la page -->
+      <h1 class="wf_no-link-align">Résultat de la recherche pour "{{ value }}"</h1>
+
+      <!-- le panneau de filtre du résultat par série, acteur ou membres -->
+      <ul>
+        <li>
+          <a class="wf_link" href="{{path("serie_search", {'lkMethod': 'series', 'lkValue': value}) }}">
+            <h2>Séries<span>({{ nbSeries }})</span></h2>
+          </a>
+        </li>
+        <li>
+          <a class="wf_link" href="{{path("serie_search", {'lkMethod': 'actors', 'lkValue': value}) }}">
+            <h2>Acteurs<span>({{ actors|length }})</span></h2>
+          </a>
+        </li>
+        <li>
+          <a class="wf_link" href="{{path("serie_search", {'lkMethod': 'users', 'lkValue': value}) }}">
+            <h2>Membres<span>({{ nbUsers }})</span></h2>
+          </a>
+        </li>
+      </ul>
+      <!-- Le block qui contient l'ensemble des résultat de recherche des
+           acteurs  -->
+      <div class="listing_actor_block">
+
+
+      {% for actor in actors %}
+
+        <!-- chaque résulat est stocké dans une <figure> -->
+        <figure>
+          <!-- chaque acteur possède un photo qui le représente -->
+          <img src="{{ asset('images/wf_img.jpg') }}" alt="{{ "%s %s"|format(actor.firstname, actor.lastname) }}" class="wf_img">
+          <!-- chaque acteur possède un nom qui est un liens vers sa page -->
+          <figcaption><a class="wf_link" href="#">{{ "%s %s"|format(actor.firstname, actor.lastname) }}</a></figcaption>
+        </figure>
+
+      {% endfor %}
+
+      </div>
+
+
+    </section>
+  </div>
+
+{% endblock %}
+

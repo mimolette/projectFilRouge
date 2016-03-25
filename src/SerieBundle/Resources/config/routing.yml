@@ -33,8 +33,10 @@ serie_list:
     defaults: { _controller: SerieBundle:Default:list }
 
 serie_search:
-    path:     /search/
-    defaults: { _controller: SerieBundle:Default:search }
+    path:     /search/{lkMethod}={lkValue}
+    defaults: { _controller: SerieBundle:Default:search, lkValue: '' }
+    requirements:
+            lookingFor:  "series|actors|users"
 
 serie_list_catagory:
     path:     /list/{id}

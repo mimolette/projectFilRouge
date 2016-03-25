@@ -1,0 +1,68 @@
+{% extends "SerieBundle::layout.html.twig" %}
+
+{% block body %}
+
+<div id="main">
+  <!-- le block <section> qui contient tout les informations de la
+       page courante -->
+  <section id="listing_research">
+
+    <!-- le titre de la page -->
+    <h1 class="wf_no-link-align">Résultat de la recherche pour "{{ value }}"</h1>
+
+    <!-- le panneau de filtre du résultat par série, acteur ou membres -->
+    <ul>
+      <li>
+        <a class="wf_link" href="{{path("serie_search", {'lkMethod': 'series', 'lkValue': value}) }}">
+          <h2>Séries<span>({{ series|length }})</span></h2>
+        </a>
+      </li>
+      <li>
+        <a class="wf_link" href="{{path("serie_search", {'lkMethod': 'actors', 'lkValue': value}) }}">
+          <h2>Acteurs<span>({{ nbActors }})</span></h2>
+        </a>
+      </li>
+      <li>
+        <a class="wf_link" href="{{path("serie_search", {'lkMethod': 'users', 'lkValue': value}) }}">
+          <h2>Membres<span>({{ nbUsers }})</span></h2>
+        </a>
+      </li>
+    </ul>
+
+    <!-- le block <div> qui contient le résultat des série trouvés -->
+    <div class="detail_genre_block">
+
+    {% for serie in series %}
+
+      <!-- le block <div> qui contient le résultat des série trouvés -->
+      <div class="detail_genre_result">
+        <!-- l'ensemble image de la serie plus nom -->
+        <figure>
+          <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="serie"/>
+          <figcaption>
+            <a class="wf_link" href="#">{{ serie.name }}</a>
+          </figcaption>
+        </figure>
+        <!-- la partie larérale du résultat -->
+        <div class="detail_genre_lat">
+          <!-- l'évaluation de la série -->
+          <div class="detail_genre_lat_evaluation">
+            <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+            <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+            <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+            <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+            <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+          </div>
+          <!-- le nombre de vue -->
+          <div class="detail_genre_lat_nbVu wf_no-link">Nb vu</div>
+        </div>
+      </div>
+    {% endfor %}
+
+    </div>
+
+    </section>
+</div>
+
+{% endblock %}
+

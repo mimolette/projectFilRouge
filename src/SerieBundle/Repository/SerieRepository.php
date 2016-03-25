@@ -144,4 +144,20 @@ class SerieRepository extends EntityRepository
     return $query->getResult();
 
   }
+
+  /**
+   * @param $value
+   * @return array
+   */
+  public function getBySearchValue($value) {
+    $qb = $this->createQueryBuilder('s');
+
+    $qb
+        ->where($qb->expr()->like('s.name', '?1'))
+        ->setParameter(1, '%' . $value . '%');
+    $query = $qb->getQuery();
+
+
+    return $query->getResult();
+  }
 }
