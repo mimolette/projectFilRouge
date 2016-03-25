@@ -59,9 +59,28 @@ class DefaultController extends Controller
         $serie = $this
             ->getDoctrine()
             ->getRepository("SerieBundle:Serie")
-            ->find($id);
+            ->getFullDetail($id);
 
-        return $this->render('SerieBundle:Default:detail.html.twig', ["serie" => $serie]);
+        $comments = $this
+            ->getDoctrine()
+            ->getRepository("ToolBundle:Comment")
+            ->getAllCommentBySerieId($id);
+
+        $finalComments = [];
+        foreach ($comments as $comment) {
+            $result = [];
+            $result[] = $comment[0];
+            $result['nbLike'] = $comment['nbLike'];
+            $result['nbDislike'] = $comment[0]->getNbDislikes($comment['nbLike']);
+            $finalComments[] = $result;
+
+        }
+
+        return $this->render('SerieBundle:Default:detail.html.twig',
+            [
+                "serie" => $serie,
+                "comments" => $finalComments
+            ]);
     }
 
     public function addAction(Request $request)
@@ -145,6 +164,19 @@ class DefaultController extends Controller
         die();
 
         return $this->render('SerieBundle:Default:list.html.twig');
+    }
+
+    public function detailEpisodeAction($idEpisode, $idSerie) {
+
+        $episode = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Episode")
+            ->find($idEpisode);
+
+        return $this->render('SerieBundle:Default:detailEpisode.html.twig',
+            array(
+                'episode' => $episode
+            ));
     }
 
 }

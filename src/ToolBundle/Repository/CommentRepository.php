@@ -12,9 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentRepository extends EntityRepository
 {
+  /**
+   * @param $id
+   * @return mixed
+   * @throws \Doctrine\ORM\NonUniqueResultException
+   */
   public function getBestCommentBySerieId($id) {
     $qb = $this->createQueryBuilder('c');
-    $qb2 = $this->createQueryBuilder('c');
 
     $qb
         // TODO: ajouter le nombre de dislike
@@ -30,5 +34,26 @@ class CommentRepository extends EntityRepository
 
     return $query->getOneOrNullResult();
 
+  }
+
+  /**
+   * @param $id
+   * @return array
+   */
+  public function getAllCommentBySerieId($id) {
+    $qb = $this->createQueryBuilder('c');
+
+    $qb
+        // TODO: ajouter le nombre de dislike
+        ->addSelect($qb->expr()->count('ld.id').' AS nbLike')
+        ->join('c.likes', 'ld')
+        ->where('ld.likeIt = true')
+        ->andWhere('c.serie = ?1')
+        ->groupBy('c.id')
+        ->orderBy('nbLike' ,'DESC')
+        ->setParameter(1, $id);
+    $query = $qb->getQuery();
+
+    return $query->getResult();
   }
 }

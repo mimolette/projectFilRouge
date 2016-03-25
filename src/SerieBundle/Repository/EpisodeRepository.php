@@ -3,6 +3,7 @@
 namespace SerieBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * EpisodeRepository
@@ -12,4 +13,47 @@ use Doctrine\ORM\EntityRepository;
  */
 class EpisodeRepository extends EntityRepository
 {
+
+//  public function getTestHarder() {
+//
+//    $rsm = new ResultSetMappingBuilder($this->_em);
+//    $rsm->addRootEntityFromClassMetadata('SerieBundle\Entity\Serie', 'serie');
+//    $rsm->addScalarResult('moyenne', 'moyenne');
+//    $rsm->addJoinedEntityFromClassMetadata('ToolBundle\Entity\Evaluate', 'eval', 'serie', 'scores',
+//        array(
+//            'id' => 'score_id',
+//        ));
+//
+//    $sql = "
+//      SELECT
+//        ". $rsm ."
+//        serie.name,
+//        serie.id,
+//        AVG(eval.id) AS moyenne
+//       FROM serie
+//       INNER JOIN evaluate eval
+//       ON serie.id = eval.serie_id";
+//
+//    $query = $this->_em->createNativeQuery($sql, $rsm);
+//
+//    return $query->getResult();
+//  }
+//
+//  public function getTest($idEpisode, $idSerie) {
+//    $sql = "SELECT e.id, e.num, e.name, s.id AS season_id, s.name AS season_name, s.num AS season_num
+//       FROM episode e INNER JOIN season s ON e.season_id = s.id";
+//
+//    $rsm = new ResultSetMappingBuilder($this->_em);
+//    $rsm->addRootEntityFromClassMetadata('SerieBundle\Entity\Episode', 'e');
+//    $rsm->addJoinedEntityFromClassMetadata('SerieBundle\Entity\Season', 's', 'e', 'season',
+//        array(
+//            'id' => 'season_id',
+//            'num' => 'season_num',
+//            'name' => 'season_name'
+//            ));
+//    $query = $this->_em->createNativeQuery($sql, $rsm);
+//
+//    return $query->getResult();
+//  }
+
 }

@@ -23,7 +23,7 @@ serie_mod:
         id:  "\d+"
 
 serie_detail:
-    path:     /detail/{id}
+    path:     /serie/{id}
     defaults: { _controller: SerieBundle:Default:detail }
     requirements:
         id:  "\d+"
@@ -37,3 +37,10 @@ serie_list_catagory:
     defaults: { _controller: SerieBundle:Default:listCategory }
     requirements:
             id:  "\d+"
+
+episode_detail:
+    path:     /serie/{idSerie}/episode/{idEpisode}
+    defaults: { _controller: SerieBundle:Default:detailEpisode }
+    requirements:
+        idSerie:  "\d+"
+        idEpisode: "\d+"

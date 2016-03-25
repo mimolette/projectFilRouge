@@ -1,0 +1,30 @@
+{% extends "SerieBundle::layout.html.twig" %}
+
+{% block body %}
+
+
+  <!-- le block <div> qui contient tout le contenu de la page -->
+  <div id="main">
+    <!-- le block <section> qui contient tout les informations de la
+         page courante -->
+
+    <ul>
+      <li>
+        <span>Nom de l'épisode</span>
+        <span>{{ episode.name }}</span>
+      </li>
+      <li>
+        <span>N°</span>
+        <span>{{ episode.num }}</span>
+      </li>
+      <li>
+        <span>date de release</span>
+        <span>{{ episode.releaseDate|date("Y-m-d") }}</span>
+      </li>
+    </ul>
+
+
+  </div>
+
+
+{% endblock %}
