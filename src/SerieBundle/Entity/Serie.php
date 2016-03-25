@@ -5,6 +5,7 @@ namespace SerieBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use UserBundle\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Serie
@@ -37,11 +38,11 @@ class Serie
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="poster", type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="ToolBundle\Entity\Image",cascade={"persist","remove"})
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     * @Assert\File(mimeTypes={"image/jpeg","image/jpg","image/png"})
      */
-    private $poster = 'http://www.pilote-virtuel.com/img/facebook/0.jpg';
+    private $poster;
 
     /**
      * @var bool

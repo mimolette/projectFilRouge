@@ -4,6 +4,8 @@ namespace SerieBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Serie
@@ -36,11 +38,11 @@ class Serie
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="poster", type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="ToolBundle\Entity\Image",cascade={"persist","remove"})
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     * @Assert\File(mimeTypes={"image/jpeg","image/jpg","image/png"})
      */
-    private $poster = 'http://www.pilote-virtuel.com/img/facebook/0.jpg';
+    private $poster;
 
     /**
      * @var bool
@@ -89,14 +91,13 @@ class Serie
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="seriesSeen")
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="seriesSeen")
      */
     private $viewers;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="SerieBundle\Entity\Category", mappedBy="seriesSeen")
      * @ORM\ManyToMany(targetEntity="SerieBundle\Entity\Category")
      * @ORM\JoinTable(name="category_serie",
      *      joinColumns={@ORM\JoinColumn(name="serie_id", referencedColumnName="id")},
@@ -344,10 +345,10 @@ class Serie
     /**
      * Add viewers
      *
-     * @param \AppBundle\Entity\User $viewers
+     * @param User $viewers
      * @return Serie
      */
-    public function addViewer(\AppBundle\Entity\User $viewers)
+    public function addViewer(User $viewers)
     {
         $this->viewers[] = $viewers;
 
@@ -357,9 +358,9 @@ class Serie
     /**
      * Remove viewers
      *
-     * @param \AppBundle\Entity\User $viewers
+     * @param User $viewers
      */
-    public function removeViewer(\AppBundle\Entity\User $viewers)
+    public function removeViewer(User $viewers)
     {
         $this->viewers->removeElement($viewers);
     }

@@ -2,6 +2,7 @@
 
 namespace SerieBundle\Controller;
 
+use ToolBundle\Entity\Image;
 use SerieBundle\Entity\Serie;
 use SerieBundle\Form\SerieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -66,12 +67,17 @@ class DefaultController extends Controller
 
     public function addAction(Request $request)
     {
+
+
         $serie = new Serie();
         $form = $this->createForm(new SerieType() ,$serie);
 
         $form->handleRequest($request);
         if ( $form->isSubmitted() && $form->isValid() )
         {
+            $img = new Image($serie->getPoster());
+            $img->upload();
+            $serie->setPoster($img);
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
             $em->flush();
