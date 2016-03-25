@@ -120,4 +120,9 @@ class DefaultController extends Controller
         return $this->render('SerieBundle:Default:list.html.twig');
     }
 
+    public function searchAction()
+    {
+
+        return $this->render('SerieBundle:Default:list.html.twig');
+    }
 }

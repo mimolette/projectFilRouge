@@ -31,3 +31,9 @@ serie_detail:
 serie_list:
     path:     /list/
     defaults: { _controller: SerieBundle:Default:list }
+
+
+serie_search:
+    path:     /list/
+    defaults: { _controller: SerieBundle:Default:search }
+

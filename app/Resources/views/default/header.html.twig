@@ -19,16 +19,18 @@
 
     <div id="hd_block_nav_search">
       <nav>
-        <a class="wf_link" href="{{ path ("serie_homepage") }}">Accueil</a>
-        <a class="wf_link" href="{{ path ("serie_top10") }}">Top 10</a>
-        <a class="wf_link" href="{{ path ("serie_list") }}">Séries</a>
+        <a class="wf_link" href="{{ path("serie_homepage") }}">Accueil</a>
+        <a class="wf_link" href="{{ path("serie_top10") }}">Top 10</a>
+        <a class="wf_link" href="{{ path("serie_list") }}">Séries</a>
         <a class="wf_link" href="#">Acteurs</a>
         <a class="wf_link" href="#">Calendrier diffusion</a>
       </nav>
 
       <div id="hd_block_search">
-        <div class="wf_no-link" id="hd_block_search_input">recherche</div>
-        <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="recherche"/>
+        <form action="{{path("serie_search") }}">
+            <input type="text" placeholder="recherche">
+            <input type="submit">
+        </form>
       </div>
     </div>
   </section>
