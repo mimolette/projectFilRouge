@@ -24,6 +24,11 @@ class LoadSeasonData extends AbstractFixture implements OrderedFixtureInterface
         'serie' => 'Louis la Brocante',
       ],
       [
+        'name' => 'Rivière orange',
+        'num' => 3,
+        'serie' => 'Louis la Brocante',
+      ],
+      [
         'name' => 'Chien et chat',
         'num' => 1,
         'serie' => 'Fan fan la tulipe',

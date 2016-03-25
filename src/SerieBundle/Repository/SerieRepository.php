@@ -58,6 +58,20 @@ class SerieRepository extends EntityRepository
 //  ORDER BY moy DESC
 //  LIMIT 5;
 
+  public function getFullDetail($idSerie) {
+    $qb = $this->createQueryBuilder('s');
+
+    $qb
+        ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
+        ->join('s.scores', 'e')
+        ->where('s.id = ?1')
+        ->setParameter(1, $idSerie);
+    $query = $qb->getQuery();
+
+
+    return $query->getOneOrNullResult();
+  }
+
   /**
    * @param integer $nbResult = the number of results wanted
    * @param integer $nbPage = the page's number, 0 by default
