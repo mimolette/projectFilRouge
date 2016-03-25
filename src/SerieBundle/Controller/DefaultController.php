@@ -166,9 +166,10 @@ class DefaultController extends Controller
         return $this->render('SerieBundle:Default:list.html.twig');
     }
 
-    public function searchAction()
+    public function searchAction(Request $req)
     {
-
+        var_dump($req);
+        die();
         return $this->render('SerieBundle:Default:list.html.twig');
     }
     public function detailEpisodeAction($idEpisode, $idSerie) {

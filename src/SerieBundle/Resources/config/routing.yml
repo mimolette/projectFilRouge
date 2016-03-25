@@ -33,7 +33,7 @@ serie_list:
     defaults: { _controller: SerieBundle:Default:list }
 
 serie_search:
-    path:     /list/
+    path:     /search/
     defaults: { _controller: SerieBundle:Default:search }
 
 serie_list_catagory:
