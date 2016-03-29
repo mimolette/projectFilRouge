@@ -153,6 +153,18 @@ class User extends BaseUser
     }
 
     /**
+     * Get age
+     *
+     * @return  integer
+     */
+    public function getAge()
+    {
+        $birthDate = $this->getDayOfBirth();
+        $diff = $birthDate->diff(new \DateTime())->y;
+        return $diff;
+    }
+
+    /**
      * Set avatar
      *
      * @param string $avatar
