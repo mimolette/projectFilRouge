@@ -1,0 +1,33 @@
+{% extends "UserBundle::layout.html.twig" %}
+{% block body %}
+
+    <div id="main">
+        <section>
+        <h1 class="wf_no-link-align">Profil</h1>
+        {% block fos_user_content %}
+
+
+            <div class="fos_user_user_show">
+                <p>{{ 'Pseudo'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+                <p>{{ 'Prénom'|trans({}, 'FOSUserBundle') }}: {{ user.firstname }}</p>
+                <p>{{ 'Age'|trans({}, 'FOSUserBundle') }}: {{ user.getAge()}} {{'ans'}}</p>
+                <p>{{ 'Inscrit depuis le'|trans({}, 'FOSUserBundle') }}: {{ 'date d\'inscription à prévoir' }}</p>
+            </div>
+
+            <div>
+                <h2 class="wf_no-link-align">Préférences</h2>
+            </div>
+
+            <div>
+                <h2 class="wf_no-link-align">Historique des commentaires</h2>
+            </div>
+
+            <div>
+                <h2 class="wf_no-link-align">Séries suivies</h2>
+            </div>
+
+        {% endblock %}
+        </section>
+    </div>
+
+{% endblock %}
