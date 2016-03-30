@@ -45,7 +45,7 @@ class User extends BaseUser
   /**
    * @var string
    *
-   * @ORM\ManyToOne(targetEntity="ToolBundle\Entity\Image")
+   * @ORM\ManyToOne(targetEntity="ToolBundle\Entity\Image", cascade={"persist"})
    * @ORM\JoinColumn(name="avatar", referencedColumnName="id")
    */
   protected $avatar;

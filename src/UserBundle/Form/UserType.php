@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use ToolBundle\Form\ImageType;
 
 
 
@@ -26,7 +27,7 @@ class UserType extends AbstractType
                 'years' => range(date("Y"),date("Y")-100),
             ))
 
-//            ->add('avatar', new ImageType())
+            ->add('avatar', new ImageType())
             ->add('valider', new SubmitType())
         ;
     }
