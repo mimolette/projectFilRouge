@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
+
 class UserType extends AbstractType
 {
     /**
@@ -19,7 +20,12 @@ class UserType extends AbstractType
         $builder
             ->add('firstname')
             ->add('lastname')
-            ->add('dayOfBirth', 'date')
+            ->add('dayOfBirth', 'birthday', array(
+                'format' => 'dd-MMMM-yyyy',
+                'widget' => 'choice',
+                'years' => range(date("Y"),date("Y")-100),
+            ))
+
 //            ->add('avatar', new ImageType())
             ->add('valider', new SubmitType())
         ;
