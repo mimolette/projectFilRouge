@@ -1,0 +1,44 @@
+/* Fichier CSS qui regroupe les styles associés au header des pages */
+
+.container{
+    margin:1%;
+}
+
+#hd_logo{
+    width: 100%;
+}
+
+#hd_block_slogan{
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* ::info:: les images de drapeau dans le chois des langues */
+#hd_block_lang img {
+    /* ::info:: dimensions */
+    width : 50%;
+    height: 50%;
+    /* ::info:: marges exterieures */
+    margin: auto;
+}
+
+#hd_block_social img{
+    /* ::info:: dimensions */
+    width: 30%;
+    height: 30%;
+    /* ::info:: marges exterieures */
+    margin: auto;
+}
+
+ul.nav.navbar-nav{
+    font-weight: bold;
+    color: white;
+}
+
+.navbar{
+    margin: 1%;
+}
+#button_search{
+    background-color: #57BC74;
+    border-style: none;
+}

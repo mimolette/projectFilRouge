@@ -1,63 +1,78 @@
 <header id="hd_js">
-  <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="logo" id="hd_logo"/>
-
-  <section>
-    <div id="hd_block_slogan_lang">
-      <div class="wf_no-link" id="hd_block_slogan">Slogan</div>
+  <div class="container">
+    <div class="row">
+      {#logo#}
+      <div class="col-md-2">
+        <img class="wf_img img-responsive" src="{{ asset('images/wf_img.jpg') }}" alt="logo" id="hd_logo"/>
+      </div>
+      {#slogan#}
+      <div class="col-md-3">
+        <div class="wf_no-link" id="hd_block_slogan">LE RESEAU SOCIAL DES SERIES TV</div>
+      </div>
+      {#languages choice#}
       <div id="hd_block_lang">
-        <figure>
-          <img class="wf_img" src="{{ asset('images/drapeau_francais.jpg') }}" alt="drapeau"/>
-          <figcaption class="wf_no-link">Français</figcaption>
-        </figure>
-        <figure>
-          <img class="wf_img" src="{{ asset('images/drapeau_anglais.png') }}" alt="drapeau"/>
-          <figcaption class="wf_no-link">Anglais</figcaption>
-        </figure>
+          <figure class="lang_logo col-md-offset-3 col-md-1">
+            <img class="wf_img img-responsive" src="{{ asset('images/drapeau_francais.jpg') }}" alt="drapeau"/>
+            <figcaption class="wf_no-link">Français</figcaption>
+          </figure>
+          <figure class="lang_logo col-md-1">
+            <img class="wf_img img-responsive" src="{{ asset('images/drapeau_anglais.png') }}" alt="drapeau"/>
+            <figcaption class="wf_no-link">Anglais</figcaption>
+          </figure>
       </div>
+      {#user connection and accounts#}
+      <aside >
+        <div id="hd_block_user" class="col-md-2">
+          {#user no connected#}
+          {% if not app.user %}
+          <section>
+            <a class="wf_link" href="{{ path("user_login") }}">Se connecter</a>
+          </section>
+          <div id="hd_block_social">
+            <figure>
+              <img class="wf_img" src="{{ asset('images/logo_facebook.jpg') }}" alt="réseaux sociaux"/>
+              <figcaption class="wf_no-link">Facebook</figcaption>
+            </figure>
+            <figure>
+              <img class="wf_img" src="{{ asset('images/logo_twitter.jpg') }}" alt="réseaux sociaux"/>
+              <figcaption class="wf_no-link">Twitter</figcaption>
+            </figure>
+          </div>
+          {#user connected#}
+          {% else %}
+          <section class="col-md-1">
+            <a class="wf_link" href="#">{{ app.user }}</a>
+            <a class="wf_link" id="hd_block_user_info" href="{{ path("fos_user_security_logout") }}">Déconnexion</a>
+          </section>
+          <img class="wf_img col-md-1" id="img_avatar" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>
+        </div>
+        {% endif %}
+
+      </aside>
 
     </div>
-
-    <div id="hd_block_nav_search">
-      <nav>
-        <a class="wf_link" href="{{ path("serie_homepage") }}">Accueil</a>
-        <a class="wf_link" href="{{ path("serie_top10") }}">Top 10</a>
-        <a class="wf_link" href="{{ path("serie_list") }}">Séries</a>
-        <a class="wf_link" href="#">Acteurs</a>
-        <a class="wf_link" href="#">Calendrier diffusion</a>
-      </nav>
-
-      <div id="hd_block_search">
-        <form action="{{path("serie_search", {'lkMethod': 'series'}) }}" method="POST">
-            <input type="text" placeholder="recherche" name="search">
-            <input type="submit">
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <aside>
-    <div id="hd_block_user">
-    {% if not app.user %}
     <section>
-      <a class="wf_link" href="{{ path("user_login") }}">Se connecter</a>
+      <div class="row" id="hd_block_nav_search">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li class="menu_nav"><a class="wf_link" href="{{ path("serie_homepage") }}">Accueil</a></li>
+              <li class="menu_nav"><a class="wf_link" href="{{ path("serie_top10") }}">Top 10</a></li>
+              <li class="menu_nav"><a class="wf_link" href="{{ path("serie_list") }}">Séries</a></li>
+              <li class="menu_nav"><a class="wf_link" href="#">Acteurs</a></li>
+              <li class="menu_nav"><a class="wf_link" href="#">Calendrier de diffusion</a></li>
+            </ul>
+            <form class="navbar-form navbar-right inline-form" id="hd_block_search" action="{{path("serie_search", {'lkMethod': 'series'}) }}" method="POST">
+              <div class="form-group">
+                <input type="search" class="input-sm form-control" placeholder="recherche" name="search">
+                <button id="button_search" type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span> Chercher</button>
+              </div>
+            </form>
+          </div>
+        </nav>
+      </div>
     </section>
-    {% else %}
-      <section>
-        <a class="wf_link" href="#">{{ app.user }}</a>
-        <a class="wf_link" id="hd_block_user_info" href="{{ path("fos_user_security_logout") }}">deconnexion</a>
-      </section>
-      <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>
-    </div>
-      {% endif %}
-    <div id="hd_block_social">
-      <figure>
-        <img class="wf_img" src="{{ asset('images/logo_facebook.jpg') }}" alt="réseaux sociaux"/>
-        <figcaption class="wf_no-link">Facebook</figcaption>
-      </figure>
-      <figure>
-        <img class="wf_img" src="{{ asset('images/logo_twitter.jpg') }}" alt="réseaux sociaux"/>
-        <figcaption class="wf_no-link">Twitter</figcaption>
-      </figure>
-    </div>
-  </aside>
+
+
+  </div>
 </header>
