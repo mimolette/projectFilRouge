@@ -40,6 +40,7 @@
     {% if not app.user %}
     <section>
       <a class="wf_link" href="{{ path("user_login") }}">Se connecter</a>
+      <a class="wf_link" href="{{ path("user_register") }}">S'enregistrer</a>
     </section>
     {% else %}
       <section>
