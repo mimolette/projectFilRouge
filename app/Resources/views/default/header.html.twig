@@ -37,12 +37,18 @@
 
   <aside>
     <div id="hd_block_user">
+    {% if not app.user %}
+    <section>
+      <a class="wf_link" href="{{ path("user_login") }}">Se connecter</a>
+    </section>
+    {% else %}
       <section>
-        <a class="wf_link" href="#">Pseudo</a>
-        <a class="wf_link" id="hd_block_user_info" href="#">Gestion compte</a>
+        <a class="wf_link" href="#">{{ app.user }}</a>
+        <a class="wf_link" id="hd_block_user_info" href="{{ path("fos_user_security_logout") }}">deconnexion</a>
       </section>
       <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>
     </div>
+      {% endif %}
     <div id="hd_block_social">
       <figure>
         <img class="wf_img" src="{{ asset('images/logo_facebook.jpg') }}" alt="réseaux sociaux"/>
@@ -55,27 +61,3 @@
     </div>
   </aside>
 </header>
-
-
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col col-md-3">
-      <div class="wf_no-link" id="hd_block_slogan">Slogan</div>
-    </div>
-    <div class="col col-md-6">
-    
-    </div>
-
-    <div class="col col-md-3">
-        <figure>
-          <img class="wf_img" src="{{ asset('images/drapeau_francais.jpg') }}" alt="drapeau"/>
-          <figcaption class="wf_no-link">Français</figcaption>
-        </figure>
-        <figure>
-          <img class="wf_img" src="{{ asset('images/drapeau_anglais.png') }}" alt="drapeau"/>
-          <figcaption class="wf_no-link">English</figcaption>
-        </figure>
-    </div>
-  </div>
-</div> -->
