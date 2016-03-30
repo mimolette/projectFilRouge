@@ -39,7 +39,7 @@ class Serie
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="ToolBundle\Entity\Image")
+     * @ORM\ManyToOne(targetEntity="ToolBundle\Entity\Image", cascade={"persist"})
      * @ORM\JoinColumn(name="poster", referencedColumnName="id")
      */
     private $poster;

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\Textarea;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Validator\Constraints\Length;
+use ToolBundle\Form\ImageType;
 
 class SerieType extends AbstractType
 {
@@ -20,9 +21,9 @@ class SerieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('poster')
             ->add('name',new TextType(),['constraints' => new Length(['min' => 3])])
             ->add('synopsis')
+            ->add('poster', new ImageType())
             ->add('valider', new SubmitType())
         ;
     }

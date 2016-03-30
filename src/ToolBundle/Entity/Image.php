@@ -26,7 +26,7 @@ class Image
      * @var string
      *
      * @ORM\Column(name="path", type="string", length=255)
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\NotBlank(message="Ajouter un image svp.")
      * @Assert\File(mimeTypes={ "image/jpeg", "image/png" })
      * 
      */

@@ -7,6 +7,8 @@ use SerieBundle\Form\SerieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use ToolBundle\Entity\Image;
 
 class DefaultController extends Controller
 {
@@ -91,6 +93,21 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         if ( $form->isSubmitted() && $form->isValid() )
         {
+            $file = $serie->getPoster()->getPath();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where poster are stored
+            $posterDir = $this->container->getParameter('kernel.root_dir').'/../web/images/series';
+            $file->move($posterDir, $fileName);
+
+            // Update the 'brochure' property to store the file name
+            // instead of its contents
+            $serie->getPoster()->setPath($fileName);
+
+            // ... persist the $serie variable or any other work
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
             $em->flush();
