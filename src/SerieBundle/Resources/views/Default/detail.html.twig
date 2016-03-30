@@ -2,15 +2,7 @@
 
 {% block body %}
 
-  <script>
-  $(function(){
-    $( "#accordion" ).accordion({
-    active:false,
-    collapsible: true,
-    heightStyle: "content"
-    });
-  });
-  </script>
+
 
 <div class="container">
   <div class="row">
@@ -85,4 +77,17 @@
     {% endfor %} 
   </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    $(function(){
+      $( "#accordion" ).accordion({
+        active:false,
+        collapsible: true,
+        heightStyle: "content"
+      });
+    });
+  </script>
 {% endblock %}

@@ -5,9 +5,6 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
       <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-      <link rel="stylesheet" href="/resources/demos/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/wireframe.css') }}"/>
@@ -28,6 +25,7 @@
     {{ include('default/footer.html.twig') }}
     {% block javascripts %}
       <script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     {% endblock %}
   </body>
 </html>
