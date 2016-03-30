@@ -19,7 +19,10 @@
                 en colonnes */
     min-width: 180px;
     max-width: 180px;
+    margin-top: 60px;
     box-sizing: border-box;
+
+    align-self: flex-start;
 }
 
     /* ::info:: la balise <h3> du block, c'est le titre de cette section */

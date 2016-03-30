@@ -12,8 +12,8 @@ class LoadEvaluateData extends AbstractFixture implements OrderedFixtureInterfac
   public function load(ObjectManager $manager)
   {
 
-    $min = 0;
-    $max = 10;
+    $min = 1;
+    $max = 5;
 
     $users = [
         'superMan-user',

@@ -73,6 +73,7 @@
             justify-content: space-between;
         }
 
+
             /* ::info:: la balise <div> avec les icones d'évaluation de la série
                         */
             .top_serie_lat_evaluation {
@@ -80,14 +81,21 @@
                             balise */
                 display: flex;
                 flex-direction: column;
+                align-items: center;
             }
+
+                .top_serie_lat_score {
+                    font-weight: bold;
+                    font-size: 0.9em;
+                }
 
                 /* ::info:: les différentes icones qui permettent d'évaluer la
                             série */
                 .top_serie_lat_evaluation img {
                     /* ::info:: dimensions */
-                    width: 20px;
-                    height: 20px;
+                    width: 25px;
+                    height: 25px;
+                    border: none;
                 }
 
             /* ::info:: un block <div> qui contient le nombre de vus */
@@ -191,7 +199,6 @@
                 .top_comment_date {
                     flex-grow: 1;
                     /* ::info:: dimensions */
-                    min-height: 30px;
                     /* ::info:: marges externes */
                     margin-right: 10px;
                 }
@@ -205,7 +212,7 @@
                 }
 
                     /* ::info:: les ensembles image + legend associé */
-                    .top_comment_like div {
+                    .top_comment_like div a {
                         /* ::info:: positionnement des éléments contenu 
                         dans cette balise */
                         display: flex;
@@ -219,13 +226,30 @@
                         height: 30px;
                         /* ::info:: marges externes */
                         margin-left: 4px;
+                        border: none;
                     }
 
                     /* ::info:: legend associé */
                     .top_comment_like span {
-                        /* ::info:: capacité de l'élément à grandir dans 
+                        /* ::info:: capacité de l'élément à grandir dans
                         l'espace disponible */
                         flex-grow: 1;
+                        font-weight: bold;
+                        border: none;
+                    }
+
+                    /* ::info:: legend associé */
+                    .top_comment_like div:first-child span {
+                        /* ::info:: capacité de l'élément à grandir dans
+                        l'espace disponible */
+                        color: green;
+                    }
+
+                    /* ::info:: legend associé */
+                    .top_comment_like div:last-child span {
+                        /* ::info:: capacité de l'élément à grandir dans
+                        l'espace disponible */
+                        color: #ae2315;
                     }
 
 

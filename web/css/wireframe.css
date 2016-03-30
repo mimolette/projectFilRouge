@@ -15,7 +15,7 @@
     /* ::info:: couleur de police */
     color: grey;
     /* ::info:: bordure */
-    border: 2px solid grey;
+    border: 1px solid #b2b2b2;
 }
 
 /* ::info:: éléments de type liens */
@@ -23,7 +23,7 @@
     /* ::info:: couleur de police */
     color: grey;
     /* ::info:: bordure */
-    border: 2px solid grey;
+    border: 1px solid #dedede;
     /* ::info:: positionnement du texte au centre du conteneur */
     display: flex;
     justify-content: center;
@@ -43,7 +43,7 @@
     /* ::info:: couleur de police */
     color: grey;
     /* ::info:: bordure */
-    border: 2px solid grey;
+    border: 1px solid #dedede;
     /* ::info:: positionnement du texte au centre du conteneur */
     display: flex;
     justify-content: center;
@@ -55,7 +55,7 @@
     /* ::info:: couleur de police */
     color: grey;
     /* ::info:: bordure */
-    border: 2px solid grey;
+    border: 1px solid #dedede;
     /* ::info:: positionnement du texte au centre du conteneur */
     display: flex;
 }
@@ -63,5 +63,5 @@
 /* ::info:: éléments de type non-liens mais avec du contenu détaillé */
 .wf_no-link-content {
     /* ::info:: bordure */
-    border: 2px solid grey;
+    border: 1px solid #dedede;
 }

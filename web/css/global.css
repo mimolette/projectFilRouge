@@ -50,17 +50,23 @@
     flex-direction: row;
 }
 
+.main_content{
+    display: flex;
+    justify-content: center;
+
+}
+
 /* ::info:: élément <div>, le corps de la page */
 #main {
     /* ==>todo==> vérifier la valeur max à attribuer à la largeur de l'élément
                     header */
     max-width: 960px;
     /* ::info:: positionnement sur la page */
-    margin: auto;
     /* ::info:: marges externes */
     margin-top: 60px;
     /* ::info:: positionnement des éléments contenu dans cet élément */
     display: flex;
+    flex-grow: 50;
 }
 
     /* ::info:: la balise <section> contenu dans le block main de la page */

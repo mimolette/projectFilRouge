@@ -18,10 +18,12 @@
   </head>
   <body>
     {{ include('default/header.html.twig') }}
-    {% block aside %}
-        {{ render(controller('SerieBundle:Data:categories')) }}
-    {% endblock %}
-    {% block body %}{% endblock %}
+    <div class="main_content">
+      {% block body %}{% endblock %}
+      {% block aside %}
+          {{ render(controller('SerieBundle:Data:categories')) }}
+      {% endblock %}
+    </div>
     {{ include('default/footer.html.twig') }}
     {% block javascripts %}
       <script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
