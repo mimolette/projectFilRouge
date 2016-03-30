@@ -60,12 +60,16 @@
             </div>
             <div class="top_comment_like">
               <div>
-                <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
-                <span class="wf_no-link">{{ comment.nbLike }}</span>
+                <a href="{{ path('like', {'id':comment[0].id}) }}" class="js_like">
+                  <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
+                  <span class="wf_no-link">{{ comment.nbLike }}</span>
+                </a>
               </div>
               <div>
-                <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
-                <span class="wf_no-link">{{ comment.nbDislike }}</span>
+                <a href="{{ path('like', {'id':comment[0].id}) }}" class="js_like">
+                  <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
+                  <span class="wf_no-link">{{ comment.nbDislike }}</span>
+                </a>
               </div>
             </div>
           </header>

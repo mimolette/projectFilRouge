@@ -2,3 +2,8 @@
 
 {% block body %}
 {% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('javascript/likeDislike.js') }}"></script>
+{% endblock %}
