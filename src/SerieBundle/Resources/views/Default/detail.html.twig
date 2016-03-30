@@ -20,7 +20,7 @@
             <div class="top_serie_block">
               <!-- l'ensemble image de la serie plus nom -->
               <figure>
-                  <img class="wf_img" src="{{ serie[0].poster }}" alt="{{ serie[0].name }}"/>
+                  <img class="wf_img" src="{{ asset("images/series/%s"|format(serie[0].poster.path)) }}" alt="{{ serie[0].name }}"/>
               </figure>
               <!-- la parie latérale -->
               <div class="top_serie_lat">
