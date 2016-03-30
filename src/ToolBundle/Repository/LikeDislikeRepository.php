@@ -37,4 +37,16 @@ class LikeDislikeRepository extends EntityRepository
 
     return $query->getResult();
   }
+
+  public function checkValid($userId, $commentId) {
+    $qb = $this->createQueryBuilder('ld');
+    $qb
+        ->where('ld.user = :user')
+        ->andWhere('ld.comment = :serie')
+        ->setParameter('user', $userId)
+        ->setParameter('serie', $commentId);
+    $query = $qb->getQuery();
+
+    return $query->getOneOrNullResult();
+  }
 }

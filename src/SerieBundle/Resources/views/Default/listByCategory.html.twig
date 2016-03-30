@@ -8,15 +8,15 @@
     <!-- le block <section> qui contient tout les informations de la
          page courante -->
     <section>
-    <h1 class="wf_no-link-align">liste des séries</h1>
+    <h1 class="wf_no-link-align">liste des séries {{ category.name }} ({{ series|length }})</h1>
 
     {% for serie in series %}
     <div class="detail_genre_result">
         <!-- l'ensemble image de la serie plus nom -->
         <figure>
-            <img class="wf_img" src="{{ asset("images/series/%s"|format(serie[0].poster.path)) }}" alt="serie"/>
+            <img class="wf_img" src="{{ asset("images/series/%s"|format(serie.poster.path)) }}" alt="serie"/>
             <figcaption>
-                <a class="wf_link" href="{{ path ("serie_detail",{"id": serie[0].id }) }}">{{ serie[0].name }}</a>
+                <a class="wf_link" href="{{ path ("serie_detail",{"id": serie.id }) }}">{{ serie.name }}</a>
             </figcaption>
         </figure>
         <!-- la partie larérale du résultat -->
@@ -29,8 +29,6 @@
                 <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
                 <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
             </div>
-            <!-- le nombre de vue -->
-            <div class="detail_genre_lat_nbVu wf_no-link">{{ serie.nbViewers }}</div>
         </div>
     </div>
         {%  endfor %}
