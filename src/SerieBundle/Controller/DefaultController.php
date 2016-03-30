@@ -14,12 +14,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        // find all catagories
-        $categories = $this
-            ->getDoctrine()
-            ->getRepository("SerieBundle:Category")
-            ->findAll();
-
 
         $finalResult = [];
         // first : find the five best series by average score
@@ -45,7 +39,6 @@ class DefaultController extends Controller
         }
         return $this->render('SerieBundle:Default:index.html.twig', array(
             'series' => $finalResult,
-            'categories' => $categories
         ));
     }
 
@@ -165,22 +158,24 @@ class DefaultController extends Controller
             ->getRepository("SerieBundle:Serie")
             ->getXSeriesByNbViewers();
 
-        var_dump($series);
-        die();
-
-        return $this->render('SerieBundle:Default:list.html.twig');
+        return $this->render('SerieBundle:Default:list.html.twig', array(
+            'series' => $series,
+        ));
     }
 
     public function listCategoryAction($id) {
 
-        $series = $this
-            ->getDoctrine()
+        $doctrine = $this->getDoctrine();
+        $category = $doctrine->getRepository('SerieBundle:Category')->find($id);
+
+        $series = $doctrine
             ->getRepository("SerieBundle:Serie")
             ->getXSeriesByCategory($id);
-        var_dump($series);
-        die();
 
-        return $this->render('SerieBundle:Default:list.html.twig');
+        return $this->render('SerieBundle:Default:listByCategory.html.twig', array(
+            'series' => $series,
+            'category' => $category
+        ));
     }
 
     public function searchAction(Request $req, $lkMethod, $lkValue)

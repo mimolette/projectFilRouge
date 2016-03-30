@@ -1,9 +1,5 @@
 {% extends "SerieBundle::layout.html.twig" %}
 
-{% block aside %}
-  {{ include('::default/categories.html.twig') }}
-{% endblock %}
-
 
 {% block body %}
 
@@ -67,12 +63,16 @@
                 </div>
                 <div class="top_comment_like">
                   <div>
-                    <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
-                    <span class="wf_no-link">{{ serie.nbLike }}</span>
+                    <a href="{{ path('like', {'id':serie.comment.id}) }}" class="js_like">
+                      <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
+                      <span class="wf_no-link">{{ serie.nbLike }}</span>
+                    </a>
                   </div>
                   <div>
-                    <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
-                    <span class="wf_no-link">{{ serie.nbDislike }}</span>
+                    <a href="{{ path('dislike', {'id':serie.comment.id}) }}" class="js_like">
+                      <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
+                      <span class="wf_no-link">{{ serie.nbDislike }}</span>
+                    </a>
                   </div>
                 </div>
               </header>
@@ -89,4 +89,9 @@
 	</div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('javascript/likeDislike.js') }}"></script>
 {% endblock %}

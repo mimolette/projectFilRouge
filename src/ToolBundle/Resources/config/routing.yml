@@ -1,0 +1,11 @@
+like:
+    path: /like/{id}
+    defaults: {_controller: ToolBundle:Default:like }
+    requirements:
+        id: "\d+"
+
+dislike:
+    path: /like/{id}
+    defaults: {_controller: ToolBundle:Default:dislike }
+    requirements:
+        id: "\d+"

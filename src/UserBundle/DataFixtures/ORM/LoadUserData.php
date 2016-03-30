@@ -5,12 +5,26 @@ namespace UserBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use UserBundle\Entity\User;
 
-class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+  /**
+   * @var ContainerInterface
+   */
+  private $container;
+
+  public function setContainer(ContainerInterface $container = null)
+  {
+    $this->container = $container;
+  }
+
   public function load(ObjectManager $manager)
   {
+
+
     $users = [
       [
         'username' => 'superMan',
@@ -50,7 +64,11 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     foreach($users as $userData) {
       $user = new User();
       $user->setUsername($userData['username']);
-      $user->setPassword($userData['password']);
+
+      $encoder = $this->container->get('security.password_encoder');
+      $password = $encoder->encodePassword($user, $userData['password']);
+      $user->setPassword($password);
+
       $user->setFirstname($userData['firstname']);
       $user->setLastname($userData['lastname']);
       $user->setDayOfBirth($userData['dayOfBirth']);

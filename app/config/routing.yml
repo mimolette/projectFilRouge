@@ -6,6 +6,10 @@ serie:
     resource: "@SerieBundle/Resources/config/routing.yml"
     prefix:   /
 
+tools:
+    resource: "@ToolBundle/Resources/config/routing.yml"
+    prefix: /tools
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
