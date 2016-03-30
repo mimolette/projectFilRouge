@@ -46,7 +46,7 @@
         <a class="wf_link" href="#">{{ app.user }}</a>
         <a class="wf_link" id="hd_block_user_info" href="{{ path("fos_user_security_logout") }}">deconnexion</a>
       </section>
-      <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>
+      <img class="wf_img" src="{{ asset("images/avatar/%s"|format(app.user.avatar.path)) }}" alt="avatar"/>
     </div>
       {% endif %}
     <div id="hd_block_social">
