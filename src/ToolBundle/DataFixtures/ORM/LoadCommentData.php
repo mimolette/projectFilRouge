@@ -31,7 +31,7 @@ class LoadCommentData extends AbstractFixture implements OrderedFixtureInterface
     $dateCom->setTime(rand(0,23), rand(0,59), rand(0,59));
     $com->setPostDate(\DateTime::createFromFormat('Y-m-d:H:m:s', $dateCom->format('Y-m-d:H:m:s')));
     $com->setMessage(substr($this->lorem, 0, rand(50, 500)));
-    $com->setValidation(true);
+    $com->setValidation(rand(0, 1));
     $com->setUser($this->getReference($userId . '-user'));
     $com->setSerie($this->getReference($serieId . '-serie'));
 
