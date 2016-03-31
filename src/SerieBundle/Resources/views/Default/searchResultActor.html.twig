@@ -40,7 +40,7 @@
           <!-- chaque acteur possède un photo qui le représente -->
           <img src="{{ asset('images/wf_img.jpg') }}" alt="{{ "%s %s"|format(actor.firstname, actor.lastname) }}" class="wf_img">
           <!-- chaque acteur possède un nom qui est un liens vers sa page -->
-          <figcaption><a class="wf_link" href="#">{{ "%s %s"|format(actor.firstname, actor.lastname) }}</a></figcaption>
+          <figcaption><a class="wf_link" href="#">{{ actor.firstname }}</a></figcaption>
         </figure>
 
       {% endfor %}

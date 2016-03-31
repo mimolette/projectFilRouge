@@ -1,0 +1,43 @@
+{% extends "SerieBundle::layout.html.twig" %}
+
+{% block body %}
+
+
+    <!-- le block <div> qui contient tout le contenu de la page -->
+    <div id="main">
+    <!-- le block <section> qui contient tout les informations de la
+         page courante -->
+        <!-- le block <section> qui contient tout les informations de la
+           page courante -->
+        <section id="listing_actor">
+
+            <!-- Titre de la page -->
+            <h1 class="wf_no-link-align">Liste de tout les acteurs</h1>
+
+            <!-- le panneau de filtre des résultats par groupe alphabétique -->
+            <ul>
+                <li class="wf_link">A - C</li>
+                <li class="wf_link">D - F</li>
+                <li class="wf_link">G - K</li>
+                <li class="wf_link">L - O</li>
+                <li class="wf_link">P - S</li>
+                <li class="wf_link">T - Z</li>
+            </ul>
+
+            <!-- Le block qui contient l'ensemble des résultat de recherche des
+                 acteurs  -->
+            <div class="listing_actor_block">
+                {% for actor in actors %}
+                <!-- chaque résulat est stocké dans une <figure> -->
+                <figure>
+                    <!-- chaque acteur possède un photo qui le représente -->
+                    <img src="{{ asset('images/wf_img.jpg') }}" alt="{{ actor.firstname }}" class="wf_img">
+                    <!-- chaque acteur possède un nom qui est un liens vers sa page -->
+                    <figcaption><a class="wf_link" href="#">{{ actor.lastname }}</a></figcaption>
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

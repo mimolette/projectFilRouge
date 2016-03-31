@@ -28,4 +28,19 @@ class ActorRepository extends EntityRepository
 
     return $query->getResult();
   }
+
+  public function getAllActorsByLastname($nbResult = 30, $nbPage = 0) {
+    $qb = $this->createQueryBuilder('a');
+
+    $qb
+        ->orderBy('a.lastname' ,'ASC')
+        ->setFirstResult($nbPage * $nbResult)
+        ->setMaxResults($nbResult);
+    $query = $qb->getQuery();
+
+
+    return $query->getResult();
+
+  }
+
 }

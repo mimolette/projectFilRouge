@@ -180,6 +180,18 @@ class DefaultController extends Controller
         ));
     }
 
+    public function listActorsAction()
+    {
+        $actors = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Actor")
+            ->getAllActorsByLastname(30, 0);
+
+        return $this->render('SerieBundle:Default:listActors.html.twig', array(
+            'actors' => $actors,
+        ));
+    }
+
     public function listCategoryAction($id) {
 
         $doctrine = $this->getDoctrine();

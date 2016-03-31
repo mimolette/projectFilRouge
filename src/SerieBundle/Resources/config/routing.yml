@@ -56,3 +56,7 @@ serie_add:
     defaults: { _controller: SerieBundle:Default:add }
     requirements:
             id:  "\d+"
+
+serie_actors:
+    path:     /list/actors
+    defaults: { _controller: SerieBundle:Default:listActors }
