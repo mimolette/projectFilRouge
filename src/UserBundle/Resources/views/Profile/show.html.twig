@@ -3,43 +3,52 @@
 
     <div id="main">
         <section>
-        <h1 class="wf_no-link-align">Profil</h1>
         {% block fos_user_content %}
 
-
             <div class="fos_user_user_show">
-                <p>{{ 'Pseudo'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
-                <p>{{ 'Prénom'|trans({}, 'FOSUserBundle') }}: {{ user.firstname }}</p>
-                <p>{{ 'Age'|trans({}, 'FOSUserBundle') }}: {{ user.getAge()}} {{'ans'}}</p>
-                {#<p>{{ 'Inscrit depuis le'|trans({}, 'FOSUserBundle') }}: {{ 'date d\'inscription à prévoir' }}</p>#}
-                <p>{{ dump(user) }}</p>
+                <h1 class="wf_no-link-align">Profil</h1>
+                <div id="pf_img_avatar">
+                    <img src="{{ asset("images/avatar/%s"|format(user.avatar.path)) }}" alt="avatar"/>
+                </div>
+                <div id="pf_user_info">
+                    <p>{{ 'Pseudo'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+                    <p>{{ 'Prénom'|trans({}, 'FOSUserBundle') }}: {{ user.firstname }}</p>
+                    <p>{{ 'Age'|trans({}, 'FOSUserBundle') }}: {{ user.getAge()}} {{'ans'}}</p>
+                </div>
             </div>
 
-            <div>
-                <h2 class="wf_no-link-align">Préférences</h2>
-            </div>
 
-            <div>
+
+            <div class="histo_comm_block">
                 <h2 class="wf_no-link-align">Historique des commentaires</h2>
-                <p>{{ dump(comments) }}</p>
 
                     {% for comment in comments %}
                         <div class="comment_histo">
 
                             <p>Le {{ comment[0].postDate|date('d-m-Y')}} à {{ comment[0].postDate|date('h:m:i') }}</p>
                             <p>Nom de la série : {{ comment[0].serie.name }}</p>
-                            <p><img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>{{ comment['nbLike'] }}</p>
-                            <p><img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>{{ comment['nbDislike'] }}</p>
-                            <p>Message posté : {{ comment[0].message }}</p>
+                            {#<p><img src="{{ comment[0].serie.poster.path }}" alt=""></p>#}
+                            <div class="logoLD">
+                                <p><img id="pf_like_logo" class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>{{ comment['nbLike'] }}</p>
+                                <p><img id="pf_dislike_logo" class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>{{ comment['nbDislike'] }}</p>
+                            </div>
+
+                            <p>Message posté : <br/>
+                                {{ comment[0].message }}
+                            </p>
                         </div>
                     {% endfor %}
 
-
             </div>
 
-            <div>
+            <div class="pref_block">
+                <h2 class="wf_no-link-align">Préférences</h2>
+            </div>
+
+            <div class="follow_block">
                 <h2 class="wf_no-link-align">Séries suivies</h2>
             </div>
+
 
         {% endblock %}
         </section>
