@@ -11,7 +11,8 @@
                 <p>{{ 'Pseudo'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
                 <p>{{ 'Prénom'|trans({}, 'FOSUserBundle') }}: {{ user.firstname }}</p>
                 <p>{{ 'Age'|trans({}, 'FOSUserBundle') }}: {{ user.getAge()}} {{'ans'}}</p>
-                <p>{{ 'Inscrit depuis le'|trans({}, 'FOSUserBundle') }}: {{ 'date d\'inscription à prévoir' }}</p>
+                {#<p>{{ 'Inscrit depuis le'|trans({}, 'FOSUserBundle') }}: {{ 'date d\'inscription à prévoir' }}</p>#}
+                <p>{{ dump(user) }}</p>
             </div>
 
             <div>
@@ -20,6 +21,20 @@
 
             <div>
                 <h2 class="wf_no-link-align">Historique des commentaires</h2>
+                <p>{{ dump(comments) }}</p>
+
+                    {% for comment in comments %}
+                        <div class="comment_histo">
+
+                            <p>Le {{ comment[0].postDate|date('d-m-Y')}} à {{ comment[0].postDate|date('h:m:i') }}</p>
+                            <p>Nom de la série : {{ comment[0].serie.name }}</p>
+                            <p><img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>{{ comment['nbLike'] }}</p>
+                            <p><img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>{{ comment['nbDislike'] }}</p>
+                            <p>Message posté : {{ comment[0].message }}</p>
+                        </div>
+                    {% endfor %}
+
+
             </div>
 
             <div>

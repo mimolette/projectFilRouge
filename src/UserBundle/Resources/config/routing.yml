@@ -13,3 +13,9 @@ user_logout:
 user_register:
     path:     /register
     defaults: { _controller: UserBundle:Registration:register }
+
+user_profile:
+    path:     /profile/{id}
+    defaults: { _controller: UserBundle:Profile:show }
+    requirements:
+        id:  "\d+"
