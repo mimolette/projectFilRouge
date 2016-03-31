@@ -9,3 +9,10 @@ dislike:
     defaults: {_controller: ToolBundle:Default:dislike }
     requirements:
         id: "\d+"
+
+score:
+    path: /score/{id}/{note}
+    defaults: {_controller: ToolBundle:Default:score }
+    requirements:
+        id: "\d+"
+        note: "[1-5]"

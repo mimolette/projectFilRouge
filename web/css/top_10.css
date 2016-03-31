@@ -95,7 +95,6 @@ classement */
 			/* ::info:: les nombre de vu de cette série */
 			.top_10_lat_nbVu {
 				max-width: 20px;
-				flex-grow: 1;
 			}
 
 		/* ::info:: les vignettes de classement des séries */

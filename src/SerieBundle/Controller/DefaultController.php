@@ -44,8 +44,11 @@ class DefaultController extends Controller
 
     public function top10Action()
     {
-        $em = $this->getDoctrine()->getManager();
-        $series = $em->getRepository("SerieBundle:Serie")->findBy(array(), null, 10);
+
+        $series = $this
+            ->getDoctrine()
+            ->getRepository("SerieBundle:Serie")
+            ->getXSeriesByAvgScore(10);
         return $this->render('SerieBundle:Default:top10.html.twig',["series" => $series]);
     }
 

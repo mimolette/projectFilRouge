@@ -29,23 +29,7 @@
               <!-- la parie latérale -->
               <div class="top_serie_lat">
                   <!-- l'évaluation de la série -->
-                  <div class="top_serie_lat_evaluation">
-                      {% for i in 4..0 %}
-                        {% if serie.moyenne >= i %}
-                          {% if serie.moyenne >= i+1 %}
-                            <img class="wf_img" src="{{ asset('images/star_full.png') }}" alt="evaluation"/>
-                          {% elseif serie.moyenne >= i+0.3 %}
-                            <img class="wf_img" src="{{ asset('images/star_half.png') }}" alt="evaluation"/>
-                          {% else %}
-                            <img class="wf_img" src="{{ asset('images/star_empty.png') }}" alt="evaluation"/>
-                          {% endif %}
-                        {% else %}
-                          <img class="wf_img" src="{{ asset('images/star_empty.png') }}" alt="evaluation"/>
-                        {% endif %}
-                      {% endfor %}
-
-                      <span class="top_serie_lat_score">{{ serie.moyenne|number_format(1, ',', ' ') }}</span>
-                  </div>
+                  {{ include('SerieBundle:Default/score.html.twig') }}
                   <!-- le nombre de vue -->
                   <div class="top_serie_lat_nbVu wf_no-link">{{ serie.nbViewers }}</div>
               </div>
@@ -98,3 +82,9 @@
 
 
 {% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('javascript/score.js') }}"></script>
+{% endblock %}
+

@@ -15,13 +15,7 @@
                 <img class="wf_img" src="{{ asset("images/series/%s"|format(serie[0].poster.path)) }}" alt="{{ serie[0].name }}"/>
             </figure>
             <div class="top_serie_lat">
-              <div class="top_serie_lat_evaluation">
-                <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-              </div>
+              {{ include('SerieBundle:Default/score.html.twig') }}
             </div>
           </div>
         </div>

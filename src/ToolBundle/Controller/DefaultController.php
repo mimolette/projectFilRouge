@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
+use ToolBundle\Entity\Evaluate;
 use ToolBundle\Entity\LikeDislike;
 
 class DefaultController extends Controller
@@ -77,5 +78,49 @@ class DefaultController extends Controller
 
         return $em->checkValid($user->getId(), $commentId);
 
+    }
+
+    private function checkUserScore($serieId) {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getRepository('ToolBundle:Evaluate');
+
+        return $em->checkValid($user->getId(), $serieId);
+
+    }
+
+    /**
+     * @param $id
+     * @param $note
+     * @Security("has_role('ROLE_USER')")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function scoreAction($id, $note) {
+        $note = $note > 5 ? 5 : $note;
+        $note = $note < 0 ? 0 : $note;
+        $em = $this->getDoctrine()->getEntityManager();
+        $serie = $this->getDoctrine()->getRepository('SerieBundle:Serie')->find($id);
+
+        $valid = false;
+
+        if(!$this->checkUserScore($id)) {
+            $valid = true;
+            $evaluation = new Evaluate();
+            $evaluation->setUser($this->getUser());
+            $evaluation->setSerie($serie);
+            $evaluation->setScore($note);
+
+            $em->persist($evaluation);
+            $em->flush();
+        }
+
+
+        $response = new Response(json_encode(array(
+            'valid' => $valid,
+            'id' => $id,
+            'note' => $note
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }
