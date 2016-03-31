@@ -76,12 +76,15 @@ class DefaultController extends Controller
 
         }
             // verifie si l'user a deja commenté la serie
+        $commenter = null;
+        if ( $this->getUser() ){
             $commenter = $this
                 ->getDoctrine()
                 ->getRepository("ToolBundle:Comment")
                 ->VerifyUserCanComment($this->getUser()->getId(),$serie[0]->getId());
-
+        }
         $commenter == null ? $commenter = false : $commenter = true;
+
 
         $comment = new Comment();
         $form = $this->createForm(new CommentType() ,$comment);
