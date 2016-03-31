@@ -105,13 +105,13 @@ class SerieRepository extends EntityRepository
     $qb = $this->createQueryBuilder('s');
 
     $qb
-//        ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
-//        ->join('s.scores', 'e')
+        ->addSelect($qb->expr()->avg('e.score').' AS moyenne')
+        ->join('s.scores', 'e')
         ->innerJoin('s.categories', 'c')
         ->groupBy('s.id')
         ->where('s.validation = true')
         ->andWhere('c.id = ?1')
-//        ->orderBy('moyenne' ,'DESC')
+        ->orderBy('moyenne' ,'DESC')
         ->setFirstResult($nbPage * $nbResult)
         ->setMaxResults($nbResult)
         ->setParameter(1, $category);

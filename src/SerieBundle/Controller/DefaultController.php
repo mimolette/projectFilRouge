@@ -173,7 +173,7 @@ class DefaultController extends Controller
         $series = $this
             ->getDoctrine()
             ->getRepository("SerieBundle:Serie")
-            ->getXSeriesByNbViewers();
+            ->getXSeriesByAvgScore(30, 0);
 
         return $this->render('SerieBundle:Default:list.html.twig', array(
             'series' => $series,

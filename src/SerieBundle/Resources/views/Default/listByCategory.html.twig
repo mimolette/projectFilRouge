@@ -2,38 +2,33 @@
 
 {% block body %}
 
-
-    <!-- le block <div> qui contient tout le contenu de la page -->
     <div id="main">
-    <!-- le block <section> qui contient tout les informations de la
-         page courante -->
-    <section>
-    <h1 class="wf_no-link-align">liste des séries {{ category.name }} ({{ series|length }})</h1>
+        <!-- le block <section> qui contient tout les informations de la
+             page courante -->
+        <section id="detail_genre">
+            <h1 class="wf_no-link-align">liste des séries {{ category.name }} ({{ series|length }})</h1>
 
-    {% for serie in series %}
-    <div class="detail_genre_result">
-        <!-- l'ensemble image de la serie plus nom -->
-        <figure>
-            <img class="wf_img" src="{{ asset("images/series/%s"|format(serie.poster.path)) }}" alt="serie"/>
-            <figcaption>
-                <a class="wf_link" href="{{ path ("serie_detail",{"id": serie.id }) }}">{{ serie.name }}</a>
-            </figcaption>
-        </figure>
-        <!-- la partie larérale du résultat -->
-        <div class="detail_genre_lat">
-            <!-- l'évaluation de la série -->
-            <div class="detail_genre_lat_evaluation">
-                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
-                <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="evaluation"/>
+            <div class="detail_genre_block">
+
+                {% for serie in series %}
+                    <!-- chaque résultat est stocké dans une <div> -->
+                    <div class="detail_genre_result">
+                        <!-- l'ensemble image de la serie plus nom -->
+                        <figure>
+                            <img class="wf_img" src="{{ asset("images/series/%s"|format(serie[0].poster.path)) }}" alt="serie"/>
+                            <figcaption>
+                                <a class="wf_link" href="{{ path ("serie_detail",{"id": serie[0].id }) }}">{{ serie[0].name }}</a>
+                            </figcaption>
+                        </figure>
+                        <!-- la partie larérale du résultat -->
+                        <div class="detail_genre_lat">
+                            <!-- l'évaluation de la série -->
+                            {{ include('SerieBundle:Default/score.html.twig') }}
+                        </div>
+                    </div>
+                {%  endfor %}
             </div>
-        </div>
-    </div>
-        {%  endfor %}
         </section>
-        </div>
-
+    </div>
 
 {% endblock %}
