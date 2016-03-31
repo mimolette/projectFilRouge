@@ -154,8 +154,8 @@ class DefaultController extends Controller
             ->getRepository("SerieBundle:Serie")
             ->find($id);
         if ($serie == null) return $this->redirectToRoute('serie_homepage');
+        
         $form = $this->createForm(new SerieType() ,$serie);
-
         $form->handleRequest($request);
         if ( $form->isSubmitted() && $form->isValid() )
         {
