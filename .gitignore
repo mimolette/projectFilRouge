@@ -11,5 +11,6 @@
 /bin/
 /composer.phar
 /.idea/
+/web/images/series
+/web/images/avatar
 *~
-/web/images/
