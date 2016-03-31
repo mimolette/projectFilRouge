@@ -72,7 +72,8 @@ class CommentRepository extends EntityRepository
         ->where('ld.likeIt = true')
         ->andWhere('c.user = ?1')
         ->groupBy('c.id')
-        ->orderBy('c.postDate', 'DESC')
+        ->orderBy('c.validation', 'DESC')
+        ->addOrderBy('c.postDate', 'DESC')
         ->setParameter(1, $id);
 
     $query = $qb->getquery();
@@ -80,23 +81,5 @@ class CommentRepository extends EntityRepository
     return $query->getResult();
   }
 
-  public function getCommentsByUserIdDislike($id){
-    $qb = $this->createQueryBuilder('c');
-
-    $qb
-        ->addSelect('s')
-        ->addSelect($qb->expr()->count('ld.id').' AS nbDislike')
-        ->join('c.serie', 's')
-        ->join('c.likes', 'ld')
-        ->where('ld.likeIt = false')
-        ->andWhere('c.user = ?1')
-        ->groupBy('c.id')
-        ->orderBy('c.postDate', 'DESC')
-        ->setParameter(1, $id);
-
-    $query = $qb->getquery();
-
-    return $query->getResult();
-  }
 
 }

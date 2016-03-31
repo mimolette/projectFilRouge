@@ -20,6 +20,20 @@
     margin: 2%;
 }
 
+.comment_sep{
+    border-bottom: solid 1px dimgray;
+}
+#comment_unvalid{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(254, 255, 239);
+    opacity: 0.5;
+}
+
+p.waiting_mess{
+   font-size: 1.3em;
+}
+
 .histo_comm_block h2, .pref_block h2, .follow_block h2 {
     padding: 1.5%;
 }
@@ -44,9 +58,9 @@
     font-weight: bold;
 }
 
-.comment_histo{
-    border-bottom: solid 1px dimgray;
-}
+/*.comment_histo{*/
+    /*border-bottom: solid 1px dimgray;*/
+/*}*/
 
 .fos_user_user_show, .histo_comm_block, .follow_block, .pref_block{
     width: 80%;

@@ -48,6 +48,9 @@ class ProfileController extends Controller
             $finalResult[] = $comment;
         }
 
+
+
+
         return $this->render('UserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'comments' => $finalResult,
@@ -55,22 +58,6 @@ class ProfileController extends Controller
 
 
 
-//        $commentsLike = $this
-//            ->getDoctrine()
-//            ->getRepository("ToolBundle:Comment")
-//            ->getCommentsByUserId($id);
-//
-//        $commentsDislike = $this
-//            ->getDoctrine()
-//            ->getRepository("ToolBundle:Comment")
-//            ->getCommentsByUserIdDislike($id);
-//
-//        return $this->render('UserBundle:Profile:show.html.twig', array(
-//            'user' => $user,
-//            'commentsLike' => $commentsLike,
-//            'commentsDislike' => $commentsDislike
-//
-//        ));
     }
 
 

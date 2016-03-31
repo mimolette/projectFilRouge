@@ -23,20 +23,26 @@
                 <h2 class="wf_no-link-align">Historique des commentaires</h2>
 
                     {% for comment in comments %}
-                        <div class="comment_histo">
+                        {% if comment[0].validation == true %}
+                            <div class="comment_histo">
+                        {% else %}
+                            <p class="waiting_mess">En attente de validation...</p>
+                            <div id="comment_unvalid" class="comment_histo">
+                        {% endif %}
+                                <p>Le {{ comment[0].postDate|date('d-m-Y')}} à {{ comment[0].postDate|date('h:m:i') }}</p>
+                                <p>Nom de la série : {{ comment[0].serie.name }}</p>
+                                <p><img class="" src="{{ comment[0].serie.poster.path }}" alt=""></p>
+                                <div class="logoLD">
+                                    <p><img id="pf_like_logo" class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>{{ comment['nbLike'] }}</p>
+                                    <p><img id="pf_dislike_logo" class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>{{ comment['nbDislike'] }}</p>
+                                </div>
+                                {#<p>{{ dump(comments) }}</p>#}
+                                <p>Message posté : <br/>
+                                    {{ comment[0].message }}
+                                </p>
 
-                            <p>Le {{ comment[0].postDate|date('d-m-Y')}} à {{ comment[0].postDate|date('h:m:i') }}</p>
-                            <p>Nom de la série : {{ comment[0].serie.name }}</p>
-                            {#<p><img src="{{ comment[0].serie.poster.path }}" alt=""></p>#}
-                            <div class="logoLD">
-                                <p><img id="pf_like_logo" class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>{{ comment['nbLike'] }}</p>
-                                <p><img id="pf_dislike_logo" class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>{{ comment['nbDislike'] }}</p>
                             </div>
-
-                            <p>Message posté : <br/>
-                                {{ comment[0].message }}
-                            </p>
-                        </div>
+                            <div class="comment_sep"></div>
                     {% endfor %}
 
             </div>
@@ -46,7 +52,20 @@
             </div>
 
             <div class="follow_block">
+
                 <h2 class="wf_no-link-align">Séries suivies</h2>
+                <div class="detail_genre_block">
+                    {% for serie in user.seriesFollowed %}
+                        <div class="detail_genre_result">
+                            <figure>
+                                <img class="wf_img" src="{{ asset("images/series/%s"|format(serie.poster.path)) }}" alt="{{ serie.name }}">
+                                <figcaption><a class="wf_link" href="{{ path('serie_detail', {'id': serie.id}) }}">{{ serie.name }}</a></figcaption>
+                            </figure>
+                        </div>
+
+                    {% endfor %}
+                </div>
+                {#{{ user.seriesFollowed|length }}#}
             </div>
 
 
