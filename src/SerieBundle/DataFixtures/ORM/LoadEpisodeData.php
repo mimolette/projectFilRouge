@@ -6,95 +6,48 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use SerieBundle\Entity\Episode;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\Form\Exception\OutOfBoundsException;
 
 class LoadEpisodeData extends AbstractFixture implements OrderedFixtureInterface
 {
-  public function load(ObjectManager $manager)
-  {
 
-    $synopsis = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  private $lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   tempor incididunt ut labo reprehenderit in voluptate velit esse
   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-    $episodes = [
-        [
-          'season' => 'Long fleuve pas tranquil',
-          'nbEpisode' => 14,
-          'firstDate' => new \DateTime('2015-03-26'),
-          'nextEpisode' => 5
-        ],
-        [
-            'season' => 'Rivière pas pourpre',
-            'nbEpisode' => 11,
-            'firstDate' => new \DateTime('2015-11-02'),
-            'nextEpisode' => 6
-        ],
-        [
-            'season' => 'Chien et chat',
-            'nbEpisode' => 9,
-            'firstDate' => new \DateTime('2014-02-26'),
-            'nextEpisode' => 3
-        ],
-        [
-            'season' => 'Arco',
-            'nbEpisode' => 19,
-            'firstDate' => new \DateTime('2013-06-01'),
-            'nextEpisode' => 7
-        ],
-        [
-            'season' => 'Mange ta soupe',
-            'nbEpisode' => 17,
-            'firstDate' => new \DateTime('2014-03-01'),
-            'nextEpisode' => 7
-        ],
-        [
-            'season' => 'Range ta chambre',
-            'nbEpisode' => 13,
-            'firstDate' => new \DateTime('2015-01-01'),
-            'nextEpisode' => 7
-        ],
-        [
-            'season' => 'Trogodyte',
-            'nbEpisode' => 22,
-            'firstDate' => new \DateTime('2015-12-01'),
-            'nextEpisode' => 7
-        ],
-        [
-            'season' => 'Momo et le chien',
-            'nbEpisode' => 9,
-            'firstDate' => new \DateTime('2014-09-14'),
-            'nextEpisode' => 5
-        ],
-        [
-            'season' => 'Greg et jean',
-            'nbEpisode' => 13,
-            'firstDate' => new \DateTime('2015-09-01'),
-            'nextEpisode' => 6
-        ]
-    ];
 
-    // each Episodes
-    foreach($episodes as $seasonData) {
+  private function randomizeEpisode($id, $season, $num) {
 
-      $curentDate = $seasonData['firstDate'];
+    $curentDate = new \DateTime('2015-03-26');
 
-      for($ii=0; $ii<=$seasonData['nbEpisode']; $ii++) {
+    $episode = new Episode();
+    $episode->setName('Episode n°' . ($num));
+    $episode->setSynopsis($this->lorem);
+    $episode->setNum($num);
+    $episode->setReleaseDate(new \DateTime($curentDate->format('Y-m-d')));
+    $episode->setSeason($season);
 
-        $episode = new Episode();
-        $episode->setName('Episode n°' . ($ii+1));
-        $episode->setSynopsis($synopsis);
-        $episode->setNum($ii+1);
-        $episode->setReleaseDate(new \DateTime($curentDate->format('Y-m-d')));
-        $episode->setSeason($this->getReference($seasonData['season'].'-season'));
 
-        // increase the current date
-        $curentDate->modify('+'.$seasonData['nextEpisode'].' day');
+    return $episode;
+  }
 
-        $manager->persist($episode);
-      }
+  public function load(ObjectManager $manager)
+  {
+    $season = $manager->getRepository('SerieBundle:Season')->findAll();
 
+    $idSeason = 1;
+    $idEpisode = 1;
+
+    foreach($season as $ss) {
+        $nbEpisodes = rand(10, 20);
+        for($ii = 1; $ii <= $nbEpisodes; $ii++) {
+          $episode = $this->randomizeEpisode($idEpisode, $ss, $ii);
+
+          $manager->persist($episode);
+        }
     }
-    $manager->flush();
+
   }
 
   /**

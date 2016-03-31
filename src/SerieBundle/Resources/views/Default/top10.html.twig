@@ -1,88 +1,139 @@
 {% extends "SerieBundle::layout.html.twig" %}
 
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('css/top_10.css') }}" />
+{% endblock %}
+
+
 {% block body %}
 
+  <div id="main">
+    <!-- le block <section> qui contient tout les informations de la
+         page courante -->
+    <section id="top_10">
 
-  <!-- le block <div> qui contient tout le contenu de la page -->
-    <div id="main">
-      <!-- le block <section> qui contient tout les informations de la
-           page courante -->
-      <section>
-        <h1 class="wf_no-link-align">Top 10</h1>
+      <!-- le titre de la page -->
+      <h1 class="wf_no-link-align">Top 10</h1>
 
-{% for serie in series %}
-        <!-- le block qui contient les meilleures séries suivies
-               du moment -->
-        <div id="accueil_top_serie">
-          <!-- chaque série est matérialisée dans un block <div>
-               de class top_serie -->
-          <div class="top_serie">
-            <!-- le block <DIV> qui contient la vignette de la série -->
-            <div class="top_serie_block">
-              <!-- l'ensemble image de la serie plus nom -->
-              <figure>
-                  <img class="wf_img" src="{{ asset("images/series/%s"|format(serie.poster.path)) }}" alt="serie"/>
-                  <figcaption>
-                      <a class="wf_link" href="{{ path ("serie_detail",{"id": serie.id }) }}">{{ serie.name }}</a>
-                  </figcaption>
-              </figure>
-              <!-- la parie latérale -->
-              <div class="top_serie_lat">
-                  <!-- l'évaluation de la série -->
-                  <div class="top_serie_lat_evaluation">
-                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                      <img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>
-                  </div>
-                  <!-- le nombre de vue -->
-                  <div class="top_serie_lat_nbVu wf_no-link">serie.nbVue</div>
-              </div>
-              <!-- l'image du classement de la série -->
-              <img class="wf_img classement_serie" src="{{ asset('images/wf_img.jpg') }}" alt="classement_serie"/>
+      <!-- le panneau de filtre du résultat des différents top : top des meilleurs vue, top des meilleurs suivi, top des mieux noté, ... -->
+      {#<ul>#}
+        {#<li class="wf_link">filtre 1</li>#}
+        {#<li class="wf_link">filtre 2</li>#}
+        {#<li class="wf_link">filtre 3</li>#}
+        {#<li class="wf_link">filtre 4</li>#}
+      {#</ul>#}
+
+      <!-- le block qui contient le classement dans sa totalité -->
+      <div class="top_10_block">
+      {% for serie in series %}
+        <!-- chaque résultat est stocké dans une <div> -->
+        <div class="top_10_result">
+          <!-- l'ensemble image de la serie plus nom -->
+          <figure>
+            <img class="wf_img" src="{{ asset("images/series/%s"|format(serie[0].poster.path)) }}" alt="serie"/>
+            <figcaption>
+              <a class="wf_link" href="{{ path ("serie_detail",{"id": serie[0].id }) }}">{{ serie[0].name }}</a>
+            </figcaption>
+          </figure>
+          <!-- la partie larérale du résultat -->
+          <div class="top_10_lat">
+            <!-- l'évaluation de la série -->
+            {{ include('SerieBundle:Default/score.html.twig') }}
+            <!-- le nombre de vue -->
+            <div class="top_10_lat_nbVu wf_no-link">{{ serie[0].viewers|length }}</div>
           </div>
-          <!-- le commentaire le plus pertinant laisser par un utilisateur -->
-          <div class="top_comment_block">
-            <!-- l'avatar et le pseudo de l'auteur du commentaire -->
-            <figure>
-              <figcaption>
-                <!-- ::info:: pseudo des amis -->
-                <a class="wf_link" href="#">user.pseudo</a>
-                <!-- ::info:: statut des amis -->
-                <div class="wf_no-link">user.statut</div>
-              </figcaption>
-              <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>
-            </figure>
-            <!-- la partie qui regroupe information et le message en lui même -->
-            <div class="top_comment_message">
-              <!-- l'entête de ce block, qui regroupe la date et les likes du commentaire -->
-              <header>
-                <div class="wf_no-link top_comment_date">
-                    comment.postedDate
-                </div>
-                <div class="top_comment_like">
-                  <div>
-                    <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
-                    <span class="wf_no-link">comment.nbLike</span>
-                  </div>
-                  <div>
-                    <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
-                    <span class="wf_no-link">comment.nbDislike</span>
-                  </div>
-                </div>
-              </header>
-              <!-- le corps du message -->
-              <div class="top_comment_corps wf_no-link">
-                comment.message
-              </div>
-            </div>
-          </div>                        
-        </div>  
-		</div>
-{% endfor %}
-	</section>
-	</div>
+          <!-- l'image du classement de la série -->
+          <img class="wf_img classement_serie" src="{{ asset('images/wf_img.jpg') }}" alt="classement_serie"/>
+        </div>
+        <!-- chaque résultat est stocké dans une <div> -->
+      {% endfor %}
+      </div>
+
+    </section>
+  </div>
+
+  {#<!-- le block <div> qui contient tout le contenu de la page -->#}
+    {#<div id="main">#}
+      {#<!-- le block <section> qui contient tout les informations de la#}
+           {#page courante -->#}
+      {#<section>#}
+        {#<h1 class="wf_no-link-align">Top 10</h1>#}
+
+{#{% for serie in series %}#}
+        {#<!-- le block qui contient les meilleures séries suivies#}
+               {#du moment -->#}
+        {#<div id="accueil_top_serie">#}
+          {#<!-- chaque série est matérialisée dans un block <div>#}
+               {#de class top_serie -->#}
+          {#<div class="top_serie">#}
+            {#<!-- le block <DIV> qui contient la vignette de la série -->#}
+            {#<div class="top_serie_block">#}
+              {#<!-- l'ensemble image de la serie plus nom -->#}
+              {#<figure>#}
+                  {#<img class="wf_img" src="{{ asset("images/series/%s"|format(serie.poster.path)) }}" alt="serie"/>#}
+                  {#<figcaption>#}
+                      {#<a class="wf_link" href="{{ path ("serie_detail",{"id": serie.id }) }}">{{ serie.name }}</a>#}
+                  {#</figcaption>#}
+              {#</figure>#}
+              {#<!-- la parie latérale -->#}
+              {#<div class="top_serie_lat">#}
+                  {#<!-- l'évaluation de la série -->#}
+                  {#<div class="top_serie_lat_evaluation">#}
+                      {#<img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>#}
+                      {#<img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>#}
+                      {#<img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>#}
+                      {#<img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>#}
+                      {#<img class="wf_img" src="{{ asset('images/etoile.jpg') }}" alt="evaluation"/>#}
+                  {#</div>#}
+                  {#<!-- le nombre de vue -->#}
+                  {#<div class="top_serie_lat_nbVu wf_no-link">serie.nbVue</div>#}
+              {#</div>#}
+              {#<!-- l'image du classement de la série -->#}
+              {#<img class="wf_img classement_serie" src="{{ asset('images/wf_img.jpg') }}" alt="classement_serie"/>#}
+          {#</div>#}
+          {#<!-- le commentaire le plus pertinant laisser par un utilisateur -->#}
+          {#<div class="top_comment_block">#}
+            {#<!-- l'avatar et le pseudo de l'auteur du commentaire -->#}
+            {#<figure>#}
+              {#<figcaption>#}
+                {#<!-- ::info:: pseudo des amis -->#}
+                {#<a class="wf_link" href="#">user.pseudo</a>#}
+                {#<!-- ::info:: statut des amis -->#}
+                {#<div class="wf_no-link">user.statut</div>#}
+              {#</figcaption>#}
+              {#<img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>#}
+            {#</figure>#}
+            {#<!-- la partie qui regroupe information et le message en lui même -->#}
+            {#<div class="top_comment_message">#}
+              {#<!-- l'entête de ce block, qui regroupe la date et les likes du commentaire -->#}
+              {#<header>#}
+                {#<div class="wf_no-link top_comment_date">#}
+                    {#comment.postedDate#}
+                {#</div>#}
+                {#<div class="top_comment_like">#}
+                  {#<div>#}
+                    {#<img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>#}
+                    {#<span class="wf_no-link">comment.nbLike</span>#}
+                  {#</div>#}
+                  {#<div>#}
+                    {#<img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>#}
+                    {#<span class="wf_no-link">comment.nbDislike</span>#}
+                  {#</div>#}
+                {#</div>#}
+              {#</header>#}
+              {#<!-- le corps du message -->#}
+              {#<div class="top_comment_corps wf_no-link">#}
+                {#comment.message#}
+              {#</div>#}
+            {#</div>#}
+          {#</div>                        #}
+        {#</div>  #}
+		{#</div>#}
+{#{% endfor %}#}
+	{#</section>#}
+	{#</div>#}
 
 
 {% endblock %}
