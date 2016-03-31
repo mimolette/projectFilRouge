@@ -56,4 +56,15 @@ class CommentRepository extends EntityRepository
 
     return $query->getResult();
   }
+
+  public function VerifyUserCanComment($userId,$serieId) {
+    $qb = $this->createQueryBuilder('comment');
+    $qb
+        ->where('comment.user = :userId and comment.serie = :serieId')
+        ->setParameter('userId',$userId)
+        ->setParameter('serieId', $serieId);
+    $query = $qb->getQuery();
+
+    return $query->getResult();
+  }
 }

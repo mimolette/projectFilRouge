@@ -43,6 +43,26 @@
       </div>
     </div>
   </div>
+
+    <!-- ecrire un commentaire si on est logger -->
+    {% if app.user %}
+    {% if commenter == true %}
+      <p>Vous avez deja déposé un commentaire sur cette serie !</p>
+    {% else %}
+      {{ form_start(form, {'attr': {'class': 'form-horizontal','action': path('comment_add') }}) }}
+      {{ form_errors(form) }}
+      <div class="form-group">
+        {{ form_errors(form.message) }}
+      <div class="form-group">
+        {{ form_widget(form.message, {'attr': {'class': 'form-control','placeholder': 'déposer un commentaire','row':"5"}}) }}
+      </div>
+      </div>
+      <input type="hidden" name="id" value="{{ serie[0].id }}">
+      {{ form_widget(form.valider, {'attr': {'class': 'btn btn-primary'} }) }}
+      {{ form_end(form) }}
+    {% endif %}
+    {% endif %}
+
     <!-- liste de tout les commentaires -->
     {% for comment in comments %}
       <div class="top_comment_block">

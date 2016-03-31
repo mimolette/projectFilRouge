@@ -2,11 +2,13 @@
 
 namespace ToolBundle\Controller;
 
+use ToolBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use ToolBundle\Entity\LikeDislike;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -41,12 +43,7 @@ class DefaultController extends Controller
         return $response;
     }
 
-    /**
-     * @param $id
-     * @Security("has_role('ROLE_USER')")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function dislikeAction($id)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
         $comment = $this->getDoctrine()->getRepository('ToolBundle:Comment')->find($id);
@@ -77,5 +74,26 @@ class DefaultController extends Controller
 
         return $em->checkValid($user->getId(), $commentId);
 
+    }
+
+    /**
+     * @Route("/comment/add",name="comment_add")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function addAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $serie = $em->getRepository('SerieBundle:Serie')->find($request->request->get('id'));
+
+    	$postdate = new \DateTime();
+    	$comment = new Comment();
+    	$comment->setMessage($request->request->get('comment')['message']);
+    	$comment->setPostDate($postdate);
+    	$comment->setSerie($serie);
+    	$comment->setUser($this->getUser());
+
+        $em->persist($comment);
+        $em->flush();
+        return $this->redirectToRoute('serie_detail', array('id'=>$request->request->get('id')));
     }
 }

@@ -50,3 +50,9 @@ episode_detail:
     requirements:
         idSerie:  "\d+"
         idEpisode: "\d+"
+
+serie_add:
+    path:     /comment/add/{id}
+    defaults: { _controller: SerieBundle:Default:add }
+    requirements:
+            id:  "\d+"

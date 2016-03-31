@@ -4,6 +4,8 @@ namespace SerieBundle\Controller;
 
 use SerieBundle\Entity\Serie;
 use SerieBundle\Form\SerieType;
+use ToolBundle\Entity\Comment;
+use ToolBundle\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,11 +72,23 @@ class DefaultController extends Controller
             $finalComments[] = $result;
 
         }
+            // verifie si l'user a deja commenté la serie
+            $commenter = $this
+                ->getDoctrine()
+                ->getRepository("ToolBundle:Comment")
+                ->VerifyUserCanComment($this->getUser()->getId(),$serie[0]->getId());
+
+        $commenter == null ? $commenter = false : $commenter = true;
+
+        $comment = new Comment();
+        $form = $this->createForm(new CommentType() ,$comment);
 
         return $this->render('SerieBundle:Default:detail.html.twig',
             [
                 "serie" => $serie,
-                "comments" => $finalComments
+                "comments" => $finalComments,
+                "commenter" => $commenter,
+                'form' => $form->createView(),
             ]);
     }
 
