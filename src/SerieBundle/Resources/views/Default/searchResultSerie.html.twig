@@ -38,9 +38,9 @@
       <div class="detail_genre_result">
         <!-- l'ensemble image de la serie plus nom -->
         <figure>
-          <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="serie"/>
+          <img class="wf_img" src="{{ asset("images/series/%s"|format(serie.poster.path)) }}" alt="{{ serie.name }}"/>
           <figcaption>
-            <a class="wf_link" href="#">{{ serie.name }}</a>
+            <a class="wf_link" href="{{ path('serie_detail', {'id': serie.id}) }}">{{ serie.name }}</a>
           </figcaption>
         </figure>
         {#<!-- la partie larérale du résultat -->#}
