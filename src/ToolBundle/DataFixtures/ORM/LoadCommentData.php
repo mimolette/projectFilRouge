@@ -9,66 +9,55 @@ use ToolBundle\Entity\Comment;
 
 class LoadCommentData extends AbstractFixture implements OrderedFixtureInterface
 {
+
+  private $nbSeries = 45;
+  private $nbUsers = 50;
+  private $lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labo reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  eprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit aeprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit a';
+
+  private function randomizeComment($id, $userId, $serieId) {
+    $com = new Comment();
+    $years = rand(2013, 2015);
+    $month = rand(1, 12);
+    $day = rand(1, 28);
+    $dateCom = new \DateTime($years . '-' . $month . '-' . $day);
+    $dateCom->setTime(rand(0,23), rand(0,59), rand(0,59));
+    $com->setPostDate(\DateTime::createFromFormat('Y-m-d:H:m:s', $dateCom->format('Y-m-d:H:m:s')));
+    $com->setMessage(substr($this->lorem, 0, rand(50, 500)));
+    $com->setValidation(true);
+    $com->setUser($this->getReference($userId . '-user'));
+    $com->setSerie($this->getReference($serieId . '-serie'));
+
+    $this->setReference($id . '-com', $com);
+
+    return $com;
+  }
+
   public function load(ObjectManager $manager)
   {
 
-    $min = 50;
-    $max = 500;
+    $idcomment = 1;
 
-    $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet pulvinar ligula sed tincidunt. Aliquam quis semper ante. In interdum, eros id vestibulum consequat, magna lorem lobortis lectus, auctor vulputate enim est eget ligula. Donec viverra, neque imperdiet condimentum tincidunt, lorem erat porttitor ex, et aliquet massa eros vitae lorem. Nam in ligula efficitur, posuere nibh eget, pulvinar erat. Cras purus ipsum, pulvinar ut bibendum ac, pellentesque id lacus. Donec et sed.';
-
-    $users = [
-      'superMan-user',
-      'darkLegolas666-user',
-      'guiGuiLeBof-user'
-    ];
-
-    $id = 0;
-
-    $series = [
-      [
-        'ref' => 'Louis la Brocante-serie',
-        'nbCom' => 8,
-        'date' => '2016-02-08'
-      ],
-      [
-        'ref' => 'Fan fan la tulipe-serie',
-        'nbCom' => 14,
-        'date' => '2016-02-09'
-      ],
-      [
-        'ref' => 'Breaking Bad-serie',
-        'nbCom' => 4,
-        'date' => '2016-02-14'
-      ],
-      [
-        'ref' => 'Green-serie',
-        'nbCom' => 19,
-        'date' => '2016-02-20'
-      ],
-      [
-        'ref' => 'Grand Papa-serie',
-        'nbCom' => 11,
-        'date' => '2016-02-27'
-      ],
-    ];
-    // nb commentaire = 56
-
-    // each series
-    foreach($series as $serieData) {
-
-      for ($ii = 0; $ii < $serieData['nbCom']; $ii++) {
-        $com = new Comment();
-        $dateCom = new \DateTime($serieData['date']);
-        $dateCom->setTime(rand(0,23), rand(0,59), rand(0,59));
-        $com->setPostDate(\DateTime::createFromFormat('Y-m-d:H:m:s', $dateCom->format('Y-m-d:H:m:s')));
-        $com->setMessage(substr($lorem, 0, rand(50, 500)));
-        $com->setValidation(rand(0, 1));
-        $com->setUser($this->getReference($users[rand(0,2)]));
-        $com->setSerie($this->getReference($serieData['ref']));
-
-        $manager->persist($com);
-        $this->setReference($id++ . '-com', $com);
+    for($idUser = 1; $idUser <= $this->nbUsers; $idUser++) {
+      $randNbComment = rand(0, 15);
+      $series = array();
+      for($jj = 0; $jj<$randNbComment; $jj++) {
+        do {
+          $idSerie = rand(1, $this->nbSeries);
+        } while(in_array($idSerie, $series));
+        $series[] = $idSerie;
+      }
+      foreach($series as $idSerie) {
+        $comment = $this->randomizeComment($idcomment, $idUser, $idSerie);
+        $manager->persist($comment);
+        $idcomment++;
       }
     }
 

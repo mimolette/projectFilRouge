@@ -15,83 +15,85 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
    * @var ContainerInterface
    */
   private $container;
+  private $nbUser = 50;
+  private $nbSeries = 45;
 
   public function setContainer(ContainerInterface $container = null)
   {
     $this->container = $container;
   }
 
+  private function randomizeUser($id) {
+
+    $user = new User();
+
+    $user->setUsername('user n' . $id);
+    $user->setEnabled(true);
+
+    $user->setPlainPassword('1234');
+
+    $user->setFirstname('user n' . $id);
+    $user->setLastname('user n' . $id);
+
+    $years = rand(1950, 2005);
+    $month = rand(1, 12);
+    $day = rand(1, 28);
+    $dateBirth = new \DateTime($years . '-' . $month . '-' . $day);
+    $user->setDayOfBirth($dateBirth);
+
+    $user->setAvatar($this->getReference('serie-image'));
+
+    $user->setEmail('usern' . $id . '@free.fr');
+    $roles = [
+      ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'],
+      ['ROLE_USER', 'ROLE_MODERATOR'],
+      ['ROLE_USER'],
+    ];
+    $user->setRoles($roles[rand(0, 2)]);
+
+    $follows = array();
+    $nbFollow = rand(0, 10);
+    for($kk = 0; $kk<$nbFollow; $kk++) {
+      do {
+        $idSerie = rand(1, $this->nbSeries);
+      } while(in_array($idSerie, $follows));
+      $follows[] = $idSerie;
+    }
+
+    // each Follow
+    foreach($follows as $serieFollowed) {
+      $user->addSeriesFollowed($this->getReference($serieFollowed . '-serie'));
+    }
+
+    $seens = array();
+    $nbSeen = rand(0, 9);
+    for($kk = 0; $kk<$nbSeen; $kk++) {
+      do {
+        $idSerie = rand(1, $this->nbSeries);
+      } while(in_array($idSerie, $seens));
+      $seens[] = $idSerie;
+    }
+
+    // each see
+    foreach($seens as $serieSeen) {
+      $user->addSeriesSeen($this->getReference($serieSeen . '-serie'));
+    }
+
+    $this->addReference($id .'-user', $user);
+    return $user;
+  }
+
   public function load(ObjectManager $manager)
   {
 
 
-    $users = [
-      [
-        'username' => 'superMan',
-        'password' => 'aaaa',
-        'firstname' => 'Jean',
-        'lastname' => 'Bernard',
-        'dayOfBirth' => new \DateTime('1990-02-14'),
-        'email' => 'superMan@test.fr',
-        'roles' => ['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'],
-        'follow' => ['Louis la Brocante', 'Breaking Bad'],
-        'see' => ['Fan fan la tulipe', 'Green'],
-      ],
-      [
-        'username' => 'darkLegolas666',
-        'password' => 'aaaa',
-        'firstname' => 'Henry',
-        'lastname' => 'Martin',
-        'dayOfBirth' => new \DateTime('1996-10-25'),
-        'email' => 'darkLegolas666@test.fr',
-        'roles' => ['ROLE_USER', 'ROLE_MODERATOR'],
-        'follow' => ['Breaking Bad'],
-        'see' => ['Fan fan la tulipe', 'Green', 'Breaking Bad'],
-      ],
-      [
-        'username' => 'guiGuiLeBof',
-        'password' => 'aaaa',
-        'firstname' => 'Guillaume',
-        'lastname' => 'Orain',
-        'dayOfBirth' => new \DateTime('1986-06-27'),
-        'email' => 'guiGuiLeBof@test.fr',
-        'roles' => ['ROLE_USER'],
-        'follow' => ['Louis la Brocante', 'Breaking Bad'],
-        'see' => ['Grand Papa'],
-      ]
-    ];
-    // each Users
-    foreach($users as $userData) {
-      $user = new User();
-      $user->setUsername($userData['username']);
-
-      $encoder = $this->container->get('security.password_encoder');
-      $password = $encoder->encodePassword($user, $userData['password']);
-      $user->setPassword($password);
-
-      $user->setFirstname($userData['firstname']);
-      $user->setLastname($userData['lastname']);
-      $user->setDayOfBirth($userData['dayOfBirth']);
-      $user->setAvatar($this->getReference('serie-image'));
-
-      $user->setEmail($userData['email']);
-      $user->setRoles($userData['roles']);
-
-      // each Follow
-      foreach($userData['follow'] as $serieFollowed) {
-        $user->addSeriesFollowed($this->getReference($serieFollowed . '-serie'));
-      }
-
-      // each see
-      foreach($userData['see'] as $serieSeen) {
-        $user->addSeriesSeen($this->getReference($serieSeen . '-serie'));
-      }
-
+    for($ii = 1; $ii<=$this->nbUser; $ii++) {
+      $user = $this->randomizeUser($ii);
       $manager->persist($user);
-      $this->addReference($userData['username'].'-user', $user);
     }
 
     $manager->flush();
+
   }
 
   /**

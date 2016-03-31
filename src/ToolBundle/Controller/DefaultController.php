@@ -5,6 +5,7 @@ namespace ToolBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ToolBundle\Entity\Evaluate;
 use ToolBundle\Entity\LikeDislike;
@@ -94,13 +95,12 @@ class DefaultController extends Controller
      * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function scoreAction($id, $note) {
+    public function scoreAction($id, $note, Request $request) {
         $note = $note > 5 ? 5 : $note;
         $note = $note < 0 ? 0 : $note;
         $em = $this->getDoctrine()->getEntityManager();
         $serie = $this->getDoctrine()->getRepository('SerieBundle:Serie')->find($id);
 
-        $valid = false;
 
         if(!$this->checkUserScore($id)) {
             $valid = true;
@@ -111,16 +111,9 @@ class DefaultController extends Controller
 
             $em->persist($evaluation);
             $em->flush();
+
         }
 
-
-        $response = new Response(json_encode(array(
-            'valid' => $valid,
-            'id' => $id,
-            'note' => $note
-        )));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->redirect($request->headers->get('referer'));
     }
 }

@@ -34,7 +34,7 @@
           <figure>
             <img class="wf_img" src="{{ asset("images/series/%s"|format(serie[0].poster.path)) }}" alt="serie"/>
             <figcaption>
-              <a class="wf_link" href="#">{{ serie[0].name }}</a>
+              <a class="wf_link" href="{{ path ("serie_detail",{"id": serie[0].id }) }}">{{ serie[0].name }}</a>
             </figcaption>
           </figure>
           <!-- la partie larérale du résultat -->

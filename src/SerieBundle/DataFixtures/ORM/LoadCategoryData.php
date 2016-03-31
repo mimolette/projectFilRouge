@@ -9,30 +9,28 @@ use SerieBundle\Entity\Category;
 
 class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
+
+  private $nbcategories = 12;
+
+  private function randomizeCategory($id) {
+    $cat = new Category();
+    $cat->setName('category n' . $id);
+
+    $this->addReference($id.'-cat', $cat);
+
+    return $cat;
+  }
+
   public function load(ObjectManager $manager)
   {
 
-    $categories = [
-      ['id' => 1,'name' => 'Drame'],
-      ['id' => 2,'name' => 'Action'],
-      ['id' => 3,'name' => 'Aventure'],
-      ['id' => 4,'name' => 'Crime'],
-      ['id' => 5,'name' => 'Science-Fiction'],
-      ['id' => 6,'name' => 'Fantaisy'],
-      ['id' => 7,'name' => 'Policier'],
-    ];
-
-    // each Actors
-    foreach($categories as $catData) {
-
-      $cat = new Category();
-      $cat->setName($catData['name']);
-
+    for($ii = 1; $ii<=$this->nbcategories; $ii++) {
+      $cat = $this->randomizeCategory($ii);
       $manager->persist($cat);
-      $this->addReference($catData['id'].'-cat', $cat);
     }
 
     $manager->flush();
+
   }
 
   /**

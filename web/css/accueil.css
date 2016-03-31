@@ -257,6 +257,8 @@
             .top_comment_message .top_comment_corps{
                 /* ::info:: positionnement des éléments contenu dans cette balise */
                 flex-grow: 1;
+                padding: 5px;
+                justify-content: flex-start;
             }
 
         

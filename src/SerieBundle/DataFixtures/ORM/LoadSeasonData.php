@@ -9,73 +9,42 @@ use SerieBundle\Entity\Season;
 
 class LoadSeasonData extends AbstractFixture implements OrderedFixtureInterface
 {
+
+    private $nbSerie = 45;
+    private $lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labo reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
+  private function randomizeSaison($id, $serieId, $num) {
+
+    $season = new Season();
+    $season->setName('saison n' . $id);
+    $season->setNum($num);
+    $season->setSerie($this->getReference($serieId.'-serie'));
+
+    $this->addReference($id.'-season', $season);
+
+    return $season;
+  }
+
   public function load(ObjectManager $manager)
   {
+    $id = 0;
 
-    $seasons = [
-      [
-        'name' => 'Long fleuve pas tranquil',
-        'num' => 1,
-        'serie' => 'Louis la Brocante',
-      ],
-      [
-        'name' => 'Rivière pas pourpre',
-        'num' => 2,
-        'serie' => 'Louis la Brocante',
-      ],
-      [
-        'name' => 'Rivière orange',
-        'num' => 3,
-        'serie' => 'Louis la Brocante',
-      ],
-      [
-        'name' => 'Chien et chat',
-        'num' => 1,
-        'serie' => 'Fan fan la tulipe',
-      ],
-      [
-        'name' => 'Arco',
-        'num' => 1,
-        'serie' => 'Breaking Bad',
-      ],
-      [
-        'name' => 'Mange ta soupe',
-        'num' => 2,
-        'serie' => 'Breaking Bad',
-      ],
-      [
-        'name' => 'Range ta chambre',
-        'num' => 3,
-        'serie' => 'Breaking Bad',
-      ],
-      [
-        'name' => 'Trogodyte',
-        'num' => 4,
-        'serie' => 'Breaking Bad',
-      ],
-      [
-        'name' => 'Momo et le chien',
-        'num' => 1,
-        'serie' => 'Green',
-      ],
-      [
-        'name' => 'Greg et jean',
-        'num' => 2,
-        'serie' => 'Green',
-      ],
-    ];
-    // each Seasons
-    foreach($seasons as $seasonData) {
-      $season = new Season();
-      $season->setName($seasonData['name']);
-      $season->setNum($seasonData['num']);
-      $season->setSerie($this->getReference($seasonData['serie'].'-serie'));
+    for($ii = 1; $ii<=$this->nbSerie; $ii++) {
 
-      $manager->persist($season);
-      $this->addReference($seasonData['name'].'-season', $season);
+      $randNbSeason = rand(1, 8);
+      for($numSeason = 1; $numSeason<=$randNbSeason; $numSeason++) {
+        $season = $this->randomizeSaison($id, $ii, $numSeason);
+        $manager->persist($season);
+        $id++;
+      }
+
     }
 
     $manager->flush();
+
   }
 
   /**

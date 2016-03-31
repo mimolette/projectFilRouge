@@ -9,33 +9,39 @@ use ToolBundle\Entity\LikeDislike;
 
 class LoadLikeDislikeData extends AbstractFixture implements OrderedFixtureInterface
 {
+
+  private $nbUsers = 50;
+
+  private function randomizeLike($userId, $com) {
+    $like = new LikeDislike();
+    $like->setLikeIt(rand(0,1));
+    $like->setUser($this->getReference($userId . '-user'));
+    $like->setComment($com);
+
+    return $like;
+  }
+
   public function load(ObjectManager $manager)
   {
+    $comments = $manager->getRepository('ToolBundle:Comment')->findAll();
 
-    $min = 3;
-    $max = 20;
+    foreach($comments as $comment) {
 
-    $users = [
-        'superMan-user',
-        'darkLegolas666-user',
-        'guiGuiLeBof-user'
-    ];
-
-    $nbCom = 56;
-
-    // each com
-    for($ii = 0; $ii < $nbCom; $ii++) {
-
-      $nbLikeDislike = rand($min, $max);
-      for ($jj = 0; $jj < $nbLikeDislike; $jj++) {
-        $like = new LikeDislike();
-        $like->setLikeIt(rand(0,1));
-        $like->setUser($this->getReference($users[rand(0,2)]));
-        $like->setComment($this->getReference($ii . '-com'));
-
+      $randNbUser = rand(0, 20);
+      $users = array();
+      for($jj = 0; $jj<$randNbUser; $jj++) {
+        do {
+          $idUser = rand(1, $this->nbUsers);
+        } while(in_array($idUser, $users));
+        $users[] = $idUser;
+      }
+      foreach($users as $idUser) {
+        $like = $this->randomizeLike($idUser, $comment);
         $manager->persist($like);
       }
+
     }
+
 
     $manager->flush();
   }

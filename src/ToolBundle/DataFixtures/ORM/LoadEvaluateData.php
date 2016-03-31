@@ -9,53 +9,40 @@ use ToolBundle\Entity\Evaluate;
 
 class LoadEvaluateData extends AbstractFixture implements OrderedFixtureInterface
 {
+
+  private $nbSeries = 45;
+  private $nbUsers = 50;
+  private $min = 1;
+  private $max = 5;
+
+  private function randomizeEval($userId, $serieId) {
+    $eval = new Evaluate();
+    $eval->setScore(rand($this->min, $this->max));
+    $eval->setUser($this->getReference($userId . '-user'));
+    $eval->setSerie($this->getReference($serieId . '-serie'));
+
+
+    return $eval;
+  }
+
   public function load(ObjectManager $manager)
   {
 
-    $min = 1;
-    $max = 5;
-
-    $users = [
-        'superMan-user',
-        'darkLegolas666-user',
-        'guiGuiLeBof-user'
-    ];
-
-    $series = [
-        [
-            'ref' => 'Louis la Brocante-serie',
-            'nbEval' => 11,
-        ],
-        [
-            'ref' => 'Fan fan la tulipe-serie',
-            'nbEval' => 26,
-        ],
-        [
-            'ref' => 'Breaking Bad-serie',
-            'nbEval' => 56,
-        ],
-        [
-            'ref' => 'Green-serie',
-            'nbEval' => 4,
-        ],
-        [
-            'ref' => 'Grand Papa-serie',
-            'nbEval' => 10,
-        ],
-    ];
-
-    // each series
-    foreach($series as $serieData) {
-
-      for ($ii = 0; $ii < $serieData['nbEval']; $ii++) {
-        $eval = new Evaluate();
-        $eval->setScore(rand($min, $max));
-        $eval->setUser($this->getReference($users[rand(0,2)]));
-        $eval->setSerie($this->getReference($serieData['ref']));
-
+    for($idUser = 1; $idUser <= $this->nbUsers; $idUser++) {
+      $randNbEval = rand(0, 15);
+      $series = array();
+      for($jj = 0; $jj<$randNbEval; $jj++) {
+        do {
+          $idSerie = rand(1, $this->nbSeries);
+        } while(in_array($idSerie, $series));
+        $series[] = $idSerie;
+      }
+      foreach($series as $idSerie) {
+        $eval = $this->randomizeEval($idUser, $idSerie);
         $manager->persist($eval);
       }
     }
+
 
     $manager->flush();
   }
