@@ -62,7 +62,7 @@
       <div class="top_comment_block">
         <figure>
           <figcaption>
-            <a class="wf_link" href="#">{{ comment[0].user.username }}</a>
+            <a class="wf_link" href="{{ path('user_profile', {'id': comment[0].user.id}) }}">{{ comment[0].user.username }}</a>
             <div class="wf_no-link">user.statut</div>
           </figcaption>
           <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>

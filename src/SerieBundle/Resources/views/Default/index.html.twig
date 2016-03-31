@@ -42,7 +42,7 @@
             <figure>
               <figcaption>
                 <!-- ::info:: pseudo des amis -->
-                <a class="wf_link" href="#">{{ serie.comment.user.username }}</a>
+                <a class="wf_link" href="{{ path('user_profile', {'id': serie.comment.user.id}) }}">{{ serie.comment.user.username }}</a>
               </figcaption>
               <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="avatar"/>
             </figure>
