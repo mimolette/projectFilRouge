@@ -1,0 +1,68 @@
+/*user_profile.css*/
+#pf_img_avatar, #pf_user_info{
+    display: inline-block;
+}
+
+#pf_img_avatar img{
+    width: 60%;
+    height: auto;
+}
+
+#pf_user_info{
+    margin:5%;
+}
+
+#pf_user_info p{
+    font-size: 1.3em;
+}
+
+.comment_histo p{
+    margin: 2%;
+}
+
+.comment_sep{
+    border-bottom: solid 1px dimgray;
+}
+#comment_unvalid{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(254, 255, 239);
+    opacity: 0.5;
+}
+
+p.waiting_mess{
+   font-size: 1.3em;
+}
+
+.histo_comm_block h2, .pref_block h2, .follow_block h2 {
+    padding: 1.5%;
+}
+
+#pf_like_logo p, #pf_dislike_logo p{
+    display: flex;
+    flex-direction: row;
+}
+
+#pf_like_logo, #pf_dislike_logo {
+    width: 15%;
+    height: 15%;
+    border: none;
+}
+
+.logoLD{
+    display: flex;
+    flex-direction: row;
+}
+
+.logoLD p{
+    font-weight: bold;
+}
+
+/*.comment_histo{*/
+    /*border-bottom: solid 1px dimgray;*/
+/*}*/
+
+.fos_user_user_show, .histo_comm_block, .follow_block, .pref_block{
+    width: 80%;
+    margin: auto;
+}
