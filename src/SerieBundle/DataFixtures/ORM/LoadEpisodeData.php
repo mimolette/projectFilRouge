@@ -34,12 +34,12 @@ class LoadEpisodeData extends AbstractFixture implements OrderedFixtureInterface
 
   public function load(ObjectManager $manager)
   {
-    $season = $manager->getRepository('SerieBundle:Season')->findAll();
+    $seasons = $manager->getRepository('SerieBundle:Season')->findAll();
 
     $idSeason = 1;
     $idEpisode = 1;
 
-    foreach($season as $ss) {
+    foreach($seasons as $ss) {
         $nbEpisodes = rand(10, 20);
         for($ii = 1; $ii <= $nbEpisodes; $ii++) {
           $episode = $this->randomizeEpisode($idEpisode, $ss, $ii);
@@ -47,6 +47,8 @@ class LoadEpisodeData extends AbstractFixture implements OrderedFixtureInterface
           $manager->persist($episode);
         }
     }
+
+    $manager->flush();
 
   }
 

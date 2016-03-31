@@ -8,7 +8,7 @@
             <div class="fos_user_user_show">
                 <h1 class="wf_no-link-align">Profil</h1>
                 <div id="pf_img_avatar">
-                    <img src="{{ asset("images/avatar/%s"|format(user.avatar.path)) }}" alt="avatar"/>
+                    <img class="wf_img" src="{{ asset("images/avatar/%s"|format(user.avatar.path)) }}" alt="avatar"/>
                 </div>
                 <div id="pf_user_info">
                     <p>{{ 'Pseudo'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
@@ -24,25 +24,46 @@
 
                     {% for comment in comments %}
                         {% if comment[0].validation == true %}
-                            <div class="comment_histo">
+                           <div class="top_comment_block">
                         {% else %}
-                            <p class="waiting_mess">En attente de validation...</p>
-                            <div id="comment_unvalid" class="comment_histo">
+                          <div class="top_comment_block comment_unvalid">
                         {% endif %}
-                                <p>Le {{ comment[0].postDate|date('d-m-Y')}} à {{ comment[0].postDate|date('h:m:i') }}</p>
-                                <p>Nom de la série : {{ comment[0].serie.name }}</p>
-                                <p><img class="" src="{{ comment[0].serie.poster.path }}" alt=""></p>
-                                <div class="logoLD">
-                                    <p><img id="pf_like_logo" class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>{{ comment['nbLike'] }}</p>
-                                    <p><img id="pf_dislike_logo" class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>{{ comment['nbDislike'] }}</p>
-                                </div>
-                                {#<p>{{ dump(comments) }}</p>#}
-                                <p>Message posté : <br/>
-                                    {{ comment[0].message }}
-                                </p>
 
+                            <figure>
+                                <figcaption>
+                                    <a class="wf_link" href="{{ path('serie_detail', {'id':comment[0].serie.id}) }}">{{ comment[0].serie.name }}</a>
+                                </figcaption>
+                                <img class="wf_img" src="{{ asset("images/series/%s"|format(comment[0].serie.poster.path)) }}" alt="{{ comment[0].serie.name }}"/>
+                            </figure>
+
+                            <div class="top_comment_message">
+                                <header>
+                                    <div class="wf_no-link top_comment_date">
+                                        {{ comment[0].postDate|date() }}
+                                        {% if comment[0].validation == false %}
+                                            <span class="comment_unvalid_message">(En attente de validation)</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="top_comment_like">
+                                        <div>
+                                            <a href="{{ path('like', {'id':comment[0].id}) }}" class="js_like">
+                                                <img class="wf_img" src="{{ asset('images/like.jpg') }}" alt="pour"/>
+                                                <span class="wf_no-link">{{ comment.nbLike }}</span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ path('like', {'id':comment[0].id}) }}" class="js_like">
+                                                <img class="wf_img" src="{{ asset('images/not_like.jpg') }}" alt="contre"/>
+                                                <span class="wf_no-link">{{ comment.nbDislike }}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </header>
+                                <div class="top_comment_corps wf_no-link">
+                                    {{ comment[0].message }}
+                                </div>
                             </div>
-                            <div class="comment_sep"></div>
+                        </div>
                     {% endfor %}
 
             </div>

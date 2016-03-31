@@ -3,3 +3,8 @@
 {% block body %}
 	{% block fos_user_content %}{% endblock %}
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('javascript/likeDislike.js') }}"></script>
+{% endblock %}
