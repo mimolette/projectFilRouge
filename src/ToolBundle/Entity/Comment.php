@@ -43,14 +43,14 @@ class Comment
      *
      * @ORM\Column(name="validation", type="boolean")
      */
-    private $validation;
+    private $validation = false;
 
     /**
      * @var int
      *
      * @ORM\Column(name="rate", type="integer", nullable=true)
      */
-    private $rate;
+    private $rate = 0;
 
     /**
      * @var
