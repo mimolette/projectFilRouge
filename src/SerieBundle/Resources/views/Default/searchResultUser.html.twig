@@ -40,7 +40,7 @@
             <!-- chaque membre possède un avatar qui le représente -->
             <img src="{{ asset("images/avatar/%s"|format(user.avatar.path)) }}" alt="{{ user.username }}" class="wf_img">
             <!-- chaque membre possède un pseudo qui est un liens vers son wall -->
-            <figcaption><a class="wf_link" href="#">{{ user.username }}</a></figcaption>
+            <figcaption><a class="wf_link" href="{{ path('user_profile', {'id' : user.id }) }}">{{ user.username }}</a></figcaption>
           </figure>
 
         {% endfor %}
