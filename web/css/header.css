@@ -12,10 +12,12 @@
 /* ::info:: le logo du site web */
 #hd_logo {
     /* ::info:: dimensions du logo */
-    min-width: 100px;
-    min-height: 100%;
+    max-width: 150px;
+    max-height: 150px;
     /* ::info:: marges extérieures */
-    margin-right: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: none;
 }
 
 /* ::info:: balise <section> qui contient : slogan, menu, langue, recherche
@@ -46,6 +48,8 @@ header section {
             /* ::info:: dimensions */
             width : 180px;
             height: 75px;
+            border: none;
+            font-weight: bold;
         }
 
         /* ::info:: balise <div> du choix des langues */

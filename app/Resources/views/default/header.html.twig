@@ -1,9 +1,9 @@
 <header id="hd_js">
-  <img class="wf_img" src="{{ asset('images/wf_img.jpg') }}" alt="logo" id="hd_logo"/>
+  <img class="wf_img" src="{{ asset('images/logo_site.png') }}" alt="logo" id="hd_logo"/>
 
   <section>
     <div id="hd_block_slogan_lang">
-      <div class="wf_no-link" id="hd_block_slogan">Slogan</div>
+      <div class="wf_no-link" id="hd_block_slogan">LE RESEAU SOCIAL DES SERIES TV</div>
       <div id="hd_block_lang">
         <figure>
           <img class="wf_img" src="{{ asset('images/drapeau_francais.jpg') }}" alt="drapeau"/>
@@ -44,8 +44,8 @@
     </section>
     {% else %}
       <section>
-        <a class="wf_link" href="#">{{ app.user }}</a>
-        <a class="wf_link" id="hd_block_user_info" href="{{ path("fos_user_security_logout") }}">deconnexion</a>
+        <a class="wf_link" href="{{ path("user_profile",{"id" : app.user.id}) }}">{{ app.user }}</a>
+        <a class="wf_link" id="hd_block_user_info" href="{{ path("fos_user_security_logout") }}">Déconnexion</a>
       </section>
       <img class="wf_img" src="{{ asset("images/avatar/%s"|format(app.user.avatar.path)) }}" alt="avatar"/>
     </div>
